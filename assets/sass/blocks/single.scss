@@ -1,0 +1,47 @@
+.single .opinions {
+	padding: 0;
+}
+
+.site-main__inner-wrap a {
+	@include link-style;
+	display: inline-block;
+	color: $green;
+}
+
+.single figure {
+	margin: 32px 0;
+	margin-bottom: 22px;
+	width: 100% !important;
+}
+
+.single figure figcaption {
+	text-align: left;
+	margin-top: 8px;
+	font-size: 12px;
+	font-weight: 600;
+	color: $light-gray;
+}
+
+.single figure figcaption a {
+	color: $light-gray;
+}
+
+.single figure img {
+	width: 100%;
+}
+
+@media (min-width: 1024px) {
+
+	.single main > .container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		padding: 0 90px;
+	}
+
+	.single .site-main__inner-wrap {
+		width: 64.5%;
+	}
+
+}

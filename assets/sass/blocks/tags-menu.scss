@@ -1,0 +1,90 @@
+.tags-menu {
+	position: fixed;
+	left: 0;
+	top: -150%;
+	width: 100%;
+	padding: 34px 0;
+	background-color: #F9F9F9;
+	z-index: 3;
+	transition: all 0.6s ease 0s;
+}
+
+.tags-menu--shown {
+	top: 80px;
+	z-index: 10;
+	transition: all 0.6s ease 0s;
+}
+
+.tags-menu .container {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.tags-menu ul {
+	@include list-style;
+}
+
+.tags-menu__list {
+	display: flex;
+	flex-direction: row;
+}
+
+.tags-menu ul a {
+	@include link-style;
+	color: $text-color;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.23;
+	text-transform: uppercase;
+}
+
+.tags-menu .menu-item-has-children {
+	margin-right: 75px;
+	max-width: 205px;
+
+	&::last-child {
+		margin-right: 0;
+	}
+}
+
+.tags-menu .menu-item-has-children a {
+    margin-bottom: 8px;
+}
+
+.tags-menu .sub-menu li {
+	margin-bottom: 6px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.tags-menu .sub-menu a {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.52;
+	text-transform: none;
+}
+
+.tags-menu__link {
+	position: relative;
+	@include link-style;
+	margin-top: 20px;
+	margin-left: auto;
+	padding-right: 10px;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.23;
+	color: $green;
+	text-transform: uppercase;
+
+	&::before {
+		@include element-style(8px, 8px, transparent);
+		right: 0;
+		top: 6px;
+		border: 2px solid $green;
+		border-left: none;
+		border-top: none;
+		transform: rotate(-45deg);
+	}
+}

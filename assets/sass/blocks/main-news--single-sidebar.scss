@@ -1,0 +1,17 @@
+.main-news--single-sidebar .main-news__link {
+    padding: 0;
+    text-align: right;
+
+	&::before {
+		display:none;
+	}
+}
+
+.main-news--single-sidebar .main-news__link .title__secondary {
+	color: $light-gray
+}
+
+.main-news--single-sidebar .main-news__list {
+	@include list-style;
+	margin-bottom: 50px;
+}

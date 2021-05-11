@@ -1,0 +1,10 @@
+@media (min-width: 1024px) {
+
+    .front-page-sidebar .main-news__item {
+        
+        &::before {
+            top: unset;
+            bottom: 0;
+        }
+    }
+}

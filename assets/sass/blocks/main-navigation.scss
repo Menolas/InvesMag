@@ -1,0 +1,174 @@
+.main-navigation {
+	position: fixed;
+	top: 52px;
+	right: -100%;
+	display: flex;
+	flex-direction: column;
+	padding: 21px 15px;
+	height: 100%;
+	width: 77%;
+	overflow: auto;
+	transition: all 0.3s ease 0s;
+	background-color: #F9F9F9;
+	box-sizing: border-box;
+}
+
+.main-navigation.active {
+	right: 0;
+	z-index: 5;
+}
+
+.menu-main-menu-container {
+	position: relative;
+	padding-bottom: 20px;
+
+	&::after {
+		@include element-style(100%, 1px, #D8D1D1);
+		left: 0;
+		bottom: 0;
+	}
+}
+
+.main-navigation ul {
+	@include list-style;
+}
+
+.main-navigation li {
+	margin-bottom: 24px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.main-navigation a {
+	@include link-style;
+	color: $text-color;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.main-navigation a:hover,
+.main-navigation a:active {
+	color: $green;
+}
+
+.menu-mobile-small-menu-container {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.main-navigation .social {
+	margin-top: auto;
+	margin-bottom: 20px;
+}
+
+.main-navigation .social__link svg {
+	fill: $text-color;
+}
+
+.main-navigation .social__link:hover svg,
+.main-navigation .social__link:active svg {
+	fill: $green;
+}
+
+@media (min-width: 1024px) {
+
+	.main-navigation {
+		order: 1;
+		position: static;
+		flex-grow: 1;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		top: unset;
+		right: unset;
+		margin-left: auto;
+		padding: 0;
+		width: unset;
+		height: unset;
+		background-color: transparent;
+	}
+
+	.menu-main-menu-container {
+		padding: 0;
+
+		&::after {
+			display: none;
+		}
+	}
+
+	.main-navigation .news-categories {
+		display: none;
+	}
+
+	.main-navigation .menu-mobile-small-menu-container {
+		display: none;
+	}
+
+	.main-navigation ul {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.main-navigation li {
+    	margin-left: 45px;
+    	margin-bottom: 0;
+
+    	&:first-child {
+    		margin-left: 0;
+    	}
+    }
+
+    .main-navigation a {
+    	text-transform: uppercase;
+    	font-weight: 700;
+    	font-size: 14px;
+    	color: $white;
+    }
+
+    .menu-tags-item {
+    	position: relative;
+    	padding-right: 11px;
+
+    	&::before {
+    		@include element-style(6px, 6px, transparent);
+    		right: 0;
+    		top: 4px;
+    		border: 2px solid $white;
+    		border-left: none;
+    		border-top: none;
+    		transform: rotate(45deg);
+    	}
+    }
+
+    .menu-tags-item:hover {
+
+    	&::before {
+    		border-color: $green;
+    	}
+    }
+
+    .main-navigation .social {
+    	margin-bottom: 0;
+    }
+
+    .main-navigation .social li {
+    	margin-left: 24px;
+    	margin-right: 0;
+    }
+
+    .main-navigation .social a {
+    	width: 23px;
+    	height: 23px;
+    }
+
+    .main-navigation .social svg {
+    	fill: $white;
+    }
+
+    .main-navigation .current a {
+    	color: $green;
+    }
+}

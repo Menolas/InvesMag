@@ -1,0 +1,47 @@
+.columnist {
+	margin: 32px 0;
+}
+
+.columnist .opinion-mini__img-wrap {
+	flex: 0 0 41%;
+	margin-right: 11px;
+}
+
+.columnist .opinion-mini__link {
+	display: none;
+}
+
+@media (min-width: 768px) {
+
+	.columnist {
+		justify-content: space-between;
+	}
+
+	.columnist .opinion-mini__img-wrap {
+		flex: 0 0 21%;
+		margin-right: 20px;
+	}
+
+	.columnist .opinion-mini__img-wrap img {
+		object-fit: contain;
+	}
+
+	.columnist .opinion-mini__caption {
+		margin-right: auto;
+	}
+
+    .columnist .opinion-mini__link {
+		@include link-style;
+		font-size: 14px;
+		font-weight: 500;
+		color: $light-gray;
+	}	
+}
+
+@media (min-width: 1024px) {
+
+	.columnist .opinion-mini__img-wrap {
+		flex: 0 0 24%;
+	}
+
+}

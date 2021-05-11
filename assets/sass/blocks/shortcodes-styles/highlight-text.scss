@@ -1,0 +1,12 @@
+.highlight-text {
+	margin: 16px 0;
+	font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+
+	.highlight-text {
+		margin: 20px 0;
+		font-size: 21px;
+	}
+}

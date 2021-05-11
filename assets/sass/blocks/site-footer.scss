@@ -1,0 +1,144 @@
+.site-footer {
+	padding-top: 30px;
+	padding-bottom: 25px;
+	color: $white;
+	background-color: $text-color;
+}
+
+.site-footer .container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.site-footer__logo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.site-footer__logo p {
+	margin: 0;
+	margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.site-footer .social {
+	margin-left: auto;
+	margin-right: 8px;
+}
+
+.site-footer .social__item {
+	margin-right: 20px;
+}
+
+.site-footer__warning {
+	position: relative;
+	margin-bottom: 11px;
+	padding-bottom: 25px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: rgba(255, 255, 255, 0.6);
+	font-weight: 400;
+
+	&::after {
+		@include element-style(100%, 1px, #535353);
+		bottom: 0;
+		left: 0;
+	}
+}
+
+.site-footer__warning span {
+	color: $white;
+	font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+
+	.site-footer {
+		padding-top: 52px;
+		padding-bottom: 56px; 
+	}
+
+	.site-footer .container {
+		position: relative;
+		align-items: unset;
+		display: grid;
+		grid-template-rows: auto auto;
+		grid-template-columns: auto auto auto auto 50px;
+		justify-content: space-between;
+		overflow: visible;
+	}
+
+	.site-footer__logo {
+		grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        justify-self: start;
+        align-self: start;
+	}
+
+	.site-footer__logo .logo {
+		width: 180px;
+		height: 30px;
+	}
+
+	.site-footer__logo svg {
+		width: 180px;
+		height: 30px;
+	}
+
+	.site-footer__logo p {
+		font-size: 12px;
+	}
+
+	.site-footer .social {
+		grid-column-start: 4;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 1;
+		margin: 0;
+		align-self: flex-start;
+	}
+
+	.site-footer .social__title {
+		display: block;
+		margin: 0;
+		margin-bottom: 16px;
+		font-size: 12px;
+		font-weight: 600;
+	}
+
+	.site-footer .social__item {
+		margin-right: 16px;
+		width: 18px;
+		height: 18px;
+	}
+
+	.site-footer .social svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	.site-footer__warning {
+		grid-column-start: 1;
+        grid-column-end: -1;
+        grid-row-start: 2;
+        grid-row-end: -1;
+		margin-top: 34px;
+		margin-bottom: 0;
+		padding-top: 20px;
+		padding-bottom: 0;
+
+		&::after {
+			bottom: unset;
+			top: 0;
+		}
+	}
+
+}
+
+

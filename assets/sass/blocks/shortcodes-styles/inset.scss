@@ -1,0 +1,21 @@
+.inset {
+	position: relative;
+	margin: 32px 0;
+	padding: 20px 0;
+	font-weight: 700;
+	font-size: 16px;
+
+	&::before {
+		@include element-style(100%, 1px, #D8D1D1);
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
+	&::after {
+		@include element-style(100%, 1px, #D8D1D1);
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}

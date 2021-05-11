@@ -1,0 +1,26 @@
+.partners {
+	margin-top: 14px;
+}
+
+.partners__title {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+
+	.partners {
+		grid-column-start: 4;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 1;
+		align-self: flex-end;
+	}
+
+	.partners__title {
+		display: block;
+		margin: 0;
+		margin-bottom: 14px;
+		font-size: 12px;
+		font-weight: 600;
+	}
+}

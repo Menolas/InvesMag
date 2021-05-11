@@ -1,0 +1,104 @@
+.lwpcngNotice {
+	padding: 24px 15px;
+	text-align: left;
+	border: none;
+	box-shadow: -4px -4px 14 0 rgba(0, 0, 0, 0.2);
+}
+
+.lwpcngNotice_message {
+	position: relative;
+	width: 100%;
+}
+
+.lwpcngNotice h2 {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 800;
+	color: $text-color
+}
+
+.lwpcngNotice p {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: $text-color;
+	line-height: 1.37;
+}
+
+.lwpcngNotice .lwpcngNotice_buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.lwpcngNotice .lwpcngNotice_accept {
+	order: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	width: 131px;
+	height: 40px;
+	color: $white;
+	font-size: 14px;
+	font-weight: 600;
+	background-color: $light-green;
+	border-radius: 3px;
+	border: none;
+	box-sizing: border-box;
+}
+
+.lwpcngNotice .lwpcngNotice_reject  {
+	position: absolute;
+	top: 17px;
+	right: 16px;
+	margin: 0;
+	padding: 0;
+	width: 12px;
+	height: 12px;
+	font-size: 1px;
+	border: none;
+	background-color: transparent;
+	color: transparent;
+
+	&::before {
+		@include element-style(16px, 3px, #979797);
+		top: 5px;
+		right: -1px;
+		border-radius: 2px;
+		transform: rotate(45deg);
+	}
+
+	&::after {
+		@include element-style(16px, 3px, #979797);
+		top: 5px;
+		right: -1px;
+		border-radius: 2px;
+		transform: rotate(-45deg);
+	}
+
+}
+
+.lwpcngNotice_more {
+	order: 0;
+}
+
+.lwpcngNotice_more a {
+	color: $green;
+	font-weight: 700;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+/*lwpcngNotice-sticked lwpcngNoticeBar lwpcngNoticeBar-bottom lwpcngNotice-light lwpcngHide" data-cookie-expire="2592000000" data-status-accepted="1" data-status-rejected="2" data-reload-after-accept="" data-reload-after-reject="" data-use-show-again="" style="display: block;"><div class="lwpcngNotice_message">
+    <h2>Этот сайт использует файлы cookies</h2><br>
+<p>Продолжая просматривать сайт investmag.com, вы подтверждаете, что ознакомились с правилами пользования сайтом и соглашаетесь на использование файлов cookies.</p></div>
+<div class="lwpcngNotice_buttons">
+    <div class="lwpcngNotice_accept js-lwpcngAccept">
+        Соглашаюсь    </div>
+            <div class="lwpcngNotice_reject js-lwpcngReject">
+            Отказаться        </div>
+                <div class="lwpcngNotice_more">
+            <a target="_blank" href="//localhost:3000/terms/">Про файлы cookies</a>        </div>
+    </div>
+</div>*/

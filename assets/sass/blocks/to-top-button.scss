@@ -1,0 +1,49 @@
+.to-top-button {
+	position: relative;
+	margin-left: auto;
+	width: 34px;
+	height: 34px;
+	font-size: 0;
+	background-color: rgba(196, 196, 196, 0.2);
+	
+	&::before {
+		@include element-style(12px, 12px, transparent);
+		top: 12px;
+		left: 11px;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		border-radius: 2px;
+		border-bottom: none;
+		border-right: none;
+		transform: rotate(45deg);
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.to-top-button {
+		grid-column-start: 5;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+		width: 50px;
+		height: 50px;
+
+
+		&::before {
+			top: 18px;
+		    left: 13px;
+			width: 25px;
+			height: 25px;
+			border-width: 5px;
+			border-radius: 4px;
+		}
+	}
+}
+
+@media (min-width: 1310px) {
+
+	.to-top-button {
+		position: absolute;
+		right: -110px;
+	}
+}

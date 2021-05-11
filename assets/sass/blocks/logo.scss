@@ -1,0 +1,28 @@
+.logo {
+	width: 144px;
+	height: 24px;
+}
+
+.logo a {
+	@include link-style;
+	display: block;
+}
+
+.logo svg {
+	width: 144px;
+	height: 24px;
+	fill: $white;
+}
+
+@media (min-width: 1024px) {
+
+	.logo {
+		width: 163px;
+		height: 27px;
+	}
+
+	.logo svg {
+		width: 163px;
+		height: 27px;
+	}
+}

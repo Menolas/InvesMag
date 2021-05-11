@@ -1,0 +1,17 @@
+.opinions-sidebar .opinions__link {
+    margin-top: 0;
+    padding: 0;
+    text-align: right;
+
+    &::before {
+    	display: none;
+    }
+}
+
+.opinions-sidebar .opinions__link .title__secondary {
+	color: $light-gray;
+}
+
+.opinions-sidebar__list {
+	display: unset;
+}

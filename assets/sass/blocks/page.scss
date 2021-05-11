@@ -1,0 +1,10 @@
+@media (min-width: 1024px) {
+
+	.page main > .container{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		padding: 0 90px;
+	}
+}

@@ -1,0 +1,62 @@
+.menu-toggle {
+	@include button-style;
+	position: relative;
+	display: flex;
+	margin-left: 24px;
+	width: 22px;
+	height: 15px;
+	font-size: 0;
+}
+
+.menu-toggle span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 22px;
+	height: 2px;
+	background-color: $white;
+	border-radius: 2px;
+	transition: all 0.3s ease 0s;
+
+	&::before {
+		@include element-style(22px, 2px, $white);
+		top: 7px;
+		left: 0;
+		border-radius: 2px;
+		transition: all 0.3s ease 0s;
+	}
+
+	&::after {
+		@include element-style(22px, 2px, $white);
+		top: 14px;
+		left: 0;
+		border-radius: 2px;
+	}
+}
+
+.menu-toggle--close span {
+	transform: rotate(50deg);
+	left: -3px;
+	top: 7px;
+	width: 17px;
+
+	&::before {
+		transform: rotate(-100deg);
+		top: -8px;
+		left: 7px;
+		width: 17px;
+	}
+
+	&::after {
+		display: none;
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.menu-toggle {
+		display: none;
+	}
+	
+}

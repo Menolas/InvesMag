@@ -1,0 +1,47 @@
+.pagination--desktop {
+	display: none;
+}
+
+.pagination--mobile {
+	display: flex;
+}
+
+.pagination {
+	margin: 0 auto;
+}
+
+.pagination .nav-links {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.pagination .page-numbers {
+	position: relative;
+	@include link-style;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.pagination .current {
+	
+	&::before {
+		@include element-style(55%, 1px, $text-color);
+		bottom: 11px;
+		left: 50%;
+		transform: translate(-50%);
+	}
+}
+
+@media (min-width: 900px) {
+
+	.pagination--desktop {
+		display: flex;
+	}
+
+	.pagination--mobile {
+		display: none;
+	}
+}

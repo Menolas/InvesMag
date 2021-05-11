@@ -1,0 +1,49 @@
+.widget-area {
+	display: none;
+	overflow: hidden;
+}
+
+.widget-area a {
+	@include link-style;
+}
+
+.front-page-sidebar.widget-area {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+
+	.widget-area {
+		display: flex;
+		flex-direction: column;
+		width: 29%;
+	}
+
+	.platform-page .widget-area {
+		flex: 0 0 32.3%;
+		margin-left: 30px;
+	}
+
+	.widget_nav_menu .menu {
+	    @include list-style;
+	}
+
+	.widget_nav_menu .menu a {
+		@include link-style;
+	}
+
+	.widget_nav_menu .menu li {
+		margin-bottom: 16px;
+	}
+
+	.platform-page .widget-area a {
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+
+	.platform-page .widget-area a:hover,
+	.platform-page .widget-area a:active {
+		color: $green;
+	}
+}

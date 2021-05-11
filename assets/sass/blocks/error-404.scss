@@ -1,0 +1,64 @@
+.error-404 {
+	padding: 182px 0 206px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-404__text {
+	margin-bottom: 48px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.error-404 span {
+	font-size: 72px;
+	font-weight: 900;
+	line-height: 0.44;
+}
+
+.error-404__link {
+	position: relative;
+	@include link-style;
+	margin-top: 48px;
+	padding-right: 16px;
+	font-weight: 700;
+	color: $green;
+
+	&::before {
+		@include element-style(8px, 8px, transparent);
+		right: 0;
+		top: 40%;
+		border: 2px solid $green;
+		border-bottom: none;
+		border-left: none;
+		transform: rotate(45deg);
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.error-404 {
+		padding: 140px 0 174px;
+	}
+
+	.error-404__text {
+		margin-bottom: 64px;
+		font-size: 17px;
+	}
+
+	.error-404 span {
+		font-size: 104px;
+	}
+
+	.error-404__link {
+		margin-top: 64px;
+		font-size: 17px;
+
+		&::before {
+			top: 45%;
+		}
+	}
+
+}

@@ -1,0 +1,12 @@
+.article-mini__link {
+	@include link-style;
+}
+
+.article-mini__title {
+	margin: 0;
+}
+
+.article-mini__link:hover,
+.article-mini__link:active {
+	color: $green;
+}

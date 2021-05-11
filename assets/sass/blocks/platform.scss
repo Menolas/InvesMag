@@ -1,0 +1,66 @@
+.platform__links {
+	display: none;
+}
+
+.platform p {
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 500;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.platform .platform__header {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.platform span {
+	display: block;
+	color: $green;
+	font-weight: 600;
+}
+
+.platform ul {
+	margin: 0;
+	padding-left: 21px;
+}
+
+.platform li {
+	margin-bottom: 16px;
+}
+
+@media (min-width: 1024px) {
+
+	.platform .title {
+		margin-bottom: 22px;
+		font-size: 26px;
+		font-weight: 900;
+	}
+
+	.platform .title__secondary {
+		font-size: 21px;
+		font-weight: 700;
+	}
+
+	.platform p {
+		margin-bottom: 22px;
+		font-size: 17px;
+	}
+
+	.platform .platform__header {
+	    font-size: 21px;
+	    font-weight: 600;
+	}
+
+	.platform__links {
+		order: 1;
+		display: block;
+	}
+
+	.platform__links ul {
+		@include list-style;
+	}
+}

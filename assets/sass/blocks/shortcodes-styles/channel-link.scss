@@ -1,0 +1,47 @@
+.channel-link {
+	position: relative;
+	margin: 32px 0;
+	padding: 20px 0;
+	padding-left: 53px;
+	font-weight: 700;
+	background-repeat: no-repeat;
+	background-size: 33px;
+	background-position: left 0 top 50%;
+
+	&::before {
+		@include element-style(100%, 1px, #D8D1D1);
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
+	&::after {
+		@include element-style(100%, 1px, #D8D1D1);
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}
+
+.channel-link--telegram {
+	background-image: url('../img/svg/tel-icon.svg');
+}
+
+.channel-link--facebook {
+	background-image: url('../img/svg/fb-icon.svg');
+}
+
+.channel-link a {
+	@include link-style;
+	display: inline-block;
+	color: $green;
+}
+
+.channel-link--info {
+	padding-left: 0;
+	padding-bottom: 0;
+
+	&::after {
+		display: none;
+	}
+}
