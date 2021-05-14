@@ -1,9 +1,6 @@
 <?php
 
-if(has_shortcode($post->post_content, 'columnist' ) ) {
-   $columnist = get_post_meta($post->ID, 'who', true);
-   $pattern = get_shortcode_atts_regex(['columnist']);
-}
+$columnist = get_field('name');
 
 ?>
  

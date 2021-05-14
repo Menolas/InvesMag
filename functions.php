@@ -2,9 +2,7 @@
 /**
  * InvestMag functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package InvestMag
+ * 
  */
 
 if ( ! function_exists( 'investmag_setup' ) ) :
@@ -240,7 +238,7 @@ add_action('wp_ajax_nopriv_loadmore_stocks', 'load_more_stocks');
 
 function load_more_stocks(){
 
-    $args['post_type'] = 'news';
+    $args['post_type'] = array('simple-post', 'slider', 'cards');
     $args['paged'] = $_POST['page'];
     $args['post_status'] = 'publish';
     $args['posts_per_page'] = 4;
@@ -270,89 +268,89 @@ function load_more_stocks(){
     wp_die();
 }
 
-add_action('acf/save_post', 'my_acf_save_post');
-function my_acf_save_post($post_id) {
+// add_action('acf/save_post', 'my_acf_save_post');
+// function my_acf_save_post($post_id) {
 
-    $the_post = get_post($post_id);
+//     $the_post = get_post($post_id);
 
-    if ($the_post->post_type != 'main') {
+//     if ($the_post->post_type != 'main') {
 
-        $to_top_value = get_field('top', $post_id);
+//         $to_top_value = get_field('top', $post_id);
         
-        if ($to_top_value) {
+//         if ($to_top_value) {
 
-            $top_post = array(
+//             $top_post = array(
                 
-                'ID' => $the_post->ID,
-                'post_author' => $the_post->post_author,
-                'post_content' => $the_post->post_content, 
-                'post_date' => $the_post->post_date,
-                'post_date_gmt' => $the_post->post_date_gmt,
-                'post_excerpt' => $the_post->post_excerpt,
-                'post_name' => $the_post->post_name,
-                'post_status' => 'publish',
-                'post_title' => $the_post->post_title,
-                'post_type' => 'main',
-                'tags_input' => get_the_tags($post_id),
-                'tax_input' => array( get_the_terms($post_id, 'rubrics')),
-            );
+//                 'ID' => $the_post->ID,
+//                 'post_author' => $the_post->post_author,
+//                 'post_content' => $the_post->post_content, 
+//                 'post_date' => $the_post->post_date,
+//                 'post_date_gmt' => $the_post->post_date_gmt,
+//                 'post_excerpt' => $the_post->post_excerpt,
+//                 'post_name' => $the_post->post_name,
+//                 'post_status' => 'publish',
+//                 'post_title' => $the_post->post_title,
+//                 'post_type' => 'main',
+//                 'tags_input' => get_the_tags($post_id),
+//                 'tax_input' => array( get_the_terms($post_id, 'rubrics')),
+//             );
 
-            $post_ID = wp_insert_post($top_post);
+//             $post_ID = wp_insert_post($top_post);
 
-            $thumbnail_id = get_post_thumbnail_id($the_post);
-            $post_kind = $the_post->post_type;
-            $field_key = 'post_kind';
+//             $thumbnail_id = get_post_thumbnail_id($the_post);
+//             $post_kind = $the_post->post_type;
+//             $field_key = 'post_kind';
             
-            set_post_thumbnail($post_ID, $thumbnail_id);
-            update_field($field_key, $post_kind, $post_ID);
-            update_field('top', array('в топ'), $post_ID);
+//             set_post_thumbnail($post_ID, $thumbnail_id);
+//             update_field($field_key, $post_kind, $post_ID);
+//             update_field('top', array('в топ'), $post_ID);
 
-            wp_reset_postdata();
+//             wp_reset_postdata();
         
-        }
-    }
+//         }
+//     }
     
-}
+// }
 
-add_action('acf/save_post', 'my_acf_turn_post');
-function my_acf_turn_post($post_id) {
+// add_action('acf/save_post', 'my_acf_turn_post');
+// function my_acf_turn_post($post_id) {
 
-    $the_post = get_post($post_id);
+//     $the_post = get_post($post_id);
 
-    if ($the_post->post_type == 'main') {
+//     if ($the_post->post_type == 'main') {
 
-        $to_top_value = get_field('top', $post_id);
+//         $to_top_value = get_field('top', $post_id);
 
-        if (!$to_top_value) {
+//         if (!$to_top_value) {
 
-            $top_post = array(
+//             $top_post = array(
                 
-                'ID' => $the_post->ID,
-                'post_author' => $the_post->post_author,
-                'post_content' => $the_post->post_content, 
-                'post_date' => $the_post->post_date,
-                'post_date_gmt' => $the_post->post_date_gmt,
-                'post_excerpt' => $the_post->post_excerpt,
-                'post_name' => $the_post->post_name,
-                'post_status' => 'publish',
-                'post_title' => $the_post->post_title,
-                'post_type' => get_field('post_kind', $post_id),
-                'tags_input' => get_the_tags($post_id),
-                'tax_input' => array( get_the_terms($post_id, 'rubrics')),
-            );
+//                 'ID' => $the_post->ID,
+//                 'post_author' => $the_post->post_author,
+//                 'post_content' => $the_post->post_content, 
+//                 'post_date' => $the_post->post_date,
+//                 'post_date_gmt' => $the_post->post_date_gmt,
+//                 'post_excerpt' => $the_post->post_excerpt,
+//                 'post_name' => $the_post->post_name,
+//                 'post_status' => 'publish',
+//                 'post_title' => $the_post->post_title,
+//                 'post_type' => get_field('post_kind', $post_id),
+//                 'tags_input' => get_the_tags($post_id),
+//                 'tax_input' => array( get_the_terms($post_id, 'rubrics')),
+//             );
 
-            $post_ID = wp_insert_post($top_post);
+//             $post_ID = wp_insert_post($top_post);
 
-            $thumbnail_id = get_post_thumbnail_id($the_post);
+//             $thumbnail_id = get_post_thumbnail_id($the_post);
             
-            set_post_thumbnail($post_ID, $thumbnail_id);
+//             set_post_thumbnail($post_ID, $thumbnail_id);
             
-            update_field('top', array(0), $post_ID);
+//             update_field('top', array(0), $post_ID);
 
-            wp_reset_postdata();
-        }
-    } 
-}
+//             wp_reset_postdata();
+//         }
+//     } 
+// }
 
 function dateDifference($date_1 , $date_2, $differenceFormat = '%a')
 {
@@ -362,4 +360,87 @@ function dateDifference($date_1 , $date_2, $differenceFormat = '%a')
     $interval = date_diff($datetime1, $datetime2);
 
     return $interval->format($differenceFormat);
+}
+
+function get_article_date ($date_1 , $date_2) {
+
+    $days = dateDifference($date_1 , $date_2);
+
+    if ($days > 3) {
+      $article_date = get_the_date('j F');
+    }
+
+    if ($days == 1) {
+      $article_date = 'Вчера';
+    }
+
+    if ($days > 1  && $days <= 3) {
+      $article_date = $days . ' дня назад';
+    }
+
+    if ($days == 0) {
+      $article_date = 'Сегодня';
+    }
+
+    return $article_date;
+}
+
+// add_action('admin_menu', function()
+// {
+//     add_menu_page('Топ новости', 'Топ новости', 'edit_posts', 'top-posts', 'show_top_function', '', '58');
+// });
+
+// function show_top_function ()
+// {
+//    $news = new WP_Query(array(
+//         'post_type' => array('simple-post', 'slider', 'cards', 'opinions', 'main'),
+//         'posts_per_page' => 99,
+//         'tax_query' => array(
+//             array(
+//                 'taxonomy' => 'rubrics',
+//                 'field' => 'slug',
+//                 'terms' => 'main'
+//             )
+//         )
+//     ));
+
+//     if ($news->have_posts()) : 
+//         <ul class=""> 
+//         <?php while ($news->have_posts()) : $news->the_post(); 
+//             <li>
+//                 <?php echo the_title(); 
+//             </li>
+//         <?php endwhile;
+//     endif;
+// }
+
+
+//pagination of page
+
+add_filter('wp_link_pages_args','add_next_and_number');
+
+function add_next_and_number($args){
+    if($args['next_or_number'] == 'next_and_number'){
+        global $page, $numpages, $multipage, $more, $pagenow;
+        $args['next_or_number'] = 'number';
+        $prev = '';
+        $next = '';
+        if ( $multipage ) {
+            if ( $more ) {
+                $i = $page - 1;
+                if ( $i && $more ) {
+                    $prev .= _wp_link_page($i);
+                    $prev .= $args['link_before']. $args['previouspagelink'] . $args['link_after'] . '</a>';
+                }
+                $i = $page + 1;
+                if ( $i <= $numpages && $more ) {
+                    $next .= _wp_link_page($i);
+                    $next .= $args['link_before']. $args['nextpagelink'] . $args['link_after'] . '</a>';
+                }
+            }
+        }
+        $args['before'] = $args['before'].$prev;
+        $args['after'] = $next.$args['after'];   
+    }
+    return $args;
 }

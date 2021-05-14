@@ -2,7 +2,7 @@
 
 $terms = get_terms ([
     'taxonomy' => 'rubrics',
-    'exclude' => '38',
+    'exclude' => ['38'],
     'orderby'      => 'description',
     'order'        => 'ASC',
     

@@ -109,21 +109,11 @@ function card_article_link_function($atts, $content = null)
 
 function columnist_function($atts)
 {
-  extract(shortcode_atts(array(
-       'columnist_id' => '351',
-    ), $atts));
-    
-    $return_string = '<div class="opinion-mini__inner-wrap  columnist">';
-    $return_string .= '<div class="opinion-mini__img-wrap">';
-    $return_string .= get_the_post_thumbnail($columnist_id) . '</div>';
-    $return_string .= '<div class="opinion-mini__caption">';
-    $return_string .= '<h3 class="title__third  opinion-mini__title">';
-    $return_string .= get_the_title($columnist_id) . '</h3>';
-    $return_string .= '<p class="opinion-mini__who">' . get_the_excerpt($columnist_id);
-    $return_string .= '</p></div><a class="opinion-mini__link" href="/opinions">';
-    $return_string .= 'Все мнения</a></div>';
-    
-    return $return_string;
+  ob_start();
+  
+  get_template_part( 'template-parts/content', 'columnist-block');
+
+  return ob_get_clean();
 }
 
 function highlight_text_function($atts, $content = null)
@@ -180,3 +170,14 @@ function shortcode_buttons() {
 }
 
 add_action('init', 'shortcode_buttons');
+
+add_filter('mce_buttons', 'mce_page_break');
+function mce_page_break( $mce_buttons ){
+  $pos = array_search('wp_more', $mce_buttons, true );
+  if( $pos !== false ){
+    $buttons     = array_slice( $mce_buttons, 0, $pos + 1 );
+    $buttons[]   = 'wp_page';
+    $mce_buttons = array_merge( $buttons, array_slice($mce_buttons, $pos + 1) );
+  }
+  return $mce_buttons;
+}

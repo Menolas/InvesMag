@@ -1,9 +1,17 @@
 <?php
 
-$main_screen_post = new WP_Query(array(
-    'post_type' => 'main',
-    'posts_per_page' => 1,
-));
+$top_posts = get_field('to-top', 893);
+$main_screen_post = $top_posts[0];
+
+$terms = get_the_terms($main_screen_post, 'rubrics');
+if($terms) :
+    $term = array_shift($terms);
+endif;
+
+$date1 = get_the_date('Y-m-d', $main_screen_post);
+$current_date1 = date('Y-m-d', time());
+
+$article_date = get_article_date($date1, $current_date1);
 
 $opinions_posts = new WP_Query(array(
     'post_type' => 'opinions',
@@ -18,19 +26,34 @@ get_header();
     
     <section class="main-news">
         <div class="container">
-            <?php if ($main_screen_post->have_posts()) :
-                while ($main_screen_post->have_posts()) : $main_screen_post->the_post(); ?>
-                    <div class="main-news__screen">
-                        <?=get_template_part('template-parts/content', 'mini-article');?>
-                        <div class="main-news__news-category">
-                            <?=get_the_term_list($post->ID, 'rubrics');?>
-                        </div>
+
+            <div class="main-news__screen">
+
+                <?php if ($main_screen_post) : ?>
+                
+                <article class="article-mini">
+                    <a class="article-mini__image-wrap" href="<?=get_permalink($main_screen_post);?>">
+                        <?php echo get_the_post_thumbnail($main_screen_post); ?>
+                    </a>
+                    <div class="article-mini__caption">
+                      <a class="article-mini__link" href="<?=get_permalink($main_screen_post);?>">
+                        <h3 class="article-mini__title">
+                            <?=get_the_title($main_screen_post);?>
+                        </h3>
+                      </a>
                     </div>
-                    <?php endwhile;
-                    wp_reset_postdata();
-                    else :
-                        get_template_part( 'template-parts/content', 'none' );
-                    endif; ?>
+                </article>
+                <div class="main-news__news-category">
+                    <a href="/rubrics/<?=$term->slug;?>">
+                        <?=$term->name;?>
+                    </a>
+                </div>
+            </div>
+                    
+            <?php else :
+                get_template_part( 'template-parts/content', 'none' );
+            endif; ?>
+
             <?php get_sidebar(); ?>
         </div>
     </section>

@@ -30,7 +30,7 @@
                 </a>
             </div><!-- .site-branding -->
 
-            <button class="site-header__notification">
+            <button class="site-header__notification  sub-dialog-btn allow_btn">
                 <svg>
                     <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#notification"></use>
                 </svg>

@@ -1,13 +1,25 @@
 <?php
 
+$big = 999999999;
+
 $nav_args = array (
-'prev_text'  => __('<'),
+    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link( $big))),
+    'format' => '?paged=%#%',
+    'current' => max(1, get_query_var('paged')),
+    'total' => $wp_query->max_num_pages,
+    'prev_text'  => __('<'),
     'next_text'  => __('>'),
+    'posts_per_page' => 9,
 );
 
 $nav_args_desktop = array (
-'prev_text'  => __('< Предыдущая'),
+    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link( $big))),
+    'format' => '?paged=%#%',
+    'current' => max(1, get_query_var('paged')),
+    'total' => $wp_query->max_num_pages,
+    'prev_text'  => __('< Предыдущая'),
     'next_text'  => __('Следующая >'),
+    'posts_per_page' => 9,
 );
 
 get_header();
@@ -35,12 +47,13 @@ get_header();
                     <?php endwhile; ?>
 
                     </ul>
-                    <div class="pagination--mobile">
-                        <?php the_posts_pagination($nav_args); ?>
+
+                    <div class="pagination  pagination--mobile">
+                        <?php echo paginate_links($nav_args); ?>
                     </div>
 
-                    <div class="pagination--desktop">
-                        <?php the_posts_pagination($nav_args_desktop); ?>
+                    <div class="pagination  pagination--desktop">
+                        <?php echo paginate_links($nav_args_desktop); ?>
                     </div>
                 </section>
 

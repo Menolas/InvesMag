@@ -3,23 +3,7 @@
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
-$days = dateDifference($date1, $current_date1);
-
-if ($days > 3) {
-  $article_date = get_the_date('j F');
-}
-
-if ($days == 1) {
-  $article_date = 'Вчера';
-}
-
-if ($days > 1  && $days <= 3) {
-  $article_date = $days . ' дня назад';
-}
-
-if ($days == 0) {
-  $article_date = 'Сегодня';
-}
+$article_date = get_article_date($date1, $current_date1);
 
 ?>
 

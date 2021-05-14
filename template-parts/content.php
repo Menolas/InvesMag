@@ -1,29 +1,36 @@
 <?php
 /**
- * Template part for displaying posts
- *
- */
+* Template part for displaying posts
+*
+*/
+
+$terms = get_the_terms( $post->ID, 'rubrics' );
+if( $terms ) :
+    $term = array_shift( $terms );
+endif;
 
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
-$days = dateDifference($date1, $current_date1);
+$article_date = get_article_date($date1, $current_date1);
 
-if ($days > 3) {
-  $article_date = get_the_date('j F');
-}
+$nav_args = array(
+    'before' => '<div class="page-links">',
+    'after'  => '</div>',
+    'next_or_number' => 'next_and_number',
+    'nextpagelink' => __('>'),
+    'previouspagelink' => __('<'),
+    'echo' => 1,
+);
 
-if ($days == 1) {
-  $article_date = 'Вчера';
-}
-
-if ($days > 1  && $days <= 3) {
-  $article_date = $days . ' дня назад';
-}
-
-if ($days == 0) {
-  $article_date = 'Сегодня';
-}
+$nav_args_desktop = array(
+    'before' => '<div class="page-links">',
+    'after'  => '</div>',
+    'next_or_number' => 'next_and_number',
+    'nextpagelink' => __('Следующая >'),
+    'previouspagelink' => __('< Предыдущая'),
+    'echo' => 1,
+);
 
 ?>
 
@@ -31,11 +38,11 @@ if ($days == 0) {
     <header class="entry-header">
         <div class="article-header">
             <div class="article-header__category">
-                <?=get_the_term_list($post->ID, 'rubrics');?>
+                <a href="/rubrics/<?=$term->slug;?>">
+                    <?=$term->name;?>
+                </a>
             </div>
             <p class="article-header__date"><?=$article_date;?></p>
-            
-            
 
             <div class="article-header__share-link">
                 Поделиться
@@ -71,15 +78,16 @@ if ($days == 0) {
                 ),
                 wp_kses_post( get_the_title() )
             )
-        );
+        ); ?>
 
-        wp_link_pages(
-            array(
-                'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'investmag' ),
-                'after'  => '</div>',
-            )
-        );
-        ?>
+        <div class="page-links__block  page-links__block--mobile">
+            <?php wp_link_pages($nav_args); ?>
+        </div>
+
+        <div class="page-links__block  page-links__block--desktop">
+            <?php wp_link_pages($nav_args_desktop); ?>
+        </div>
+       
     </div>
     <footer class="article-footer">
         <div class="article-footer__author">

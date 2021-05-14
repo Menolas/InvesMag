@@ -139,14 +139,7 @@
             title : 'Колумнист',
             image : url+'/img/manager.svg',
             onclick : function() {
-               var columnist = prompt("ID Колумниста", "351");
-               
-               if (columnist != null && columnist != '') {
-                  ed.execCommand('mceInsertContent', false, '[columnist columnist_id="'+columnist+'"]');
-               }
-               else {
-                  ed.execCommand('mceInsertContent', false, '[columnist]');
-               }
+               ed.execCommand('mceInsertContent', false, '[columnist]');
             }
          });
 

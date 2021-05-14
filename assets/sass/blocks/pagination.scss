@@ -7,6 +7,7 @@
 }
 
 .pagination {
+	position: relative;
 	margin: 0 auto;
 }
 
@@ -35,6 +36,56 @@
 	}
 }
 
+.pagination--mobile .prev,
+.pagination--mobile .next {
+	position: absolute;
+	top: 1px;
+}
+
+.pagination--mobile .prev {
+	left: -32px;
+	transform: translate(-12px);
+}
+
+.pagination--mobile .next {
+	right: -32px;
+	transform: translate(12px);
+}
+
+.pagination--mobile span:first-child {
+	position: relative;
+
+	&::after {
+		content: "<";
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		display: block;
+		left: -22px;
+		top: 50%;
+		color: #9B9A9A;
+		font-weight: 700;
+		transform: translate(-100%, -120%);
+	}
+}
+
+.pagination--mobile span:last-child {
+	position: relative;
+
+	&::after {
+		content: ">";
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		display: block;
+		right: -22px;
+		top: 50%;
+		color: #9B9A9A;
+		font-weight: 700;
+		transform: translate(100%, -120%);
+	}
+}
+
 @media (min-width: 900px) {
 
 	.pagination--desktop {
@@ -44,4 +95,66 @@
 	.pagination--mobile {
 		display: none;
 	}
+
+	.pagination .page-numbers {
+		font-weight: 700;
+	}
+
+	.pagination .current {
+	
+		&::before {
+			height: 2px;
+		}
+	}
+    
+    .pagination--desktop .prev,
+	.pagination--desktop .next {
+		position: absolute;
+		top: 1px;
+	}
+
+	.pagination--desktop .prev {
+		left: -22px;
+		transform: translate(-100%);
+	}
+
+	.pagination--desktop .next {
+		right: -22px;
+		transform: translate(100%);
+	}
+
+	.pagination--desktop span:first-child {
+		position: relative;
+
+		&::after {
+			content: "< Предыдущая";
+			width: 114px;
+			height: 16px;
+			position: absolute;
+			display: block;
+			left: -32px;
+			top: 50%;
+			color: #9B9A9A;
+			font-weight: 700;
+			transform: translate(-100%, -70%);
+		}
+	}
+
+.pagination--desktop span:last-child {
+	position: relative;
+
+	&::after {
+		content: "Следующая >";
+		width: 114px;
+		height: 16px;
+		position: absolute;
+		display: block;
+		right: -32px;
+		top: 50%;
+		color: #9B9A9A;
+		font-weight: 700;
+		transform: translate(100%, -70%);
+	}
+}
+
 }
