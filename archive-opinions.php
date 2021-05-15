@@ -23,7 +23,7 @@ get_header();
 
                     <ul class="news-section__list">
                     <?php while (have_posts()) : the_post(); ?>
-                        <li class="news-section__item">
+                        <li class="news-section__item  news-section__item--3">
                         <?php get_template_part('template-parts/content', 'mini-article'); ?>
                         </li>
                     <?php endwhile; ?>

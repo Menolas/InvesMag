@@ -8,26 +8,23 @@
 	// флаг всплывающего окна: false - окно закрыто, true - открыто
 	let	mStatus = false;
 	
-	if  (mOpen) {
-		
-		mOpen.addEventListener('click', function(e) {
-			modalShow(modal);
+	mOpen.addEventListener('click', function(e) {
+		modalShow(modal);
 
-			document.addEventListener('click', function (e) {
-				var target = e.target;
-				var its_popup = target == modal || modal.contains(target);
-				var its_button = target == mOpen;
+		document.addEventListener('click', function (e) {
+			var target = e.target;
+			var its_popup = target == modal || modal.contains(target);
+			var its_button = target == mOpen;
 
-		        if (!its_popup && !its_button) {
-		        	modal.classList.remove('fadeIn');
-					modal.classList.add('fadeOut');
-				}
-		    });
+	        if (!its_popup && !its_button) {
+	        	modal.classList.remove('fadeIn');
+				modal.classList.add('fadeOut');
+			}
+	    });
 
-		    document.addEventListener('keydown', modalClose);
+	    document.addEventListener('keydown', modalClose);
 
-		});
-	}
+	});
 
 	// регистрируются обработчик события нажатия на клавишу
 

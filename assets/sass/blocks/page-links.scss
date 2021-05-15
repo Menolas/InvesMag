@@ -106,16 +106,19 @@
 	.page-links__block--desktop .page-links a:first-child,
 	.page-links__block--desktop .page-links a:last-child {
 		position: absolute;
-		top: 1px;
+		top: 11px;
+		width: 114px;
+		height: 16px;
+		padding: 0;
 	}
 
 	.page-links__block--desktop .page-links a:first-child {
-		left: -22px;
+		left: -32px;
 		transform: translate(-100%);
 	}
 
 	.page-links__block--desktop .page-links a:last-child {
-		right: -22px;
+		right: -32px;
 		transform: translate(100%);
 	}
 

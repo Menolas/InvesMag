@@ -22,6 +22,9 @@ $nav_args_desktop = array (
     'posts_per_page' => 9,
 );
 
+global $query_string;
+query_posts($query_string . "&orderby=date&order=DESC");
+
 get_header();
 ?>
 
@@ -44,17 +47,21 @@ get_header();
                         <li class="news-section__item">
                         <?php get_template_part('template-parts/content', 'mini-article'); ?>
                         </li>
-                    <?php endwhile; ?>
+                    <?php endwhile;
+                     wp_reset_query(); ?>
 
                     </ul>
 
-                    <div class="pagination  pagination--mobile">
-                        <?php echo paginate_links($nav_args); ?>
-                    </div>
+                    <?php if ($wp_query->max_num_pages > 1) : ?>
 
-                    <div class="pagination  pagination--desktop">
-                        <?php echo paginate_links($nav_args_desktop); ?>
-                    </div>
+                        <div class="pagination  pagination--mobile">
+                            <?php echo paginate_links($nav_args); ?>
+                        </div>
+
+                        <div class="pagination  pagination--desktop">
+                            <?php echo paginate_links($nav_args_desktop); ?>
+                        </div>
+                    <?php endif; ?>
                 </section>
 
             <?php else :

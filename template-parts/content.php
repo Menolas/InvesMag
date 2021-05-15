@@ -44,17 +44,15 @@ $nav_args_desktop = array(
             </div>
             <p class="article-header__date"><?=$article_date;?></p>
 
-            <div class="article-header__share-link">
+            <button class="article-header__share-link">
                 Поделиться
                 <span>
                     <svg>
                         <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#share"></use>
                     </svg>
                 </span>
-                <?php get_template_part('./template-parts/content', 'share-social'); ?>
-
-            </div>
-
+            </button>
+            <?php get_template_part('./template-parts/content', 'share-social'); ?>
         </div>
         <?php if (is_singular()) :
             the_title('<h1 class="entry-title">', '</h1>');

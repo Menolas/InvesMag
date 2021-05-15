@@ -1,25 +1,68 @@
 .share-social {
-	display: none;
-	position: absolute;
-	bottom: -10px;
+	width: 100%;
+	max-width: 461px;
+	height: auto;
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	left: 50%;
+
+	background-color: $white;
+	z-index: 10;
 	padding: 34px;
 	padding-bottom: 37px;
-	width: 100%;
 	color: $text-color;
-	background-color: $white;
-	transform: translate(0, 100%);
 	box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	opacity: 1;
-	
-	z-index: -1;
-	/*transition: all 0.3s ease 0s;*/
 }
 
-.share-social--shown {
-	display: block;
-	z-index: 20;
+.share-social.dlg-modal-fade {
+	left: 50%;
+	top: 37%;
+	transform: translate(-50%, -50%);
 }
+ 
+.fadeIn, 
+.fadeOut {
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+}
+ 
+@keyframes fadeIn { 
+	from {
+		opacity: 0;
+		visibility: hidden;
+	}
+	to { 
+		opacity:1;
+		visibility: visible; 
+	}
+}
+
+.fadeIn {
+	animation-name: fadeIn;
+	opacity: 1;
+	visibility: visible;
+}
+ 
+@keyframes fadeOut { 
+	from {
+		opacity: 1;
+		visibility: visible;
+	}
+	to {
+		opacity:0;
+		visibility: hidden;
+	}
+}
+
+.fadeOut {
+	animation-name: fadeOut;
+	opacity: 0;
+	visibility: hidden;
+}
+
+
 
 .share-social__title {
 	margin: 0;
@@ -94,7 +137,6 @@
 	border: 1px solid #a4a4a4;
 	z-index: 25;
 	opacity: 1;
-
 }
 
 .share-social__form p {
@@ -130,10 +172,8 @@
 
 @media (min-width: 768px) {
 
-	.share-social {
-		bottom: -16px;
-		right: 0;
-		width: 461px;
+	.share-social.dlg-modal-fade {
+		top: 30%;
 	}
 
 	.share-social .share-social__list {
@@ -161,14 +201,14 @@
 @media (min-width: 1024px) {
 
 	.share-social {
-		transform: translate(80%, 100%);
+		top: 42%;
+		left: 70%;
 	}
 }
 
 @media (min-width: 1440px) {
 
 	.share-social {
-		transform: translate(83%, 100%);
+		left: 64%;
 	}
-
 }

@@ -22,14 +22,14 @@ $article_date = get_article_date($date1, $current_date1);
             </div>
             <p class="article-header__date"><?=$article_date;?></p>
 
-            <div class="article-header__share-link">
+            <button class="article-header__share-link">
                 Поделиться
                 <span>
                     <svg>
                         <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#share"></use>
                     </svg>
                 </span>
-            </div>
+            </button>
             <?php get_template_part('./template-parts/content', 'share-social'); ?>
         </div>
 

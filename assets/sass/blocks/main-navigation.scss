@@ -170,5 +170,9 @@
 
     .main-navigation .current a {
     	color: $green;
+
+    	&::before {
+    		border-color: $green;
+    	}
     }
 }

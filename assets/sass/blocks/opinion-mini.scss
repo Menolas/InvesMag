@@ -56,22 +56,19 @@
 .opinion-mini__excerpt {
 	position: relative;
 	margin: 0;
-	padding-top: 35px;
+	padding-top: 38px;
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 1.31;
 
 	&::before {
-		content: "\"";
-		position: absolute;
-		display: block;
+		@include element-style(11px, 11px, transparent);
 		left: 50%;
 		top: 18px;
-		font-size: 30px;
-		line-height: 0.8;
-		color: $text-color;
-		font-family: "Lato";
-		transform: translate(-50%);
+		transform: translate(-50%) rotate(180deg);
+		background-image: url("../img/svg/quotes.svg");
+		background-size: 11px;
+		background-position: center;
 	}
 }
 

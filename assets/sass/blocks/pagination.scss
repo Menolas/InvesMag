@@ -9,6 +9,7 @@
 .pagination {
 	position: relative;
 	margin: 0 auto;
+	justify-content: center;
 }
 
 .pagination .nav-links {
@@ -89,6 +90,7 @@
 @media (min-width: 900px) {
 
 	.pagination--desktop {
+		position: relative;
 		display: flex;
 	}
 
@@ -110,16 +112,19 @@
     .pagination--desktop .prev,
 	.pagination--desktop .next {
 		position: absolute;
-		top: 1px;
+		top: 11px;
+		width: 114px;
+		height: 16px;
+		padding: 0;
 	}
 
 	.pagination--desktop .prev {
-		left: -22px;
+		left: -32px;
 		transform: translate(-100%);
 	}
 
 	.pagination--desktop .next {
-		right: -22px;
+		right: -32px;
 		transform: translate(100%);
 	}
 
@@ -140,21 +145,21 @@
 		}
 	}
 
-.pagination--desktop span:last-child {
-	position: relative;
+	.pagination--desktop span:last-child {
+		position: relative;
 
-	&::after {
-		content: "Следующая >";
-		width: 114px;
-		height: 16px;
-		position: absolute;
-		display: block;
-		right: -32px;
-		top: 50%;
-		color: #9B9A9A;
-		font-weight: 700;
-		transform: translate(100%, -70%);
-	}
-}
+		&::after {
+			content: "Следующая >";
+			width: 114px;
+			height: 16px;
+			position: absolute;
+			display: block;
+			right: -32px;
+			top: 50%;
+			color: #9B9A9A;
+			font-weight: 700;
+			transform: translate(100%, -70%);
+		}
+    }
 
 }

@@ -10,10 +10,11 @@ body {
 
 	&::before {
 		@include element-style(100%, 100%, #333333);
-		top: -100%;
+		top: 52px;
 		left: 0;
 		right: 0;
 		opacity: 0;
+		visibility: hidden;
 		z-index: 2;
 		transition: all 0.3s ease 0s;
 	}
@@ -23,7 +24,7 @@ body.lock{
 	overflow: hidden;
 
 	&::before {
-		top: 52px;
+		visibility: visible;
 		opacity: 0.4;
 	}
 }
@@ -80,11 +81,20 @@ li {
 
 @media (min-width: 1024px) {
 
+	body {
+
+		&::before {
+			top: 80px;
+			height: 250px;
+			background-color: #D9D6D6;
+		}
+	}
+
 	body.lock{
 
-	&::before {
-		height: 250px;
-		z-index: 2;
-	}
-}
+		&::before {
+			opacity: 1;
+			z-index: 2;
+		}
+    }
 }

@@ -27,9 +27,12 @@
 }
 
 .article-header__share-link {
+	@include button-style;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	font-size: 12px;
+	line-height: 1.2;
 	cursor: pointer;
 }
 
@@ -47,6 +50,10 @@
 
 	.article-header {
 		margin-bottom: 15px;
+	}
+
+	.article-header__share-link {
+		font-size: 14px;
 	}
 
 	.article-header__share-link span {

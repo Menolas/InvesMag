@@ -22,6 +22,9 @@ $nav_args_desktop = array (
     'posts_per_page' => 9,
 );
 
+global $query_string;
+query_posts($query_string . "&orderby=date&order=DESC");
+
 get_header();
 
 ?>
@@ -29,7 +32,7 @@ get_header();
     <main id="primary" class="site-main">
 
         <div class="container">
-            <section class="search-results">
+            <section class="search-results category">
                 <h1 class="title  search-results__title">Результаты поиска</h1>
                 <?php get_search_form();?>
 
@@ -39,25 +42,31 @@ get_header();
                     </p>
                     <ul class="news-section__list  search-results__list">
                         <?php while (have_posts()) : the_post(); ?>
-                            <li class="news-section__item  search-results__item"> 
+                            <li class="news-section__item  news-section__item--3  search-results__item"> 
                             <?php get_template_part( 'template-parts/content', 'mini-article' ); ?>
                             </li>
                         <?php endwhile; ?>
                     </ul>
+
+                    <?php if ($wp_query->max_num_pages > 1) : ?>
+
+                        <div class="pagination  pagination--mobile">
+                            <?php echo paginate_links($nav_args); ?>
+                        </div>
+
+                        <div class="pagination  pagination--desktop">
+                            <?php echo paginate_links($nav_args_desktop); ?>
+                        </div>
+                    <?php endif; ?>
+
                 <?php else : ?>
                     <p class="search-results__text">
                         По запросу "<?=get_search_query(); ?>" найдено 0 новостей.
                     </p>
                     <?php get_template_part( 'template-parts/content', 'none' );
+
                 endif; ?>
-
-                <div class="pagination  pagination--mobile">
-                    <?php echo paginate_links($nav_args); ?>
-                </div>
-
-                <div class="pagination  pagination--desktop">
-                    <?php echo paginate_links($nav_args_desktop); ?>
-                </div>
+               
             </section>
         </div>
     </main>

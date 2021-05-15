@@ -14,14 +14,7 @@ if ( ! function_exists( 'investmag_setup' ) ) :
      * as indicating support for post thumbnails.
      */
     function investmag_setup() {
-        /*
-         * Make theme available for translation.
-         * Translations can be filed in the /languages/ directory.
-         * If you're building a theme based on InvestMag, use a find and replace
-         * to change 'investmag' to the name of your theme in all the template files.
-         */
-        load_theme_textdomain( 'investmag', get_template_directory() . '/languages' );
-
+        
         // Add default posts and comments RSS feed links to head.
         //add_theme_support( 'automatic-feed-links' );
 
@@ -66,21 +59,10 @@ if ( ! function_exists( 'investmag_setup' ) ) :
             )
         );
 
-        // Set up the WordPress core custom background feature.
-        add_theme_support(
-            'custom-background',
-            apply_filters(
-                'investmag_custom_background_args',
-                array(
-                    'default-color' => 'ffffff',
-                    'default-image' => '',
-                )
-            )
-        );
-
         // Add theme support for selective refresh for widgets.
         add_theme_support( 'customize-selective-refresh-widgets' );
     }
+
 endif;
 
 add_action( 'after_setup_theme', 'investmag_setup' );
@@ -211,16 +193,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
- */
-//require get_template_directory() . '/inc/customizer.php';
-
-/**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
-    require get_template_directory() . '/inc/jetpack.php';
-}
+// if ( defined( 'JETPACK__VERSION' ) ) {
+//     require get_template_directory() . '/inc/jetpack.php';
+// }
 
 require get_template_directory() . '/inc/custom-post.php';
 require get_template_directory() . '/inc/shortcodes.php';
@@ -384,36 +361,6 @@ function get_article_date ($date_1 , $date_2) {
 
     return $article_date;
 }
-
-// add_action('admin_menu', function()
-// {
-//     add_menu_page('Топ новости', 'Топ новости', 'edit_posts', 'top-posts', 'show_top_function', '', '58');
-// });
-
-// function show_top_function ()
-// {
-//    $news = new WP_Query(array(
-//         'post_type' => array('simple-post', 'slider', 'cards', 'opinions', 'main'),
-//         'posts_per_page' => 99,
-//         'tax_query' => array(
-//             array(
-//                 'taxonomy' => 'rubrics',
-//                 'field' => 'slug',
-//                 'terms' => 'main'
-//             )
-//         )
-//     ));
-
-//     if ($news->have_posts()) : 
-//         <ul class=""> 
-//         <?php while ($news->have_posts()) : $news->the_post(); 
-//             <li>
-//                 <?php echo the_title(); 
-//             </li>
-//         <?php endwhile;
-//     endif;
-// }
-
 
 //pagination of page
 

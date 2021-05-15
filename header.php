@@ -42,7 +42,7 @@
                     <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#search"></use>
                 </svg>
             </button>
-            <div id="searching-form__popup" class="searching-form__popup">
+            <div id="searching-form__popup" class="searching-form__popup  dlg-modal dlg-modal-fade">
                 <?php get_search_form();?>
             </div>
 
@@ -94,7 +94,7 @@
                 </button>
             </div>
         </div>
-        <div class="tags-menu">
+        <div class="tags-menu  dlg-modal dlg-modal-fade">
             <div class="container">
                 <?php wp_nav_menu(
                     array(

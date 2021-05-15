@@ -9,8 +9,12 @@ get_header();
                 <?php
                 while (have_posts()) : the_post(); ?>
                     <article class="platform">
-                        <?php the_content(); ?>
+
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
                     </article>
+                    
                 <?php endwhile; ?>
             </div>
             <?php get_sidebar('platform'); ?>
