@@ -43,7 +43,12 @@
                 </svg>
             </button>
             <div id="searching-form__popup" class="searching-form__popup  dlg-modal dlg-modal-fade">
-                <?php get_search_form();?>
+                <div class="container">
+                    <button class="searching-form__close">
+                        <span></span>
+                    </button>
+                    <?php get_search_form();?>
+                </div>
             </div>
 
             <button class="menu-toggle">

@@ -14,6 +14,8 @@ $current_date1 = date('Y-m-d', time());
 
 $article_date = get_article_date($date1, $current_date1);
 
+$info = get_field('info-off', $post->ID);
+
 $nav_args = array(
     'before' => '<div class="page-links">',
     'after'  => '</div>',
@@ -87,14 +89,17 @@ $nav_args_desktop = array(
         </div>
        
     </div>
-    <footer class="article-footer">
-        <div class="article-footer__author">
-            Текст:&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
-        </div>
-        <?php if (get_the_tag_list()) : ?>
-            <div class="article-footer__topic-links">
-            <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+
+    <?php if (!$info) : ?>
+        <footer class="article-footer">
+            <div class="article-footer__author">
+                Текст:&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
             </div>
-        <?php endif; ?>
-    </footer>
+            <?php if (get_the_tag_list()) : ?>
+                <div class="article-footer__topic-links">
+                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                </div>
+            <?php endif; ?>
+        </footer>
+    <?php endif; ?>
 </article>

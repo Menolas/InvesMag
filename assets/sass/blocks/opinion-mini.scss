@@ -24,12 +24,14 @@
 }
 
 .opinion-mini__img-wrap {
-	flex: 0 0 41%;
+	width: 142px;
+	flex-grow: 0;
+	flex-shrink: 0;
 	display: flex;
 }
 
 .opinion-mini__img-wrap img {
-	
+	object-fit: scale-down;
 	-webkit-filter: grayscale(100%);
 }
 
@@ -74,11 +76,4 @@
 
 .opinion-mini__link:hover .opinion-mini__img-wrap img {
 	-webkit-filter: unset;
-}
-
-@media (min-width: 1024px) {
-
-	.opinion-mini__img-wrap {
-		flex: 0 0 60%;
-	}
 }

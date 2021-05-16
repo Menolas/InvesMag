@@ -5,74 +5,39 @@
  * 
  */
 
-if ( ! function_exists( 'investmag_setup' ) ) :
-    /**
-     * Sets up theme defaults and registers support for various WordPress features.
-     *
-     * Note that this function is hooked into the after_setup_theme hook, which
-     * runs before the init hook. The init hook is too late for some features, such
-     * as indicating support for post thumbnails.
-     */
-    function investmag_setup() {
+add_theme_support('title-tag');
+
+add_theme_support('post-thumbnails');
+// set_post_thumbnail_size(330, 219); // размер миниатюры поста по умолчанию
+
+// add_image_size('portret', 142, 9999); // 300 в ширину и без ограничения в высоту
+// add_image_size('post-two-in-row', 510, 338, true); // Кадрирование изображения
+// add_image_size('post-four-in-row', 240, 160, true); // Кадрирование изображения
+// add_image_size('single-page', 600, 408, true); // Кадрирование изображения
+
+
+add_filter( 'image_size_names_choose', 'my_custom_sizes' );
+function my_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'portret' => 'Портрет колумниста',
+        'post-two-in-row' => '2 в ряд',
+        'post-four-in-row' => '4 в ряд',
+        'single-page' => 'Иллюстрация для поста',
+    ) );
+}
         
-        // Add default posts and comments RSS feed links to head.
-        //add_theme_support( 'automatic-feed-links' );
+register_nav_menus(
+    array(
+        'menu-1' => esc_html__( 'Primary', 'investmag' ),
+        'Footer Menu' => 'Footer Menu Location',
+        'Footer Menu Secondary' => 'Footer Second Menu Location',
+        'Mobile Small Menu' => 'Mobile Small Menu Location',
+        'Tags List Menu' => 'Secondary Menu'
+    )
+);
 
-        /*
-         * Let WordPress manage the document title.
-         * By adding theme support, we declare that this theme does not use a
-         * hard-coded <title> tag in the document head, and expect WordPress to
-         * provide it for us.
-         */
-        add_theme_support( 'title-tag' );
+add_theme_support( 'customize-selective-refresh-widgets' );
 
-        /*
-         * Enable support for Post Thumbnails on posts and pages.
-         *
-         * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-         */
-        add_theme_support( 'post-thumbnails' );
-
-        // This theme uses wp_nav_menu() in one location.
-        register_nav_menus(
-            array(
-                'menu-1' => esc_html__( 'Primary', 'investmag' ),
-                'Footer Menu' => 'Footer Menu Location',
-                'Footer Menu Secondary' => 'Footer Second Menu Location',
-                'Mobile Small Menu' => 'Mobile Small Menu Location',
-                'Tags List Menu' => 'Secondary Menu'
-            )
-        );
-
-        /*
-         * Switch default core markup for search form, comment form, and comments
-         * to output valid HTML5.
-         */
-        add_theme_support(
-            'html5',
-            array(
-                'search-form',
-                'gallery',
-                'caption',
-                'style',
-                'script',
-            )
-        );
-
-        // Add theme support for selective refresh for widgets.
-        add_theme_support( 'customize-selective-refresh-widgets' );
-    }
-
-endif;
-
-add_action( 'after_setup_theme', 'investmag_setup' );
-
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
 function investmag_widgets_init() {
     register_sidebar(
         array(
@@ -131,6 +96,7 @@ add_action( 'widgets_init', 'investmag_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+
 function investmag_scripts() {
 
     wp_register_style('style', get_template_directory_uri() . '/css/style.css', [], 1, 'all');
@@ -192,15 +158,10 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/template-functions.php';
 
-/**
- * Load Jetpack compatibility file.
- */
-// if ( defined( 'JETPACK__VERSION' ) ) {
-//     require get_template_directory() . '/inc/jetpack.php';
-// }
-
 require get_template_directory() . '/inc/custom-post.php';
 require get_template_directory() . '/inc/shortcodes.php';
+
+// снятие фильтров WP
 
 //remove_filter('the_content', 'wpautop');
 remove_filter('the_excerpt', 'wpautop');
@@ -208,14 +169,34 @@ remove_filter('the_excerpt_embed', 'wpautop');
 remove_filter('widget_text_content', 'wpautop');
 add_filter('widget_text', 'do_shortcode');
 
-// подгрузка новостей из категории Акции на главной странице 
+// подгрузка новостей по AJAX из категории Акции на главной странице 
 
 add_action('wp_ajax_loadmore_stocks', 'load_more_stocks');
 add_action('wp_ajax_nopriv_loadmore_stocks', 'load_more_stocks');
 
 function load_more_stocks(){
 
+    $main_post = get_posts(array(
+    'numberposts' => 1,
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'post_type'   => 'main',
+    ));
+
+    //получаем список ID постов ля блока главных новостей на главной
+
+    $top_posts = get_field('to-top', $main_post[0]->ID);
+
+    $exclude_string = '';
+
+    foreach ($top_posts as $top_post) {
+        $exclude_string .= $top_post->ID . ',';
+    }
+
+    $exclude_string = explode(',', $exclude_string);
+
     $args['post_type'] = array('simple-post', 'slider', 'cards');
+    $args['post__not_in']  = $exclude_string;
     $args['paged'] = $_POST['page'];
     $args['post_status'] = 'publish';
     $args['posts_per_page'] = 4;
@@ -245,89 +226,7 @@ function load_more_stocks(){
     wp_die();
 }
 
-// add_action('acf/save_post', 'my_acf_save_post');
-// function my_acf_save_post($post_id) {
-
-//     $the_post = get_post($post_id);
-
-//     if ($the_post->post_type != 'main') {
-
-//         $to_top_value = get_field('top', $post_id);
-        
-//         if ($to_top_value) {
-
-//             $top_post = array(
-                
-//                 'ID' => $the_post->ID,
-//                 'post_author' => $the_post->post_author,
-//                 'post_content' => $the_post->post_content, 
-//                 'post_date' => $the_post->post_date,
-//                 'post_date_gmt' => $the_post->post_date_gmt,
-//                 'post_excerpt' => $the_post->post_excerpt,
-//                 'post_name' => $the_post->post_name,
-//                 'post_status' => 'publish',
-//                 'post_title' => $the_post->post_title,
-//                 'post_type' => 'main',
-//                 'tags_input' => get_the_tags($post_id),
-//                 'tax_input' => array( get_the_terms($post_id, 'rubrics')),
-//             );
-
-//             $post_ID = wp_insert_post($top_post);
-
-//             $thumbnail_id = get_post_thumbnail_id($the_post);
-//             $post_kind = $the_post->post_type;
-//             $field_key = 'post_kind';
-            
-//             set_post_thumbnail($post_ID, $thumbnail_id);
-//             update_field($field_key, $post_kind, $post_ID);
-//             update_field('top', array('в топ'), $post_ID);
-
-//             wp_reset_postdata();
-        
-//         }
-//     }
-    
-// }
-
-// add_action('acf/save_post', 'my_acf_turn_post');
-// function my_acf_turn_post($post_id) {
-
-//     $the_post = get_post($post_id);
-
-//     if ($the_post->post_type == 'main') {
-
-//         $to_top_value = get_field('top', $post_id);
-
-//         if (!$to_top_value) {
-
-//             $top_post = array(
-                
-//                 'ID' => $the_post->ID,
-//                 'post_author' => $the_post->post_author,
-//                 'post_content' => $the_post->post_content, 
-//                 'post_date' => $the_post->post_date,
-//                 'post_date_gmt' => $the_post->post_date_gmt,
-//                 'post_excerpt' => $the_post->post_excerpt,
-//                 'post_name' => $the_post->post_name,
-//                 'post_status' => 'publish',
-//                 'post_title' => $the_post->post_title,
-//                 'post_type' => get_field('post_kind', $post_id),
-//                 'tags_input' => get_the_tags($post_id),
-//                 'tax_input' => array( get_the_terms($post_id, 'rubrics')),
-//             );
-
-//             $post_ID = wp_insert_post($top_post);
-
-//             $thumbnail_id = get_post_thumbnail_id($the_post);
-            
-//             set_post_thumbnail($post_ID, $thumbnail_id);
-            
-//             update_field('top', array(0), $post_ID);
-
-//             wp_reset_postdata();
-//         }
-//     } 
-// }
+// форматирование даты поста
 
 function dateDifference($date_1 , $date_2, $differenceFormat = '%a')
 {
@@ -362,7 +261,7 @@ function get_article_date ($date_1 , $date_2) {
     return $article_date;
 }
 
-//pagination of page
+//pagination of slider post
 
 add_filter('wp_link_pages_args','add_next_and_number');
 

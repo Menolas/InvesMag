@@ -17,7 +17,7 @@ get_header();
 
             endwhile; ?>
         </div>
-        <?php get_sidebar('single'); ?>
+        <?php get_sidebar('simple-post'); ?>
     </div>
 
     <?=get_template_part('template-parts/content', 'news-sections');?>

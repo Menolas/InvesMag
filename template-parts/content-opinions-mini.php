@@ -9,7 +9,7 @@ $columnist = get_field('name');
          <div class="opinion-mini__inner-wrap">
              <div class="opinion-mini__img-wrap">
                  <?php if(has_post_thumbnail($columnist)):?>
-                     <?=get_the_post_thumbnail($columnist, 'large');?>
+                     <?=get_the_post_thumbnail($columnist, 'portret');?>
                  <?php endif;?>
              </div>
         

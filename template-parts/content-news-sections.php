@@ -1,11 +1,52 @@
 <?php
 
+$current_date1 = date('Y-m-d', time());
 $terms = get_terms ([
     'taxonomy' => 'rubrics',
     'exclude' => ['38', '15'],
     'orderby'      => 'description',
     'order'        => 'ASC',
-]); ?>
+]);
+
+// получаем пост в метаполе которого аккумулируются записи для блока главных новостей на главной странице
+
+$main_post = get_posts(array(
+    'numberposts' => 1,
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'post_type'   => 'main',
+));
+
+//получаем список ID постов ля блока главных новостей на главной
+
+$top_posts = get_field('to-top', $main_post[0]->ID);
+
+$exclude_string = '';
+
+foreach ($top_posts as $top_post) {
+    $exclude_string .= $top_post->ID . ',';
+}
+
+$exclude_string = explode(',', $exclude_string);
+
+$stocks_args = array(
+    'posts_per_page' => 4,
+    'post__not_in' => $exclude_string,
+    'post_type' => array('simple-post', 'slider', 'card'),
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'rubrics',
+            'field' => 'slug',
+            'terms' => 'stocks'
+        )
+    ),
+);
+
+$stock_posts = new WP_Query($stocks_args);
+
+?>
 
 <section class="news-section  campaigns">
     <div class="container">
@@ -15,27 +56,16 @@ $terms = get_terms ([
         </a>
         <div class="news-section__list  campaigns__list">
             <?php
-            $stocks = new WP_Query(array(
-                'post_type' => array('simple-post', 'slider', 'cards'),
-                'posts_per_page' => 4,
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'rubrics',
-                        'field' => 'slug',
-                        'terms' => 'stocks'
-                    )
-                )
-            ));
-            if ($stocks->have_posts()) :
-                while ($stocks->have_posts()) : $stocks->the_post(); ?>
-                <div class="news-section__item  campaigns__item  news-section__item--4">
-                    <?=get_template_part('template-parts/content', 'mini-article');?>
-                </div>
+            
+            if ($stock_posts->have_posts()) :
+                while ($stock_posts->have_posts()) : $stock_posts->the_post(); ?>
+                    <div class="news-section__item  campaigns__item  news-section__item--4">
+                        <?=get_template_part('template-parts/content', 'mini-article');?>
+                    </div>
             <?php endwhile;
             wp_reset_postdata();
-            else :
-            get_template_part( 'template-parts/content', 'none' );
             endif; ?>
+            
         </div>
         
         <div class="paginator  campaigns__paginator">
@@ -68,13 +98,14 @@ $terms = get_terms ([
                     $posts = new WP_Query(array(
                         'post_type' => array('simple-post', 'slider', 'cards'),
                         'posts_per_page' => $post_number,
+                        'post__not_in' => $exclude_string,
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'rubrics',
                                 'field' => 'slug',
-                                'terms' => $term->slug
-                            )
-                        )
+                                'terms' => $term->slug,
+                            ),
+                        ),
                     ));
 
                     if ($posts->have_posts()) :
@@ -82,11 +113,12 @@ $terms = get_terms ([
                         <li class="news-section__item  <?=$term->slug;?>__item  news-section__item--<?=$post_number;?>">
                             <?=get_template_part('template-parts/content', 'mini-article');?>
                         </li>
-                    <?php endwhile;
+                        <?php endwhile;
+
                     wp_reset_postdata();
                     else :
-                    get_template_part( 'template-parts/content', 'none' );
-                endif; ?>
+                        get_template_part( 'template-parts/content', 'none' );
+                    endif; ?>
                 </ul>
             </div>
         </section>

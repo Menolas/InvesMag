@@ -12,6 +12,8 @@ $current_date1 = date('Y-m-d', time());
 
 $article_date = get_article_date($date1, $current_date1);
 
+$info = get_field('info-off', $post->ID);
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -37,26 +39,30 @@ $article_date = get_article_date($date1, $current_date1);
 
         <?php the_title('<h1 class="entry-title">', '</h1>');?>
     </header>
-        
-    <?php the_content(
-        sprintf(
-            wp_kses(
-                /* translators: %s: Name of current post. Only visible to screen readers */
-                __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'investmag'),
-                array(
-                    'span' => array(
-                        'class' => array(),
-                    ),
-                )
-            ),
-            wp_kses_post(get_the_title())
-        )
-    ); ?>
-    <footer class="article-footer">
-        <?php if (get_the_tag_list()) : ?>
-            <div class="article-footer__topic-links">
-            <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
-            </div>
-        <?php endif; ?>
-    </footer>
+    <div class="entry-content">    
+        <?php the_content(
+            sprintf(
+                wp_kses(
+                    /* translators: %s: Name of current post. Only visible to screen readers */
+                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'investmag'),
+                    array(
+                        'span' => array(
+                            'class' => array(),
+                        ),
+                    )
+                ),
+                wp_kses_post(get_the_title())
+            )
+        ); ?>
+    </div>
+    
+    <?php if (!$info) : ?>
+        <footer class="article-footer">
+            <?php if (get_the_tag_list()) : ?>
+                <div class="article-footer__topic-links">
+                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                </div>
+            <?php endif; ?>
+        </footer>
+    <?php endif; ?>
 </article>

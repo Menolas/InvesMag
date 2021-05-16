@@ -1885,6 +1885,9 @@ li {
   top: 52px; }
 
 /* анимация попапа -finish*/
+.searching-form__popup .container {
+  padding: 0; }
+
 .searching-form {
   width: 100%; }
 
@@ -1979,6 +1982,35 @@ li {
     box-sizing: border-box; }
   .searching-form__popup.fadeIn {
     display: flex; }
+  .searching-form__popup .container {
+    position: relative;
+    padding: 0 30px; }
+  .searching-form__close {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 38px;
+    width: 14px;
+    height: 14px; }
+  .searching-form__close span {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 3px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    transform: rotate(45deg); }
+    .searching-form__close span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 18px;
+      height: 3px;
+      background-color: #4f4f4f;
+      transform: rotate(90deg); }
   .searching-form {
     position: relative;
     margin: 0 auto;
@@ -2535,10 +2567,13 @@ li {
     left: 0; }
 
 .opinion-mini__img-wrap {
-  flex: 0 0 41%;
+  width: 142px;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: flex; }
 
 .opinion-mini__img-wrap img {
+  object-fit: scale-down;
   -webkit-filter: grayscale(100%); }
 
 .opinion-mini__caption {
@@ -2580,10 +2615,6 @@ li {
 
 .opinion-mini__link:hover .opinion-mini__img-wrap img {
   -webkit-filter: unset; }
-
-@media (min-width: 1024px) {
-  .opinion-mini__img-wrap {
-    flex: 0 0 60%; } }
 
 .opinions-sidebar .opinions__link {
   margin-top: 0;
@@ -3756,11 +3787,27 @@ li {
 
 .lwpcngNotice {
   padding: 24px 15px;
+  width: 100%;
+  max-width: 100%;
   text-align: left;
   border: none;
-  box-shadow: -4px -4px 14 0 rgba(0, 0, 0, 0.2); }
+  box-shadow: -4px -4px 14px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; }
+  .lwpcngNotice::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 400%;
+    background-color: #333333;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    opacity: 0.4;
+    z-index: -1; }
 
 .lwpcngNotice_message {
+  display: block;
   position: relative;
   width: 100%; }
 
@@ -3834,7 +3881,8 @@ li {
     transform: rotate(-45deg); }
 
 .lwpcngNotice_more {
-  order: 0; }
+  order: 0;
+  margin: 0; }
 
 .lwpcngNotice_more a {
   color: #4CAD6D;
@@ -3842,17 +3890,44 @@ li {
   font-size: 14px;
   text-decoration: none; }
 
-/*lwpcngNotice-sticked lwpcngNoticeBar lwpcngNoticeBar-bottom lwpcngNotice-light lwpcngHide" data-cookie-expire="2592000000" data-status-accepted="1" data-status-rejected="2" data-reload-after-accept="" data-reload-after-reject="" data-use-show-again="" style="display: block;"><div class="lwpcngNotice_message">
-    <h2>Этот сайт использует файлы cookies</h2><br>
-<p>Продолжая просматривать сайт investmag.com, вы подтверждаете, что ознакомились с правилами пользования сайтом и соглашаетесь на использование файлов cookies.</p></div>
-<div class="lwpcngNotice_buttons">
-    <div class="lwpcngNotice_accept js-lwpcngAccept">
-        Соглашаюсь    </div>
-            <div class="lwpcngNotice_reject js-lwpcngReject">
-            Отказаться        </div>
-                <div class="lwpcngNotice_more">
-            <a target="_blank" href="//localhost:3000/terms/">Про файлы cookies</a>        </div>
-    </div>
-</div>*/
+@media (min-width: 768px) {
+  .lwpcngNotice {
+    padding: 24px 22px; }
+    .lwpcngNotice::after {
+      display: none; }
+  .lwpcngNotice .lwpcngNotice_reject {
+    right: 22px; } }
+
+@media (min-width: 1024px) {
+  .lwpcngNotice {
+    padding: 34px 0; }
+  .lwpcngNotice_message {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    width: 964px; }
+  .lwpcngNotice .lwpcngNotice_buttons {
+    position: relative;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 964px; }
+  .lwpcngNotice_more {
+    margin-right: 68px; }
+  .lwpcngNotice .lwpcngNotice_reject {
+    top: -115px;
+    right: 0;
+    transform: translate(100%); } }
+
+@media (min-width: 1110px) {
+  .lwpcngNotice_message {
+    width: 1050px; }
+  .lwpcngNotice .lwpcngNotice_buttons {
+    width: 1050px; } }
+
+.alignone {
+  width: 100% !important; }
+
+.entry-content img {
+  width: 100%;
+  object-fit: scale-down; }
 
 /*# sourceMappingURL=style.css.map */

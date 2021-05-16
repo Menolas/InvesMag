@@ -6,7 +6,7 @@ $columnist = get_field('name');
 
 <div class="opinion-mini__inner-wrap  columnist">
 	<div class="opinion-mini__img-wrap">
-		<?=get_the_post_thumbnail($columnist);?>
+		<?=get_the_post_thumbnail($columnist, 'portret');?>
 	</div>
 	<div class="opinion-mini__caption">
 		<h3 class="title__third  opinion-mini__title">

@@ -1,17 +1,20 @@
 <?php
 
-$top_posts = get_field('to-top', 893);
+$main_post = get_posts(array(
+    'numberposts' => 1,
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'post_type'   => 'main',
+));
+
+$top_posts = get_field('to-top', $main_post[0]->ID);
+
 $main_screen_post = $top_posts[0];
 
-$terms = get_the_terms($main_screen_post, 'rubrics');
+$terms = get_the_terms($main_screen_post->ID, 'rubrics');
 if($terms) :
     $term = array_shift($terms);
 endif;
-
-$date1 = get_the_date('Y-m-d', $main_screen_post);
-$current_date1 = date('Y-m-d', time());
-
-$article_date = get_article_date($date1, $current_date1);
 
 $opinions_posts = new WP_Query(array(
     'post_type' => 'opinions',
@@ -33,12 +36,12 @@ get_header();
                 
                 <article class="article-mini">
                     <a class="article-mini__image-wrap" href="<?=get_permalink($main_screen_post);?>">
-                        <?php echo get_the_post_thumbnail($main_screen_post); ?>
+                        <?php echo get_the_post_thumbnail($main_screen_post->ID); ?>
                     </a>
                     <div class="article-mini__caption">
-                      <a class="article-mini__link" href="<?=get_permalink($main_screen_post);?>">
+                      <a class="article-mini__link" href="<?=get_permalink($main_screen_post->ID);?>">
                         <h3 class="article-mini__title">
-                            <?=get_the_title($main_screen_post);?>
+                            <?=get_the_title($main_screen_post->ID);?>
                         </h3>
                       </a>
                     </div>
@@ -52,9 +55,10 @@ get_header();
                     
             <?php else :
                 get_template_part( 'template-parts/content', 'none' );
-            endif; ?>
+            endif; 
+            wp_reset_postdata();
 
-            <?php get_sidebar(); ?>
+            get_sidebar(); ?>
         </div>
     </section>
 
