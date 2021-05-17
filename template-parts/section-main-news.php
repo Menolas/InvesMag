@@ -21,7 +21,7 @@ $top_posts = array_slice($top_posts, 0, 4);
 ?>
 
 <div class="main-news__side-wrap">
-    <a class="main-news__link" href="/news">
+    <a class="main-news__link" href="rubrics/news">
         <h2 class="title__secondary  title__secondary--mobile">Новости</h2>
         <h2 class="title__secondary  title__secondary--desktop">Еще новости</h2>
     </a>    

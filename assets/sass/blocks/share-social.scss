@@ -8,7 +8,7 @@
 	left: 50%;
 
 	background-color: $white;
-	z-index: 10;
+	z-index: -1;
 	padding: 34px;
 	padding-bottom: 37px;
 	color: $text-color;
@@ -24,8 +24,8 @@
  
 .fadeIn, 
 .fadeOut {
-	animation-duration: 0.4s;
-	animation-timing-function: linear;
+	/*animation-duration: 0.1s;
+	animation-timing-function: linear;*/
 }
  
 @keyframes fadeIn { 
@@ -42,6 +42,7 @@
 .fadeIn {
 	animation-name: fadeIn;
 	opacity: 1;
+	z-index: 10;
 	visibility: visible;
 }
  

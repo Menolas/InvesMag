@@ -45,6 +45,10 @@
 		flex: 0 0 31%;
 	}
 
+	.category .news-section__item .article-mini__image-wrap {
+		height: 219px;
+	}
+
 }
 
 @media (min-width: 1110px) {
@@ -53,8 +57,5 @@
 		width: 330px;
 		flex: unset;
 	}
-
-	.category .news-section__item .article-mini__image-wrap {
-		height: 219px;
-	}
+	
 }

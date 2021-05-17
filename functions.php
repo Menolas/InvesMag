@@ -93,6 +93,19 @@ function investmag_widgets_init() {
 }
 add_action( 'widgets_init', 'investmag_widgets_init' );
 
+add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+  if(is_category() || is_tag()) {
+    $post_type = get_query_var('post_type');
+    if($post_type)
+        $post_type = $post_type;
+    else
+        $post_type = array('post','simple-post', 'slider', 'card', 'opinions'); // replace cpt to your custom post type
+    $query->set('post_type',$post_type);
+    return $query;
+    }
+}
+
 /**
  * Enqueue scripts and styles.
  */
@@ -105,6 +118,8 @@ function investmag_scripts() {
     wp_enqueue_script( 'slick-slider-lib', get_stylesheet_directory_uri() . '/js/vendor/slick.min.js', array('jquery'));
 
     wp_enqueue_script( 'slick-slider', get_stylesheet_directory_uri() . '/js/slick.js', array('jquery'));
+
+    wp_enqueue_script( 'header-desktop', get_stylesheet_directory_uri() . '/js/header-desktop.js', array('jquery'));
 
     wp_enqueue_script( 'mobile-menu', get_stylesheet_directory_uri() . '/js/mobile-menu.js', [], 1, true);
 

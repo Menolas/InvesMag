@@ -61,7 +61,7 @@ $info = get_field('info-off', $post->ID);
             </div>
             <?php if (get_the_tag_list()) : ?>
                 <div class="article-footer__topic-links">
-                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                <?php echo get_the_tag_list('<div>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</div>'); ?>
                 </div>
             <?php endif; ?>
         </footer>

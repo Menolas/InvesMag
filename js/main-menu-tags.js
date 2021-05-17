@@ -15,16 +15,19 @@
 		 	}
 		}
 
-		
-
 		tagsMenuItem.addEventListener('click', function (e) {
 		 	e.preventDefault();
+		 	e.stopPropagation()
+		 	var target = e.target;
 
-		 	if (!mStatus) {
-			 	modalShow(tagsContainer);
-			 	
-			} else {
-				modalClose(tagsContainer);
+		 	if (target == tagsMenuItem) {
+
+			 	if (!mStatus) {
+				 	modalShow(tagsContainer);
+				 	
+				} else {
+					modalClose(tagsContainer);
+				}
 			}
 			
 		});

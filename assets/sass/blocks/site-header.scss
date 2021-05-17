@@ -9,10 +9,12 @@
 .site-header--fixed {
 	position: fixed;
 	top: 0;
+	left: 0;
+	right: 0;
 }
 
-.site-header--fixed + .site-main {
-  padding-top: 84px;
+.site-header--fixed ~ .site-main {
+  margin-top: 84px;
 }
 
 .site-header .container {
@@ -69,8 +71,8 @@
 		padding-bottom: 0;
 	}
 
-	.site-header--fixed + .site-main {
-	  padding-top: 202px;
+	.site-header--fixed ~ .site-main {
+	    margin-top: 140px;
 	}
 
 	.site-header .logo {
