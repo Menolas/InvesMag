@@ -15,3 +15,39 @@
 .opinions-sidebar__list {
 	display: unset;
 }
+
+@media (min-width: 1024px) {
+
+	.opinions-sidebar .opinions__link {
+		margin-bottom: 27px;
+	}
+
+	.opinions-sidebar .opinions__link h2 {
+		margin: 0;
+	}
+
+	.opinions-sidebar .opinion-mini__inner-wrap {
+		align-items: center;
+	}
+
+	.opinions-sidebar .opinion-mini__img-wrap {
+		margin-right: 18px;
+	}
+
+	.opinions-sidebar .opinion-mini__caption {
+		margin-top: -20px;
+		padding: 0;
+	}
+
+	.opinions-sidebar .opinion-mini__title {
+		margin-bottom: 10px;
+	}
+
+	.opinions-sidebar .opinion-mini__title span {
+		display: inline-block;
+	}
+
+	.opinions-sidebar .opinion-mini__excerpt::before {
+		left: 61%;
+	}
+}

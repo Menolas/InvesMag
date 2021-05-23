@@ -1,10 +1,27 @@
 .opinions {
-	padding-top: 50px;
+	padding-top: 51px;
 }
 
 .opinions__link {
+	position: relative;
 	@include link-style;
 	margin-bottom: 32px;
+
+	&::before {
+    	@include element-style(10px, 10px, transparent);
+    	right: 2px;
+    	top: 6px;
+    	border: 2px solid #989898;
+    	border-bottom: none;
+    	border-left: none;
+    	transform: rotate(45deg);
+    }
+}
+
+.slick-initialized .slick-slide:last-child {
+	
+		display: none;
+	
 }
 
 .opinions .slick-dotted.slick-slider {
@@ -14,7 +31,7 @@
 .opinions .slick-dots {
 	position: static;
 	@include list-style;
-	margin-top: 10px;
+	margin-top: 16px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -50,11 +67,7 @@
 	}
 }
 
-@media (min-width: 1024px) {
-
-	.opinions {
-		padding-top: 64px;
-	}
+@media (min-width: 768px) {
 
 	.opinions .container{
 		display: flex;
@@ -69,11 +82,10 @@
 	}
 
 	.opinions__item {
-		flex: 0 0 22%;
+		flex: 0 0 31%;
 	}
 
 	.opinions__link {
-		position: relative;
 		order: 1;
 		margin-top: 34px;
 		margin-bottom: 0;
@@ -98,4 +110,31 @@
 		line-height: 1.2;
 	}
 
+	.opinions__link .title__secondary--mobile {
+		display: none;
+	}
+
+	.opinions__link .title__secondary--desktop {
+		display: block;
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.opinions {
+		padding-top: 52px;
+	}
+
+	.opinions__link {
+		margin-top: 40px;
+
+		&::before {
+			top: 4px;
+			right: 2px;
+		}
+	}
+
+	.opinions__item {
+		flex: 0 0 23%;
+	}
 }

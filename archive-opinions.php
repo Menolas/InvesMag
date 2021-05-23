@@ -1,13 +1,13 @@
 <?php
 
 $nav_args = array (
-'prev_text'  => __('<'),
-    'next_text'  => __('>'),
+    'prev_text'  => __('<span><</span>'),
+    'next_text'  => __('<span>></span>'),
 );
 
 $nav_args_desktop = array (
-'prev_text'  => __('< Предыдущая'),
-    'next_text'  => __('Следующая >'),
+    'prev_text'  => __('Предыдущая'),
+    'next_text'  => __('Следующая'),
 );
 
 get_header();
@@ -18,7 +18,7 @@ get_header();
 
             <?php if (have_posts()) : ?>
 
-                <section class="category">
+                <section class="category  show-cat">
                     <h1 class="title  category__title">Мнения</h1>
 
                     <ul class="news-section__list">

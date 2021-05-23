@@ -40,18 +40,16 @@ function info_inset_function($atts, $content = null)
 function topic_article_function($atts)
 {
   extract(shortcode_atts(array(
-       'post_url' => '#',
+       'page_id' => '#',
     ), $atts));
-
-    $post_id = url_to_postid($post_url);
     
-    $post = get_post(array('ID' => $post_id), 'ARRAY_A');
+    //$post = get_page_by_title($page_title, $output, array('simple-post', 'slider', 'cards', 'opinions'));
 
     $return_string = '<div class="topic-article">';
-    $return_string .= '<a class="topic-article__img-wrap" href="'.get_permalink($post_id).'">' . get_the_post_thumbnail($post_id) . '</a>';
+    $return_string .= '<a class="topic-article__img-wrap" href="'.get_permalink($page_id).'">' . get_the_post_thumbnail($page_id) . '</a>';
     $return_string .= '<div class="topic-article__inner-wrap"><span>По теме</span>';
-    $return_string .= '<a class="topic-article__header-link" href="'.get_permalink($post_id).'">';
-    $return_string .= '<h3>' . get_the_title($post_id) . '</h3></a>';
+    $return_string .= '<a class="topic-article__header-link" href="'.get_permalink($page_id).'">';
+    $return_string .= '<h3>' . get_the_title($page_id) . '</h3></a>';
     $return_string .= '</div></div>';
 
     return $return_string;
@@ -70,10 +68,15 @@ function tag_link_function($atts, $content = null)
     ), $atts));
 
     $term = get_term_by('name', $content, 'post_tag');
+    
+    if ($term) {
+        $cat_link = get_category_link($term->term_taxonomy_id);
 
-    $cat_link = get_category_link( $term->term_id );
+        $return_string = '<a class="tag-link" href="'.$cat_link.'">' . do_shortcode($content) . '</a>';
+    } else {
+      $return_string = '<a class="tag-link" href="#">' . do_shortcode($content) . '</a>';
+    }
 
-    $return_string = '<a class="tag-link" href="'.$cat_link.'">' . do_shortcode($content) . '</a>';
     return $return_string;
 }
 
@@ -81,9 +84,14 @@ function rubrics_link_function($atts, $content = null)
 {
     $term = get_term_by('name', $content, 'rubrics');
 
-    $cat_link = get_category_link( $term->term_id );
+    if ($term) {
 
-    $return_string = '<a class="rubrics-link" href="'.$cat_link.'">' . do_shortcode($content) . '</a>';
+      $cat_link = get_category_link($term->term_taxonomy_id);
+
+      $return_string = '<a class="rubrics-link" href="'.$cat_link.'">' . do_shortcode($content) . '</a>';
+    } else {
+      $return_string = '<a class="rubrics-link" href="#">' . do_shortcode($content) . '</a>';
+    }
     return $return_string;
 }
 
@@ -102,8 +110,8 @@ function card_article_link_function($atts, $content = null)
 
     $return_string = '<div class="card-article-link">';
     $return_string .= '<span>'. $link_id .'.</span>';
-    $return_string .= '<h2 id="'. $link_id .'" class="title__secondary">';
-    $return_string .= do_shortcode($content).'</h2></div>';
+    $return_string .= '<h3 id="'. $link_id .'" class="title__third">';
+    $return_string .= do_shortcode($content).'</h3></div>';
     return $return_string;
 }
 

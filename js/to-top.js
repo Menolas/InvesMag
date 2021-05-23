@@ -6,6 +6,10 @@ jQuery(function($) {
 		    $('body,html').animate({scrollTop:0},800);
 		 
 		});
+
+		$('p').filter(function(){
+		   return this.innerHTML == '&nbsp;';
+		}).remove();
 	
 
 	// $(window).scroll(function() {

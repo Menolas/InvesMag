@@ -6,12 +6,19 @@
 	@include list-style;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
-.social__item {
+.social .social__item {
 	margin-right: 24px;
-	width: 22px;
-	height: 22px;
+	margin-bottom: 0;
+	width: 16px;
+	height: 16px;
+
+	&::first-child {
+		width: 18px;
+		height: 18px;
+	}
 
 	&:last-child {
 		margin-right: 0;
@@ -20,12 +27,24 @@
 
 .social__link {
 	@include link-style;
+	width: 16px;
+	height: 16px;
+}
+
+.social .social__item:first-child .social__link {
+    width: 18px;
+	height: 18px;
 }
 
 .social__link svg {
-	width: 20px;
-	height: 20px;
+	width: 16px;
+	height: 16px;
 	fill: $white;
+}
+
+.social .social__item:first-child .social__link svg {
+    width: 18px;
+	height: 18px;
 }
 
 .social__link:hover svg,

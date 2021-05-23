@@ -4,11 +4,6 @@
 *
 */
 
-$terms = get_the_terms( $post->ID, 'rubrics' );
-if( $terms ) :
-    $term = array_shift( $terms );
-endif;
-
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
@@ -29,8 +24,8 @@ $nav_args_desktop = array(
     'before' => '<div class="page-links">',
     'after'  => '</div>',
     'next_or_number' => 'next_and_number',
-    'nextpagelink' => __('Следующая >'),
-    'previouspagelink' => __('< Предыдущая'),
+    'nextpagelink' => __('Следующая'),
+    'previouspagelink' => __('Предыдущая'),
     'echo' => 1,
 );
 
@@ -38,12 +33,19 @@ $nav_args_desktop = array(
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
+        <?php print_r($terms); ?>
         <div class="article-header">
-            <div class="article-header__category">
-                <a href="/rubrics/<?=$term->slug;?>">
-                    <?=$term->name;?>
-                </a>
-            </div>
+
+            <?php $terms = get_the_terms( $post->ID, 'rubrics' );
+                if($terms) :
+                    $term = array_shift($terms); ?>
+                    <div class="article-header__category">
+                        <a href="/rubrics/<?=$term->slug;?>">
+                            <?=$term->name;?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            
             <p class="article-header__date"><?=$article_date;?></p>
 
             <button class="article-header__share-link">
@@ -93,11 +95,11 @@ $nav_args_desktop = array(
     <?php if (!$info) : ?>
         <footer class="article-footer">
             <div class="article-footer__author">
-                Текст:&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
+                Текст:&nbsp;&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
             </div>
             <?php if (get_the_tag_list()) : ?>
                 <div class="article-footer__topic-links">
-                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '</span>'); ?>
                 </div>
             <?php endif; ?>
         </footer>

@@ -12,8 +12,8 @@ if (get_field('post_kind')) {
 get_header();
 ?>
 
-<main id="primary" class="site-main">
-    <div class="container">
+<main id="primary" class="site-main  site-main--single">
+    <div class="container  container--single">
         <div class="site-main__inner-wrap">
         
             <?php while (have_posts()) : the_post();

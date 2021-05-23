@@ -5,12 +5,20 @@ const watch = require("gulp-watch");
 const server = require("browser-sync").create();
 
 gulp.task('style', function() {
-    return gulp.src("./assets/sass/style.scss")
-    .pipe(sourcemaps.init())
-    .pipe(sass().on("error", sass.logError))
-    .pipe(sourcemaps.write("./"))
-    .pipe(gulp.dest("./css"))
-    .pipe(server.stream())
+  return gulp.src("./assets/sass/style.scss")
+  .pipe(sourcemaps.init())
+  .pipe(sass().on("error", sass.logError))
+  .pipe(sourcemaps.write("./"))
+  .pipe(gulp.dest("./css"))
+  .pipe(server.stream())
+});
+
+// JavaScript
+gulp.task('javascript', function() {
+  return gulp.src("./js/*.js")
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'))
+  .pipe(gulp.dest("./js-build"));
 });
 
 gulp.task("server", function () {

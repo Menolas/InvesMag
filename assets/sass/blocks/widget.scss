@@ -1,6 +1,13 @@
 .widget-area {
-	display: none;
 	overflow: hidden;
+	max-width: 600px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.single-cards .widget-area {
+    display: none;
 }
 
 .widget-area a {
@@ -12,38 +19,84 @@
 	flex-direction: column;
 }
 
-@media (min-width: 1024px) {
+.platform-page .widget-area {
+	margin-top: 35px;
+}
 
-	.widget-area {
-		display: flex;
-		flex-direction: column;
-		width: 29%;
+.platform-sidebar .widget {
+	margin-bottom: 0;
+}
+
+.platform-sidebar .menu-footer-menu-secondary-container {
+	margin-bottom: 0;
+	padding-bottom: 0;
+
+	&::after {
+		display: none;
 	}
+}
+
+.widget_nav_menu .menu {
+    @include list-style;
+}
+
+.widget_nav_menu .menu a {
+	@include link-style;
+}
+
+.widget_nav_menu .menu li {
+	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.platform-page .widget-area a {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.platform-page .widget-area a:hover,
+.platform-page .widget-area a:active {
+	color: $green;
+}
+
+@media (min-width: 783px) {
 
 	.platform-page .widget-area {
+		margin-top: 5px;
 		flex: 0 0 32.3%;
 		margin-left: 30px;
 	}
 
-	.widget_nav_menu .menu {
-	    @include list-style;
+	.platform-page .platform-sidebar li:first-child,
+	.platform-page .platform-sidebar li:nth-child(2),
+	.platform-page .platform-sidebar li {
+        margin-bottom: 17px;
 	}
 
-	.widget_nav_menu .menu a {
-		@include link-style;
+	
+}
+
+@media (min-width: 1024px) {
+
+	.widget-area {
+		margin-right: 0;
+		margin-left: auto;
+		width: 29%;
 	}
 
-	.widget_nav_menu .menu li {
-		margin-bottom: 16px;
+	.widget-area.card-aside {
+	    display: flex;
+	    margin-top: 37px;
+	    width: 32.2%;
 	}
+}
 
-	.platform-page .widget-area a {
-		text-transform: uppercase;
-		font-weight: 700;
-	}
+@media (min-width: 1110px) {
 
-	.platform-page .widget-area a:hover,
-	.platform-page .widget-area a:active {
-		color: $green;
+	.widget-area.card-aside {
+		width: 300px;
 	}
 }

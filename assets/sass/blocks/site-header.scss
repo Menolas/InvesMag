@@ -1,4 +1,5 @@
 .site-header {
+	position: static;
     padding: 12px 0 13px;
     width: 100%;
 	color: $white;
@@ -13,8 +14,12 @@
 	right: 0;
 }
 
+.site-header--fixed.admin {
+	top: 46px;
+}
+
 .site-header--fixed ~ .site-main {
-  margin-top: 84px;
+  margin-top: 49px;
 }
 
 .site-header .container {
@@ -64,20 +69,27 @@
 	fill: $green;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 783px) {
+
+	.site-header--fixed.admin {
+		top: 32px;
+	}
 
 	.site-header {
-		padding-top: 24px;
+		padding-top: 22px;
 		padding-bottom: 0;
 	}
 
 	.site-header--fixed ~ .site-main {
-	    margin-top: 140px;
+	    margin-top: 142px;
+	}
+
+	.site-header .container {
+		justify-content: flex-start;
 	}
 
 	.site-header .logo {
-		order: 0;
-		margin-right: 76px;
+		margin-right: 75px;
 	}
 
 	.site-header__bottom {
@@ -95,7 +107,13 @@
 	}
 
 	.site-header__bottom .news-categories {
+		padding-top: 19px;
+		padding-bottom: 15px;
 		height: 61px;
+	}
+
+	.site-header__bottom .news-categories__item {
+		margin-bottom: 0;
 	}
 
 	.site-header__bottom .news-categories--search {

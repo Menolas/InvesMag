@@ -5,22 +5,33 @@
 .search-results .site-main .searching-form,
 .search-no-results .site-main .searching-form {
 	position: relative;
-	margin-bottom: 14px;
+	margin-bottom: 17px;
 	padding: 0;
 	background-color: $white;
 }
 
-.search-results .site-main .search-form__input,
-.search-no-results .site-main .search-form__input {
-	width: 88%;
+.search-no-results .site-main .searching-form,
+.search-results .searching-form {
+	margin-bottom: 15px;
 }
 
-.search-results__list {
-	@include list-style;
+.search-results__text {
+	margin: 0;
+	font-size: 12px;
+	line-height: 2.1;
+}
+
+.search .search-results .search-results__list {
+	list-style: none;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 46px;
 	margin-top: 50px;
-	margin-bottom: 40px;
+	padding: 0;
+}
+
+.search-results__item {
+	margin-bottom: 31px;
 }
 
 .search-results__item::before {
@@ -28,28 +39,26 @@
 }
 
 .search-results__item .article-mini__image-wrap {
-	display: block;
+	display: flex;
+}
+
+.search-results .article-mini__link {
+	font-weight: 800;
+	margin-bottom: 8px;
 }
 
 @media (min-width: 768px) {
 
-	.search-results .search-results__list {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
+	.search-results__title {
+		margin-bottom: 31px;
 	}
 
-	.search-results__item {
-		flex-basis: 48%;
-		padding: 0;
-	}
-}
-
-@media (min-width: 900px) {
-
-	.search-results .site-main .searching-form,
+	.search-results .searching-form,
 	.search-no-results .site-main .searching-form {
-		margin-bottom: 32px;
+		margin-left: 0;
+		margin-right: auto;
+		margin-bottom: 26px;
+		padding: 0;
 		width: 540px;
 		transform: none;
 		left: unset;
@@ -60,12 +69,33 @@
 		}
 	}
 
-	.search-results .site-main .search-form__input,
-	.search-no-results .site-main .search-form__input {
-		padding-bottom: 2px;
+	.search .search-results .search-results__list {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top: 58px;
+		margin-bottom: 68px;
+	}
+
+	.search-results__item {
+		flex-basis: 48%;
+		padding: 0;
+	}
+
+	
+
+	.search-results .searching-form input[type="text"],
+	.search-no-results .site-main .searching-form input[type="text"] {
+		padding-bottom: 12px;
+	}
+
+	.search-results .searching-form button[type="submit"] {
+		right: 0;
+		top: 0;
 	}
 
 	.search-results__text {
+		font-size: 16px;
 		font-weight: 700;
 	}
 

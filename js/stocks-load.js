@@ -1,6 +1,7 @@
 // подгрузка новостей категории "Акции"
 
 jQuery(document).ready(function ($) {
+
 	var $container = $('.campaigns__list');
 	
 	function removeClassActive () {
@@ -36,7 +37,9 @@ jQuery(document).ready(function ($) {
 				$container
 				    .html(response)
 				    .animate({opacity: 1}, 300);
-			});
+
+		    }
+		);
 	}
 	
 });

@@ -4,6 +4,13 @@
  *
  */
 
+if( is_admin_bar_showing() ) {
+    $admin_bar = 'admin';
+
+} else {
+    $admin_bar = '';
+}
+
 ?>
 
 <!doctype html>
@@ -15,12 +22,12 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body class="<?=$admin_bar;?>" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'investmag' ); ?></a>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header  <?=$admin_bar;?>">
         <div class="container">
             <div class="logo">
                 <a href="/">
@@ -28,13 +35,9 @@
                         <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#logo"></use>
                     </svg>
                 </a>
-            </div><!-- .site-branding -->
+            </div>
 
-            <button class="site-header__notification  sub-dialog-btn allow_btn">
-                <svg>
-                    <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#notification"></use>
-                </svg>
-            </button>
+            <!--notify -->
 
             <button id ="search_btn" class="searching-form__btn  searching-form__btn--mobile">
                 <span></span>
@@ -110,22 +113,5 @@
                 ); ?>
                 <a class="tags-menu__link" href="/themes">ВСЕ ТЕМЫ</a>
             </div>
-        </div>
-        <div id="notify" class="notify-popup">
-            <span class="notify-popup__icon">
-                <svg>
-                    <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#notification"></use>
-                </svg>
-            </span>
-            <p class="notify-popup__text">Вы подписались на уведомления сайта Investmag.pro</p>
-        </div>
-
-        <div id="stop-notify" class="notify-popup  notify-popup--stop">
-            <span class="notify-popup__icon">
-                <svg>
-                    <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#stopnotify"></use>
-                </svg>
-            </span>
-            <p class="notify-popup__text">Вы отписались от уведомлений сайта Investmag.pro</p>
         </div>
     </header>

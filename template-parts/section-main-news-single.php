@@ -7,7 +7,7 @@ $main_news_posts = new WP_Query(array(
 ?>
 
 <div class="main-news__side-wrap main-news--single-sidebar">
-    <a class="main-news__link" href="rubrics/news">
+    <a class="main-news__link" href="/rubrics/news">
         <h2 class="title__secondary">Новости</h2>
     </a>    
     <ul class="main-news__list">

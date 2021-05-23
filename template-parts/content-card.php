@@ -21,11 +21,13 @@ $info = get_field('info-off', $post->ID);
 <article id="post-<?php the_ID(); ?>" class="card-article">
     <header class="entry-header">
         <div class="article-header">
-            <div class="article-header__category">
-                <a href="/rubrics/<?=$term->slug;?>">
-                    <?=$term->name;?>
-                </a>
-            </div>
+            <?php if ($terms) : ?>
+                <div class="article-header__category">
+                    <a href="/rubrics/<?=$term->slug;?>">
+                        <?=$term->name;?>
+                    </a>
+                </div>
+            <?php endif; ?>
             <p class="article-header__date"><?=$article_date;?></p>
 
             <button class="article-header__share-link">
@@ -38,7 +40,7 @@ $info = get_field('info-off', $post->ID);
             </button>
             <?php get_template_part('./template-parts/content', 'share-social'); ?>
         </div>
-        <?php the_title('<h1 class="title">', '</h1>'); ?>
+        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header>
 
     <div class="entry-content">
@@ -62,11 +64,11 @@ $info = get_field('info-off', $post->ID);
     <?php if (!$info) : ?>
         <footer class="article-footer">
             <div class="article-footer__author">
-                Текст:&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
+                Текст:&nbsp;&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
             </div>
             <?php if (get_the_tag_list()) : ?>
                 <div class="article-footer__topic-links">
-                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '</span>'); ?>
                 </div>
             <?php endif; ?>
         </footer>

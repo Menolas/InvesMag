@@ -7,9 +7,8 @@ $nav_args = array (
     'format' => '?paged=%#%',
     'current' => max(1, get_query_var('paged')),
     'total' => $wp_query->max_num_pages,
-    'prev_text'  => __('<'),
-    'next_text'  => __('>'),
-    'posts_per_page' => 9,
+    'prev_text'  => __('<span><</span>'),
+    'next_text'  => __('<span>></span>'),
 );
 
 $nav_args_desktop = array (
@@ -17,9 +16,8 @@ $nav_args_desktop = array (
     'format' => '?paged=%#%',
     'current' => max(1, get_query_var('paged')),
     'total' => $wp_query->max_num_pages,
-    'prev_text'  => __('< Предыдущая'),
-    'next_text'  => __('Следующая >'),
-    'posts_per_page' => 9,
+    'prev_text'  => __('Предыдущая'),
+    'next_text'  => __('Следующая'),
 );
 
 global $query_string;
@@ -29,7 +27,7 @@ get_header();
 
 ?>
 
-    <main id="primary" class="site-main">
+    <main id="primary" class="site-main  search  show-cat">
 
         <div class="container">
             <section class="search-results category">

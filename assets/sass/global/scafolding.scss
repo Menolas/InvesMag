@@ -10,7 +10,7 @@ body {
 
 	&::before {
 		@include element-style(100%, 100%, #333333);
-		top: 52px;
+		top: 49px;
 		left: 0;
 		right: 0;
 		opacity: 0;
@@ -79,7 +79,7 @@ li {
 	}
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 783px) {
 
 	body {
 
@@ -87,6 +87,13 @@ li {
 			top: 80px;
 			height: 250px;
 			background-color: #D9D6D6;
+		}
+	}
+
+	body.admin {
+
+		&::before {
+			top: 113px;
 		}
 	}
 

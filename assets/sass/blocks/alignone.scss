@@ -1,8 +1,28 @@
 .alignone {
-	width: 100% !important;
+	width: 100%;
 }
 
 .entry-content img {
-	width: 100%;
-	object-fit: scale-down;
+	width: 100% !important;
+	max-width: 100% !important;
+	object-fit: cover;
+}
+
+.wp-caption {
+	display: flex;
+	flex-direction: column;
+	margin: 32px 0;
+	width: 100% !important;
+}
+
+.wp-caption .wp-caption-text {
+	margin-bottom: 8px;
+	text-align: left;
+	color: #787878;
+	font-size: 12px;
+	line-height: 2.2;
+}
+
+.wp-caption .wp-caption-text a {
+	color: inherit;
 }

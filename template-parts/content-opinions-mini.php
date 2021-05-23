@@ -2,6 +2,10 @@
 
 $columnist = get_field('name');
 
+$columnist_name  = get_the_title($columnist);
+$name_array = explode(" ", $columnist_name);
+
+
 ?>
  
 <article class="opinion-mini">
@@ -14,7 +18,11 @@ $columnist = get_field('name');
              </div>
         
              <div class="opinion-mini__caption">
-               <h3 class="title__third  opinion-mini__title"><?=get_the_title($columnist); ?></h3>
+               <h3 class="title__third  opinion-mini__title">
+                    <span class="opinion-mini__name"><?=$name_array[0];?></span>
+                    <span class="opinion-mini__family-name"><?=$name_array[1];?></span>
+                </h3>
+                
                <p class="opinion-mini__who"><?=get_the_excerpt($columnist);?></p>
              </div>
          </div>

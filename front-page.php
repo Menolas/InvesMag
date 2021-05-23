@@ -16,11 +16,6 @@ if($terms) :
     $term = array_shift($terms);
 endif;
 
-$opinions_posts = new WP_Query(array(
-    'post_type' => 'opinions',
-    'posts_per_page' => 4
-));
-
 get_header();
 
 ?>
@@ -68,18 +63,7 @@ get_header();
                 <h2 class="title__secondary  title__secondary--mobile">Мнения</h2>
                 <h2 class="title__secondary  title__secondary--desktop">Еще мнения</h2>
             </a>
-            <div class="opinions__list">
-                <?php if ($opinions_posts->have_posts()) :
-                    while ($opinions_posts->have_posts()) : $opinions_posts->the_post(); ?>
-                        <div class="opinions__item">
-                            <?=get_template_part('template-parts/content', 'opinions-mini');?>
-                        </div>
-                    <?php endwhile;
-                    wp_reset_postdata();
-                    else :
-                        get_template_part( 'template-parts/content', 'none' );
-                    endif; ?>
-            </div>
+            <div class="opinions__list"></div>
         </div>
     </section>
 

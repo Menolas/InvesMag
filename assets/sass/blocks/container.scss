@@ -21,6 +21,15 @@
 		min-width: 1024px;
 	}
 
+	.container--single {
+		display: flex;
+		flex-direction: row;
+		padding: 0 90px;
+	}
+
+	.container--single .site-main__inner-wrap {
+		width: 65%;
+	}
 }
 
 @media (min-width: 1110px) {
@@ -28,5 +37,9 @@
 	.container {
 		min-width: 1110px;
 		max-width: 1110px;
+	}
+
+	.container--single .site-main__inner-wrap {
+		width: 600px;
 	}
 }

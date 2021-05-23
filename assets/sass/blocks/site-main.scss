@@ -3,9 +3,35 @@
 	padding-bottom: 50px;
 }
 
+.archive .site-main {
+	padding-bottom: 40px;
+}
+
+.search .site-main {
+	padding-bottom: 40px;
+}
+
 @media (min-width: 1024px) {
 
 	.site-main {
-		padding-top: 60px;
+		padding-top: 58px;
+		padding-bottom: 63px;
 	}
+
+	.site-main.search {
+		padding-top: 54px;
+	}
+
+	.site-main--category {
+		padding-bottom: 54px;
+	}
+
+	.site-main--single {
+		padding-top: 63px;
+	}
+
+	.site-main--single .news-section {
+		padding-top: 62px;
+	}
+
 }

@@ -2,6 +2,11 @@
 	padding: 0;
 }
 
+.single .site-main__inner-wrap {
+	margin: 0 auto;
+	max-width: 600px;
+}
+
 .site-main__inner-wrap a {
 	@include link-style;
 	display: inline-block;
@@ -37,11 +42,23 @@
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: space-between;
+		padding: 0 30px;
+	}
+
+	.single .site-main__inner-wrap {
+		margin-right: auto;
+		margin-left: 0;
+		width: 64.5%;
+	}
+}
+
+@media (min-width: 1110px) {
+
+	.single main > .container {
 		padding: 0 90px;
 	}
 
 	.single .site-main__inner-wrap {
-		width: 64.5%;
+		width: 600px;
 	}
-
 }

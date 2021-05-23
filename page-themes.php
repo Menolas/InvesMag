@@ -5,20 +5,21 @@
  */
 
 get_header();
+
 ?>
-
-    <main id="primary" class="site-main">
+    <main class="site-main  themes">
         <div class="container">
-            <div class="site-main__inner-wrap">
                 <?php
-                while ( have_posts() ) :
-                    the_post();
+                while ( have_posts() ) : the_post();
 
-                    get_template_part( 'template-parts/content', 'themes' );
+                    the_title('<h1 class="entry-title">', '</h1>'); ?>
 
-                endwhile;
-                ?>
-            </div>
+                    <div class="entry-content">
+
+                        <?php the_content(); ?>
+                    </div>
+
+                <?php endwhile; ?>
         </div>
 
     </main>
