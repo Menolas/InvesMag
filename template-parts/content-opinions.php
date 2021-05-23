@@ -10,13 +10,13 @@ endif;
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
-$article_date = get_article_date($date1, $current_date1);
+$article_date = get_the_date('j F Y');
 
 $info = get_field('info-off', $post->ID);
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" class="single-opinion">
     <header class="entry-header">
         <div class="article-header">
             <div class="article-header__category">
@@ -60,7 +60,7 @@ $info = get_field('info-off', $post->ID);
         <footer class="article-footer">
             <?php if (get_the_tag_list()) : ?>
                 <div class="article-footer__topic-links">
-                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</span>'); ?>
+                <?php echo get_the_tag_list('<span>Темы:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '</span>'); ?>
                 </div>
             <?php endif; ?>
         </footer>

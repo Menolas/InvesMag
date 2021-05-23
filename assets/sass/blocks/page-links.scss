@@ -1,6 +1,7 @@
 .page-links__block {
 	display: flex;
 	justify-content: center;
+	margin: 22px 0;
 }
 
 .page-links__block--desktop {
@@ -10,74 +11,95 @@
 .page-links {
 	position: relative;
 	margin: 0;
+	display: flex;
 }
 
 .page-links .post-page-numbers {
-	display: inline-block;
-	padding: 10px;
-	color: $text-color;
-	font-weight: 500;
+	position: relative;
+	@include link-style;
+	margin-right: 15px;
+	padding: 0 3px;
 	font-size: 16px;
+	font-weight: 600;
+
+	&:last-child {
+		margin-right: 0;
+	}
 }
 
 .page-links .current {
-	position: relative;
-
-	&::before {
-		@include element-style(55%, 1px, $text-color);
-		bottom: 11px;
-		left: 50%;
-		transform: translate(-50%);
-	}
+	border-bottom: 1px solid $text-color;
 }
 
 .page-links__block--mobile .page-links a:first-child,
 .page-links__block--mobile .page-links a:last-child {
 	position: absolute;
 	top: 1px;
+
+	&::before {
+		@include element-style(8px, 8px, transparent);
+		top: 7px;
+		border: 2px solid $text-color;
+		
+		border-radius: 2px;
+		transform: rotate(45deg);
+	}
 }
 
 .page-links__block--mobile .page-links a:first-child {
-	left: -32px;
-	transform: translate(-12px);
+	left: -41px;
+
+	&::before {
+		border-right: none;
+		border-top: none;
+	}
 }
 
 .page-links__block--mobile .page-links a:last-child {
-	right: -32px;
-	transform: translate(12px);
+	right: -23px;
+
+	&::before {
+		left: -3px;
+		border-bottom: none;
+	    border-left: none;
+	}
+
 }
+
+.page-links__block--mobile .page-links a:first-child,
+.page-links__block--mobile .page-links a:last-child {
+	font-size: 0;
+}
+
+
 
 .page-links__block--mobile .page-links span:first-child {
 	position: relative;
 
-	&::after {
-		content: "<";
-		width: 10px;
-		height: 10px;
-		position: absolute;
-		display: block;
-		left: -22px;
-		top: 50%;
-		color: #9B9A9A;
-		font-weight: 700;
-		transform: translate(-100%, -120%);
+	&::before {
+		@include element-style(8px, 8px, transparent);
+		top: 9px;
+		border: 2px solid #9B9A9A;
+		border-radius: 2px;
+		transform: rotate(45deg);
+		left: -36px;
+		border-right: none;
+		border-top: none;
 	}
 }
 
 .page-links__block--mobile .page-links span:last-child {
 	position: relative;
 
-	&::after {
-		content: ">";
-		width: 10px;
-		height: 10px;
-		position: absolute;
-		display: block;
-		right: -22px;
-		top: 50%;
-		color: #9B9A9A;
-		font-weight: 700;
-		transform: translate(100%, -120%);
+	&::before {
+		@include element-style(8px, 8px, transparent);
+		top: 9px;
+		border: 2px solid #9B9A9A;
+		border-radius: 2px;
+		transform: rotate(45deg);
+		right: -37px;
+		border-bottom: none;
+	    border-left: none;
 	}
 }
 
@@ -98,44 +120,76 @@
 
 	.page-links .current {
 
-		&::before {
-			height: 2px;
-		}
+		border-width: 2px;
 	}
 
 	.page-links__block--desktop .page-links a:first-child,
 	.page-links__block--desktop .page-links a:last-child {
 		position: absolute;
-		top: 11px;
+		top: -1px;
+		margin: 0;
 		width: 114px;
 		height: 16px;
 		padding: 0;
+
+		&::before {
+			@include element-style(8px, 8px, transparent);
+			top: 9px;
+			border: 2px solid $text-color;
+			border-radius: 2px;
+			transform: rotate(45deg);
+		}
 	}
 
 	.page-links__block--desktop .page-links a:first-child {
-		left: -32px;
+		left: -30px;
 		transform: translate(-100%);
+
+		&::before {
+			left: -12px;
+			border-right: none;
+			border-top: none;
+		}
 	}
 
 	.page-links__block--desktop .page-links a:last-child {
-		right: -32px;
+		right: -31px;
 		transform: translate(100%);
+
+		&::before {
+			right: 11px;
+			border-bottom: none;
+		    border-left: none;
+		}
 	}
+
+
 
 	.page-links__block--desktop .page-links span:first-child {
 		position: relative;
 
 		&::after {
-			content: "< Предыдущая";
+			content: "Предыдущая";
 			width: 114px;
 			height: 16px;
 			position: absolute;
 			display: block;
-			left: -32px;
-			top: 50%;
+			left: -30px;
+			top: 0;
 			color: #9B9A9A;
 			font-weight: 700;
-			transform: translate(-100%, -70%);
+			transform: translate(-100%);
+		}
+
+		&::before {
+			@include element-style(8px, 8px, transparent);
+			border: 2px solid #9B9A9A;
+			border-radius: 2px;
+			transform: rotate(45deg);
+			left: -156px;
+			top: 9px;
+			border-right: none;
+			border-top: none;
 		}
 	}
 
@@ -143,16 +197,27 @@
 		position: relative;
 
 		&::after {
-			content: "Следующая >";
+			content: "Следующая";
 			width: 114px;
 			height: 16px;
 			position: absolute;
 			display: block;
-			right: -32px;
-			top: 50%;
+			right: -43px;
+			top: 0;
 			color: #9B9A9A;
 			font-weight: 700;
-			transform: translate(100%, -70%);
+			transform: translate(100%);
+		}
+
+		&::before {
+			@include element-style(8px, 8px, transparent);
+			border: 2px solid #9B9A9A;
+			border-radius: 2px;
+			transform: rotate(45deg);
+			right: -147px;
+			top: 9px;
+			border-bottom: none;
+	        border-left: none;
 		}
     }
 }

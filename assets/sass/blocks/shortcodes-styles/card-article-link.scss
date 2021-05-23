@@ -2,7 +2,7 @@
 	position: relative;
 	display: flex;
 	margin-bottom: 20px;
-	padding-bottom: 22px;
+	padding-bottom: 23px;
 
 	&::before {
 		@include element-style(100%, 1px, #D8D1D1);
@@ -12,14 +12,26 @@
 	}
 }
 
+.entry-content > .card-article-link {
+	margin-top: 32px;
+}
+
+.entry-content > .card-article-link ~ .card-article-link {
+	margin-top: 62px;
+}
+
 .card-article-link span {
+	display: inline-block;
 	margin-right: 12px;
 	color: $green;
 	font-size: 21px;
 	font-weight: 800;
+	line-height: 1.33;
 }
 
-.card-article-link h2 {
-	margin-bottom: 0;
-	margin-top: 4px;
+.card-article-link h3 {
+	margin: 0;
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 1.34;
 }

@@ -11,8 +11,8 @@
 		var renderLink = function (link) {
 		var linkElement = linkTemplate.cloneNode(true);
 			linkElement.querySelector('span').textContent = link.querySelector('span').textContent;
-			linkElement.querySelector('a').textContent = link.querySelector('h2').textContent;
-			linkElement.querySelector('a').href = '#' + link.querySelector('h2').id;
+			linkElement.querySelector('a').textContent = link.querySelector('h3').textContent;
+			linkElement.querySelector('a').href = '#' + link.querySelector('h3').id;
 			return linkElement;
 		}
 

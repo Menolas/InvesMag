@@ -12,8 +12,8 @@ if (get_field('post_kind')) {
 get_header();
 ?>
 
-<main id="primary" class="site-main">
-    <div class="container">
+<main id="primary" class="site-main  site-main--single">
+    <div class="container  container--single">
         <div class="site-main__inner-wrap">
         
             <?php while (have_posts()) : the_post();
@@ -22,7 +22,7 @@ get_header();
 
             endwhile; ?>
         </div>
-        <?php get_sidebar($post_kind); ?>
+        <?php get_sidebar('simple-post'); ?>
     </div>
 
     <?=get_template_part('template-parts/content', 'news-sections');?>

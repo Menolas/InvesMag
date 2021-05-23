@@ -13,5 +13,29 @@
 
 .main-news--single-sidebar .main-news__list {
 	@include list-style;
-	margin-bottom: 50px;
+}
+
+@media (min-width: 1024px) {
+
+	.main-news--single-sidebar .main-news__link {
+		margin-bottom: 22px;
+		line-height: 1.2;
+	}
+
+	.main-news--single-sidebar .main-news__link .title__secondary {
+		margin: 0;
+	}
+
+	.main-news--single-sidebar .main-news__item {
+		padding-top: 19px;
+
+		&:first-child {
+			padding-top: 0;
+		}
+	}
+
+	.main-news--single-sidebar .article-mini__title {
+		font-weight: 700;
+		line-height: 1.2;
+	}
 }

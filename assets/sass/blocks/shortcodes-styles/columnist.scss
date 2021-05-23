@@ -1,10 +1,16 @@
 .columnist {
 	margin: 32px 0;
+	align-items: center;
 }
 
 .columnist .opinion-mini__img-wrap {
 	flex: 0 0 41%;
-	margin-right: 11px;
+	margin-right: 15px;
+}
+
+.columnist .opinion-mini__caption {
+	margin-left: 0;
+	padding-top: 0;
 }
 
 .columnist .opinion-mini__link {
@@ -22,16 +28,13 @@
 		margin-right: 20px;
 	}
 
-	.columnist .opinion-mini__img-wrap img {
-		object-fit: contain;
-	}
-
 	.columnist .opinion-mini__caption {
 		margin-right: auto;
 	}
 
     .columnist .opinion-mini__link {
 		@include link-style;
+		margin-bottom: auto;
 		font-size: 14px;
 		font-weight: 500;
 		color: $light-gray;
@@ -40,8 +43,24 @@
 
 @media (min-width: 1024px) {
 
-	.columnist .opinion-mini__img-wrap {
-		flex: 0 0 24%;
+	.columnist {
+		margin: 36px 0;
+		padding-top: 12px;
+		height: 103px;
 	}
 
+	.columnist .opinion-mini__img-wrap {
+		flex: unset;
+		width: 125px;
+	}
+
+	.columnist .opinion-mini__caption {
+		padding-top: 0;
+	}
+
+	.columnist .opinion-mini__title {
+		margin-bottom: 12px;
+		font-size: 17px;
+		line-height: 1.1;
+	}
 }

@@ -1,9 +1,10 @@
-.themes-block-main .entry-title {
+
+.themes .entry-title {
 	margin-bottom: 32px;
 }
 
 .themes-block {
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 	width: 100%;
 
 	&:last-of-type {
@@ -11,10 +12,19 @@
 	}
 }
 
+.themes p {
+	margin: 0;
+}
+
 .themes-block--show-thingie {
 	position: relative;
-	height: 235px;
+	margin-bottom: 35px;
+}
+
+.themes .themes-block--show-thingie ul {
+	height: 205px;
 	overflow: hidden;
+	padding-bottom: 35px;
 	box-sizing: border-box;
 }
 
@@ -23,18 +33,20 @@
 }
 
 .themes-block--show-thingie .themes-block__thingie {
-	position: sticky;
+	position: absolute;
 	display: block;
 	width: 100%;
 	height: 35px;
 	background-color: $white;
 	bottom: 0;
+	z-index: 20;
 
 	&::before {
-		@include element-style(18px, 18px, transparent);
-		bottom: 4px;
-		left: 49%;
+		@include element-style(20px, 20px, transparent);
+		bottom: 14px;
+		left: 47.42%;
 		border: 3px solid #989898;
+		border-radius: 2px;
 		border-top: none;
 		border-left: none;
 		transform: rotate(45deg);
@@ -53,8 +65,8 @@
 
 .themes-block .rubrics-link {
 	position: relative;
-	margin-bottom: 8px;
-	padding-bottom: 11px;
+	margin-bottom: 10px;
+	padding-bottom: 8px;
 	font-size: 16px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -67,59 +79,78 @@
 	}
 }
 
-.themes-block-main .themes-block ul {
+.themes-block ul {
 	@include list-style;
 	display: flex;
 	flex-direction: column;
 }
 
-.themes-block-main .themes-block ul li {
-	margin-bottom: 8px;
+.themes .themes-block ul li {
+	margin-bottom: 10px;
 }
 
-.themes-block-main .themes-block ul a {
-	font-size: 17px;
+.themes .themes-block ul a {
+	font-size: 16px;
 	font-weight: 500;
 }
 
 @media (min-width: 768px) {
-
-	.themes-block-main {
-		padding: 0 60px;
-	}
-
-	.themes-block-main .entry-content {
+	
+	.themes .entry-content {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 
-	.themes-block-main .themes-block {
+	.themes .themes-block {
 		width: unset;
-		flex: 0 0 40%;
+		flex: 0 0 33.33%;
 		width: unset;
 	}
 
 	.themes-block .rubrics-link {
+		padding: 0;
+		margin-bottom: 20px;
+
+		font-size: 17px;
+		line-height: 1.33;
 
 		&::after {
 			display: none;
 		}
 	}
 
-	.themes-block-main .themes-block ul {
+	.themes .themes-block ul {
 		flex-wrap: wrap;
 		max-height: 210px;
 	}
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 783px) {
 
-	.themes-block-main {
-		padding: 0;
+	.themes .container {
+		padding: 0 40px;
 	}
 
-	.themes-block-main .themes-block {
+	.themes .themes-block {
 		flex: 0 1 32.5%;
+	}
+
+	.themes .themes-block ul a {
+		font-size: 17px;
+		line-height: 1.33;
+	}
+}
+
+@media (min-width: 1110px) {
+
+	.themes .container {
+		padding: 0 90px;
+	}
+
+	.themes .themes-block {
+		margin-bottom: 64px;
+		flex: unset;
+		width: 310px;
 	}
 }

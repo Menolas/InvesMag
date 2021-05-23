@@ -1,3 +1,7 @@
+.platform-page {
+	padding-top: 30px;
+}
+
 .platform__links {
 	display: none;
 }
@@ -8,15 +12,32 @@
 
 .platform h1 {
 	margin-top: 0;
-	margin-bottom: 32px;
+	margin-bottom: 28px;
 	font-size: 20px;
 	font-weight: 800;
 }
 
 .platform h2 {
+	margin-bottom: 21px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.platform h3 {
+	margin-top: 34px;
 	margin-bottom: 20px;
 	font-size: 18px;
 	font-weight: 700;
+	line-height: 1.11;
+}
+
+.platform p {
+	margin: 20px 0;
+}
+
+.platform .entry-content p:last-of-type {
+	margin-bottom: 0;
 }
 
 .platform span {
@@ -27,26 +48,55 @@
 
 .platform ul {
 	margin: 0;
-	padding-left: 21px;
+	padding-left: 19px;
 }
 
 .platform li {
 	margin-bottom: 16px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 783px) {
+
+	.platform-page {
+		padding-top: 55px;
+	}
+
+	.platform-page .container {
+		display: flex;
+		flex-direction: row;
+		padding: 0 90px;
+	}
 
 	.platform h1 {
 		margin-top: 0;
-		margin-bottom: 22px;
+		margin-bottom: 20px;
 		font-size: 26px;
 		font-weight: 900;
 	}
 
 	.platform h2 {
-		margin-bottom: 20px;
+		margin-bottom: 25px;
 		font-size: 21px;
 		font-weight: 700;
+		line-height: 1.33;
+	}
+
+	.platform h3 {
+		margin-top: 42px;
+		margin-bottom: 28px;
+	}
+
+	.platform ul {
+		margin-top: 27px;
+		margin-bottom: 25px;
+	}
+
+	.platform ul li {
+		margin-bottom: 20px;
+	}
+
+	.platform p {
+		line-height: 1.65;
 	}
 
 	.platform__links {

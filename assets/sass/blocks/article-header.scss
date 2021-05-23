@@ -3,9 +3,10 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin-bottom: 12px;
+	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 600;
+	line-height: 1.2;
 	overflow: visible;
 }
 
@@ -49,7 +50,16 @@
 @media (min-width: 1024px) {
 
 	.article-header {
-		margin-bottom: 15px;
+		margin-bottom: 20px;
+		font-size: 14px;
+	}
+
+	.article-header__category {
+		margin-right: 48px;
+	}
+
+	.article-header__category a {
+		padding-right: 0;
 	}
 
 	.article-header__share-link {

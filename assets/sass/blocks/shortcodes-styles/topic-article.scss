@@ -27,15 +27,12 @@
     margin-right: 17px;
 }
 
-.topic-article__inner-wrap {
-	margin-top: -7px;
-}
-
 .topic-article__inner-wrap span {
 	display: block;
 	margin-bottom: 2px;
 	font-size: 12px;
 	color: $light-gray;
+	line-height: 1.2;
 }
 
 .topic-article__header-link {
@@ -48,6 +45,7 @@
 	font-size: 16px;
 	font-weight: 700;
 	color: $text-color;
+	line-height: 1.35;
 }
 
 .topic-article__header-link:hover h3 {

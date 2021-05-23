@@ -6,10 +6,10 @@
             title : 'Статья по теме',
             image : url+'/img/article.svg',
             onclick : function() {
-               var post_url = prompt("URL статьи", "#");
+               var page_id = prompt("ID статьи", "#");
                
-               if (post_url != null && post_url != '') {
-                  ed.execCommand('mceInsertContent', false, '[topic-article post_url="'+post_url+'"]');
+               if (page_id != null && page_id != '') {
+                  ed.execCommand('mceInsertContent', false, '[topic-article page_id="'+page_id+'"]');
                }
                   
                else {

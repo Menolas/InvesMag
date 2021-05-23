@@ -14,7 +14,7 @@
 	margin-bottom: 32px;
 
     &::before {
-    	@include element-style(8px, 8px, transparent);
+    	@include element-style(10px, 10px, transparent);
     	right: 2px;
     	top: 6px;
     	border: 2px solid #989898;
@@ -26,7 +26,7 @@
 
 .news-section__item {
 	position: relative;
-	margin-bottom: 20px;
+	margin-bottom: 18px;
 	padding-top: 18px;
 
 	&:last-child {
@@ -66,7 +66,7 @@
 
 .news-section__item .article-mini__link {
 	@include link-style;
-	margin-bottom: 8px;
+	margin-bottom: 11px;
 }
 
 .news-section__item .article-mini__link:hover,
@@ -84,36 +84,23 @@
 	margin: 0;
 	font-size: 12px;
 	font-weight: 600;
-	line-height: 1.2;
+	line-height: 1;
 	text-transform: lowercase;
 	color: $light-gray;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 
-	.news-section__link {
-
-		&::before {
-			width: 11px;
-			height: 11px;
-			border: 3px solid #858585;
-			border-radius: 2px;
-			border-bottom: none;
-			border-left: none;
-		}
+	.news-section__title {
+		font-size: 22px;
+		font-weight: 700;
 	}
 
 	.news-section__list {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		
-	}
-
-	.news-section__item .article-mini__image-wrap {
-		flex: 0 0 auto;
-		display: flex;
-		margin-bottom: 20px;
+		flex-wrap: wrap;
 	}
 
 	.news-section__item {
@@ -121,6 +108,45 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
+	}
+
+	.news-section__item--2,
+	.news-section__item--4 {
+		flex-basis: 48.5%;
+	}
+
+	.news-section__item--3 {
+		flex-basis: 31.4%;
+	}
+
+	.news-section__item--3 .article-mini__image-wrap {
+		height: 219px;
+	}
+
+	.news-section__item .article-mini__image-wrap {
+		flex: 0 0 auto;
+		display: flex;
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.news-section {
+		padding-top: 62px;
+	}
+
+	.news-section__link {
+
+		&::before {
+			top: 8px;
+			width: 12px;
+			height: 12px;
+			border: 3px solid #858585;
+			border-radius: 2px;
+			border-bottom: none;
+			border-left: none;
+		}
 	}
 
 	.news-section .news-section__item {
@@ -163,12 +189,16 @@
 
 	.news-section__item  .article-mini__title {
 		font-size: 17px;
-		line-height: 1.23;
+		line-height: 1.24;
+	}
+
+	.news-section__item .article-mini__link {
+		margin-bottom: 14px;
 	}
 
 	.news-section__item .article-mini__date {
 		font-size: 14px;
-		line-height: 1.86;
+		line-height: 1;
 
 	}
 }

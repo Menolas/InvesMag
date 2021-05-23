@@ -37,6 +37,7 @@ $info = get_field('info-off', $post->ID);
 
         <?php the_title('<h1 class="entry-title">', '</h1>');?>
     </header>
+    <div class="entry-content">
     
         <?php
         the_content(
@@ -54,16 +55,17 @@ $info = get_field('info-off', $post->ID);
             )
         );
 
-    if (!$info) : ?>
-        <footer class="article-footer">
-            <div class="article-footer__author">
-                Текст:&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
-            </div>
-            <?php if (get_the_tag_list()) : ?>
-                <div class="article-footer__topic-links">
-                <?php echo get_the_tag_list('<div>Темы:&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;', '</div>'); ?>
+        if (!$info) : ?>
+            <footer class="article-footer">
+                <div class="article-footer__author">
+                    Текст:&nbsp;&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
                 </div>
-            <?php endif; ?>
-        </footer>
-    <?php endif; ?>
+                <?php if (get_the_tag_list()) : ?>
+                    <div class="article-footer__topic-links">
+                    <?php echo get_the_tag_list('<div>Темы:&nbsp;&nbsp;&nbsp; ', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '</div>'); ?>
+                    </div>
+                <?php endif; ?>
+            </footer>
+        <?php endif; ?>
+    </div>
 </article>

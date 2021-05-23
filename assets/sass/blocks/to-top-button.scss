@@ -7,10 +7,10 @@
 	background-color: rgba(196, 196, 196, 0.2);
 	
 	&::before {
-		@include element-style(12px, 12px, transparent);
-		top: 12px;
+		@include element-style(13px, 13px, transparent);
+		top: 13px;
 		left: 11px;
-		border: 2px solid rgba(255, 255, 255, 0.3);
+		border: 3px solid rgba(255, 255, 255, 0.3);
 		border-radius: 2px;
 		border-bottom: none;
 		border-right: none;
@@ -45,5 +45,6 @@
 	.to-top-button {
 		position: absolute;
 		right: -110px;
+		top: 3px;
 	}
 }

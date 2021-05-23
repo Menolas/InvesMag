@@ -22,7 +22,7 @@
 	display: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 783px) {
 
 	.news-categories {
 		width: 100%;
@@ -40,7 +40,7 @@
 	}
 
 	.news-categories__item {
-		margin-right: 40px;
+		margin-right: 55px;
 
 		&:last-child {
 			margin-right: 0;

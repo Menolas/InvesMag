@@ -14,6 +14,9 @@
 
 .article-footer__author {
 	margin-bottom: 12px;
+	font-weight: 500;
+	color: $text-color;
+	line-height: 2.16
 }
 
 .article-footer__topic-links a {
@@ -21,4 +24,20 @@
 	display: inline-block;
 	color: $green;
 	font-weight: 600;
+}
+
+@media (min-width: 783px) {
+
+	.article-footer {
+		padding-top: 22px;
+		font-size: 14px;
+	}
+
+	.article-footer__author {
+		margin-bottom: 22px;
+	}
+
+	.site-main--single .slider .article-footer {
+		margin-top: 58px;
+	}
 }

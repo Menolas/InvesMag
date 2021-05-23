@@ -7,13 +7,24 @@
 	var stickyHeader = function () {
 		if (window.pageYOffset >= sticky) {
 			header.classList.add('site-header--fixed');
-		} else {
+
+		} 
+
+		if (header.classList.contains('admin') && window.pageYOffset <= 46) {
+			header.classList.remove('site-header--fixed');
+		}
+
+		if (!header.classList.contains('admin') && window.pageYOffset < sticky) {
 			header.classList.remove('site-header--fixed');
 		}
 	}
 
-	if (document.body.clientWidth < 900) {
+	if (document.body.clientWidth < 783) {
 	    window.addEventListener('scroll', stickyHeader);
 	}
+
+	
+
+	
 	
 })();

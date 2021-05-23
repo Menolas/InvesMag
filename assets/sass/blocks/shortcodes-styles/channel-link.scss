@@ -2,11 +2,10 @@
 	position: relative;
 	margin: 32px 0;
 	padding: 20px 0;
-	padding-left: 53px;
 	font-weight: 700;
+	line-height: 1.25;
+	font-size: 15px;
 	background-repeat: no-repeat;
-	background-size: 33px;
-	background-position: left 0 top 50%;
 
 	&::before {
 		@include element-style(100%, 1px, #D8D1D1);
@@ -24,11 +23,17 @@
 }
 
 .channel-link--telegram {
+	padding-left: 57px;
 	background-image: url('../img/svg/tel-icon.svg');
+	background-size: 36px;
+	background-position: left 0 top 20px;
 }
 
 .channel-link--facebook {
+	padding-left: 57px;
 	background-image: url('../img/svg/fb-icon.svg');
+	background-size: 32px;
+	background-position: left 0 top 50%;
 }
 
 .channel-link a {
@@ -37,11 +42,21 @@
 	color: $green;
 }
 
-.channel-link--info {
-	padding-left: 0;
-	padding-bottom: 0;
+@media (min-width: 783px) {
 
-	&::after {
-		display: none;
+	.channel-link {
+		margin: 34px 0;
+		padding: 31px 0;
+		font-size: 17px;
+		line-height: 1.65;
+		background-size: 37px;
+	}
+
+	.channel-link--facebook {
+		padding-left: 63px;
+	}
+
+	.channel-link--info {
+		padding: 22px 0;
 	}
 }
