@@ -20,7 +20,6 @@
 		    var fragment = document.createDocumentFragment();
 		    Array.from(cardLinks).forEach(function (el) {
 		    	fragment.appendChild(renderLink(el));
-		    	console.log(el);
 		    });
 
 		    return fragment;

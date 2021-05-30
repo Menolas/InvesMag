@@ -1,4 +1,4 @@
-;(function() {
+(function() {
 	
 	const mOpen = document.querySelector('.article-header__share-link');
 		

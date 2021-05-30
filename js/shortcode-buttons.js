@@ -49,20 +49,12 @@
             image : url+'/img/info.svg',
             onclick : function() {
                var link_text = prompt("Текст ссылки", "Telegram-канале");
+               var link_url = prompt("URL ссылки", "#");
                var text = prompt("Текст", "Investmag.pro - это сайт про инвестиции в акции. Больше новостей можно найти на нашем");
-
-               if (text != null && text != ''){
-                  if (link_text != null && link_text != '')
-                     ed.execCommand('mceInsertContent', false, '[info-inset link_text="'+link_text+'"]'+text+'[/info-inset]');
-                  else
-                     ed.execCommand('mceInsertContent', false, '[info-inset]' +text+ '[/info-inset]');
-
-               } else{
-                  if (link_text != null && link_text != '')
-                     ed.execCommand('mceInsertContent', false, '[info-inset link_text="'+link_text+'"]');
-                  else
-                     ed.execCommand('mceInsertContent', false, '[info-inset]');
-               }
+               
+               ed.execCommand('mceInsertContent', false, '[info-inset link_text="'+link_text+'" link_url="'+link_url+'"]'
+                  +text+'[/info-inset]');
+                  
             }
          });
 

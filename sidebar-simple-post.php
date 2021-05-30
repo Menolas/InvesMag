@@ -11,7 +11,7 @@ $opinions_posts = new WP_Query(array(
 
 ?>
 
-<aside id="secondary" class="widget-area">
+<aside id="sidebar-article" class="widget-area  sidebar-article">
     <?get_template_part('template-parts/section', 'main-news-single'); ?>
     <section class="opinions opinions-sidebar">
         <a class="opinions__link" href="/opinions">

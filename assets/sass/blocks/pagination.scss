@@ -32,6 +32,16 @@
 	}
 }
 
+.pagination .page-numbers:hover,
+.pagination .page-numbers:active {
+	color: $green;
+	border-color: $green;
+
+	&::before {
+		border-color: $green;
+	}
+}
+
 .pagination .current {
 	border-bottom: 1px solid $text-color;
 }

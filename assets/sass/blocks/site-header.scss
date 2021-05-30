@@ -74,10 +74,17 @@
 	.site-header--fixed.admin {
 		top: 32px;
 	}
+}
+
+@media (min-width: 1024px) {
 
 	.site-header {
 		padding-top: 22px;
 		padding-bottom: 0;
+	}
+
+	.site-header .logo {
+		margin-right: 75px;
 	}
 
 	.site-header--fixed ~ .site-main {
@@ -86,10 +93,6 @@
 
 	.site-header .container {
 		justify-content: flex-start;
-	}
-
-	.site-header .logo {
-		margin-right: 75px;
 	}
 
 	.site-header__bottom {
@@ -132,5 +135,4 @@
 		width: 27px;
 		height: 25px;
 	}
-
 }

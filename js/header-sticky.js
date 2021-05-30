@@ -19,7 +19,7 @@
 		}
 	}
 
-	if (document.body.clientWidth < 783) {
+	if (document.body.clientWidth < 1024) {
 	    window.addEventListener('scroll', stickyHeader);
 	}
 

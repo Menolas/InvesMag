@@ -6,7 +6,7 @@ $main_post = get_posts(array(
     'numberposts' => 1,
     'orderby'     => 'date',
     'order'       => 'DESC',
-    'post_type'   => 'main',
+    'post_type'   => 'top',
 ));
 
 //получаем список ID постов ля блока главных новостей на главной
@@ -31,21 +31,37 @@ $top_posts = array_slice($top_posts, 0, 4);
             foreach ($top_posts as $post) :
 
                 $terms = get_the_terms($post->ID, 'rubrics');
-                if($terms) :
+
+                if($terms) {
+                  
+                    foreach ($terms as $i => $term) {
+                      if ($term->name === 'Новости') {
+                        unset($terms[$i]);
+                      }
+                    }
+
                     $term = array_shift($terms);
-                    else: $term = '';
-                endif; ?>
+
+                } else { 
+                  $term = '';
+                } ?>
+
+                
                 <li class="main-news__item">
                     <a class="article-mini__link" href="<?=get_permalink($post->ID);?>">
                         <h3 class="article-mini__title"><?=get_the_title($post->ID);?></h3>
                     </a>
+
                     <?php if ($term != '') : ?>
-                    <div class="main-news__news-category">
-                        <a href="/rubrics/<?=$term->slug;?>">
-                            <?=$term->name;?>
-                        </a>
-                    </div>
+            
+                         <div class="main-news__news-category">
+                            <a href="/rubrics/<?=$term->slug;?>">
+                                <?=$term->name;?>
+                            </a>
+                        </div>
+                        
                     <?php endif; ?>
+                    
                 </li>
             <?php endforeach;
         else :

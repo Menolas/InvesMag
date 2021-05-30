@@ -1,0 +1,10 @@
+.sidebar-article {
+	margin-top: 50px;
+}
+
+@media (min-width: 1024px) {
+
+	.sidebar-article {
+		margin-top: 0;
+	}
+}

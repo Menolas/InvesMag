@@ -18,7 +18,7 @@ get_header();
 
             <?php if (have_posts()) : ?>
 
-                <section class="category  show-cat">
+                <section class="category">
                     <h1 class="title  category__title">Мнения</h1>
 
                     <ul class="news-section__list">

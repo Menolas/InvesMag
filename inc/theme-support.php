@@ -7,6 +7,7 @@ set_post_thumbnail_size(330, 219); // размер миниатюры поста
 
 add_image_size('portret', 142, 9999); // 300 в ширину и без ограничения в высоту
 add_image_size('single-page', 600, 408, true); // Кадрирование изображения
+add_image_size('screen-post', 630, 394, true);
 
 
 add_filter( 'image_size_names_choose', 'my_custom_sizes' );
@@ -33,7 +34,7 @@ function investmag_widgets_init() {
     register_sidebar(
         array(
             'name'          => esc_html__( 'Sidebar', 'investmag' ),
-            'id'            => 'sidebar-1',
+            'id'            => 'sidebar-main',
             'description'   => esc_html__( 'Add widgets here.', 'investmag' ),
             'before_sidebar' => '<sidebar class="">', // WP 5.6
             'after_sidebar'  => '</sidebar>', // WP 5.6

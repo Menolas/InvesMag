@@ -67,9 +67,16 @@
 
 .share-social__title {
 	margin: 0;
-	margin-bottom: 19px;
+	margin-bottom: 22px;
 	font-size: 21px;
 	font-weight: 700;
+}
+
+.share-social p {
+	margin: 0;
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.4;
 }
 
 .share-social .share-social__list {
@@ -140,16 +147,10 @@
 	opacity: 1;
 }
 
-.share-social__form p {
-	margin: 0;
-	margin-bottom: 22px;
-	font-size: 17px;
-	font-weight: 600;
-}
-
 .share-social__form-wrap {
 	display: flex;
 	flex-direction: column;
+	margin-top: 12px;
 }
 
 .share-social__form-input {
@@ -163,7 +164,11 @@
 }
 
 .share-social__form-wrap button {
-	padding: 12px 25px;
+	width: 127px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: $white;
 	font-size: 14px;
 	font-weight: 600;

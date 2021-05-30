@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
 
 	var lastScrollTop = 0;
 
-	if (document.body.clientWidth > 900) {
+	if (document.body.clientWidth >= 1024) {
 	 
 	    $(window).scroll(function(event) {
 	    	var st = $(this).scrollTop();

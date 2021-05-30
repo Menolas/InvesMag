@@ -1,10 +1,5 @@
 <?php
 
-$terms = get_the_terms( $post->ID, 'rubrics' );
-if( $terms ) :
-    $term = array_shift( $terms );
-endif;
-
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
@@ -17,11 +12,7 @@ $info = get_field('info-off', $post->ID);
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
         <div class="article-header">
-            <div class="article-header__category">
-                <a href="/rubrics/<?=$term->slug;?>">
-                    <?=$term->name;?>
-                </a>
-            </div>
+            <?php get_template_part('template-parts/section', 'article-header-category'); ?>
             <p class="article-header__date"><?=$article_date;?></p>
 
             <button class="article-header__share-link">

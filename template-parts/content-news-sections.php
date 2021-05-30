@@ -6,6 +6,7 @@ $terms = get_terms ([
     'exclude' => ['38', '15'],
     'orderby'      => 'description',
     'order'        => 'ASC',
+    'hide_empty'    => true,
 ]);
 
 // получаем пост в метаполе которого аккумулируются записи для блока главных новостей на главной странице
@@ -14,7 +15,7 @@ $main_post = get_posts(array(
     'numberposts' => 1,
     'orderby'     => 'date',
     'order'       => 'DESC',
-    'post_type'   => 'main',
+    'post_type'   => 'top',
 ));
 
 //получаем список ID постов ля блока главных новостей на главной
@@ -32,7 +33,7 @@ $exclude_string = explode(',', $exclude_string);
 $stocks_args = array(
     'posts_per_page' => 4,
     'post__not_in' => $exclude_string,
-    'post_type' => array('simple-post', 'slider', 'card'),
+    'post_type' => array('main', 'slider', 'card'),
     'orderby'     => 'date',
     'order'       => 'DESC',
     'tax_query' => array(
@@ -81,45 +82,46 @@ $stock_posts = new WP_Query($stocks_args);
 
 <?php if($terms):
     foreach($terms as $term):
-        $link = get_term_link($term, $taxonomy = 'rubrics'); ?>
-        <section class="news-section  <?=$term->slug;?>">
-            <div class="container">
-                <a class="news-section__link" href="<?=$link;?>">
-                    <h2 class="news-section__title  title__secondary"><?=$term->name;?></h2>
-                </a>
-                <ul class="news-section__list  <?=$term->slug;?>__list">
-                    <?php
-                    $post_number = 3;
+        $link = get_term_link($term, $taxonomy = 'rubrics');
+        $post_number = get_field('number', 'term_' . $term->term_id);
                     
-                    if ($term->slug == 'perspectives' || $term->slug == 'special-offers') {
-                        $post_number = 2;
-                    }
-                        
-                    $posts = new WP_Query(array(
-                        'post_type' => array('simple-post', 'slider', 'cards'),
-                        'posts_per_page' => $post_number,
-                        'post__not_in' => $exclude_string,
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'rubrics',
-                                'field' => 'slug',
-                                'terms' => $term->slug,
-                            ),
-                        ),
-                    ));
+        if (!$post_number) {
+            $post_number = 3;
+        }
 
-                    if ($posts->have_posts()) :
-                        while ($posts->have_posts()) : $posts->the_post(); ?>
+        $query = new WP_Query(array(
+            'post_type' => array('main', 'slider', 'cards'),
+            'posts_per_page' => $post_number,
+            'post__not_in' => $exclude_string,
+            'orderby' => 'menu_order',
+            'order' => 'ASC',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'rubrics',
+                    'field' => 'slug',
+                    'terms' => $term->slug,
+                ),
+            ),
+        ));
+
+        if ($query->have_posts() && $query->post_count > 0) : ?>
+            <section class="news-section  <?=$term->slug;?>">
+                <div class="container">
+                    <a class="news-section__link" href="<?=$link;?>">
+                        <h2 class="news-section__title  title__secondary"><?=$term->name;?></h2>
+                    </a>
+                    <ul class="news-section__list  <?=$term->slug;?>__list">
+                        
+                        <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <li class="news-section__item  <?=$term->slug;?>__item  news-section__item--<?=$post_number;?>">
-                            <?=get_template_part('template-parts/content', 'mini-article');?>
+                            <?=get_template_part('template-parts/content', 'mini-article'); ?>
                         </li>
                         <?php endwhile;
 
-                    wp_reset_postdata();
-                    else :
-                        get_template_part( 'template-parts/content', 'none' );
-                    endif; ?>
-                </ul>
-            </div>
-        </section>
+                        wp_reset_postdata();
+                       
+        endif; ?>
+                    </ul>
+                </div>
+            </section>
 <?php endforeach; endif; ?>
