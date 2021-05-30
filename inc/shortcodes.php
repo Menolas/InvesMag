@@ -31,9 +31,11 @@ function info_inset_function($atts, $content = null)
 {
   extract(shortcode_atts(array(
         'link_text' => 'Telegram-канале',
+        'link_url' => '#',
     ), $atts));
+
     $return_string = '<div class="channel-link  channel-link--info">'.$content;
-    $return_string .= ' <a href="">'.$link_text.' </a>'.'</div>';
+    $return_string .= ' <a href="'.$link_url.'">'.$link_text.' </a>'.'</div>';
     return $return_string;
 }
 
@@ -43,7 +45,7 @@ function topic_article_function($atts)
        'page_id' => '#',
     ), $atts));
     
-    //$post = get_page_by_title($page_title, $output, array('simple-post', 'slider', 'cards', 'opinions'));
+    //$post = get_page_by_title($page_title, $output, array('main', 'slider', 'cards', 'opinions'));
 
     $return_string = '<div class="topic-article">';
     $return_string .= '<a class="topic-article__img-wrap" href="'.get_permalink($page_id).'">' . get_the_post_thumbnail($page_id) . '</a>';

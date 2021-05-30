@@ -26,7 +26,7 @@ $name_array = explode(" ", $columnist_name);
                <p class="opinion-mini__who"><?=get_the_excerpt($columnist);?></p>
              </div>
          </div>
-         <p class="opinion-mini__excerpt"><?=the_excerpt(); ?></p>
+         <p class="opinion-mini__excerpt"><?=get_field('quotes', $post->ID); ?></p>
      </a>
 </article>
  

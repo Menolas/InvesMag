@@ -6,7 +6,7 @@
 
 ?>
 
-<aside id="secondary" class="widget-area front-page-sidebar">
+<aside id="sidebar-main" class="widget-area front-page-sidebar">
     <?get_template_part( 'template-parts/section', 'main-news' ); ?>
     <?php dynamic_sidebar('sidebar-1'); ?>
 </aside>

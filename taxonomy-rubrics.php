@@ -20,13 +20,6 @@ $nav_args_desktop = array (
     'next_text'  => __('Следующая'),
 );
 
-$cat_name = single_cat_title('', 0);
-$show_cat = '';
-
-if ($cat_name === 'Новости') {
-    $show_cat = 'show-cat';
-}
-
 global $query_string;
 query_posts($query_string . "&orderby=date&order=DESC");
 
@@ -38,7 +31,7 @@ get_header();
 
             <?php if (have_posts()) : ?>
 
-                <section class="category <?=$show_cat;?>">
+                <section class="category">
                     <h1 class="title  category__title">
                         <?php single_cat_title(); ?>
                     </h1>
@@ -49,7 +42,7 @@ get_header();
                     
                     while (have_posts()) : the_post(); ?>
 
-                        <li class="news-section__item">
+                        <li class="news-section__item  news-section__item--3">
                         <?php get_template_part('template-parts/content', 'mini-article'); ?>
                         </li>
                     <?php endwhile;

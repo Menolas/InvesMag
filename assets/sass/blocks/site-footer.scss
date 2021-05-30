@@ -68,7 +68,7 @@
 	font-weight: 600;
 }
 
-@media (min-width: 783px) {
+@media (min-width: 1024px) {
 
 	.site-footer {
 		padding-top: 57px;
@@ -80,8 +80,8 @@
 		align-items: unset;
 		display: grid;
 		grid-template-rows: auto auto;
-		grid-template-columns: 290px 200px 322px auto 50px;
-		justify-content: space-between;
+		grid-template-columns: 250px 160px 280px 225px 50px;
+		justify-content: flex-start;
 		overflow: visible;
 	}
 
@@ -173,7 +173,12 @@
 			top: 0;
 		}
 	}
-
 }
 
+@media (min-width: 1110px) {
 
+	.site-footer .container {
+		grid-template-columns: 290px 200px 322px auto 50px;
+		justify-content: space-between;
+	}
+}

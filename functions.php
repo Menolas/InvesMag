@@ -12,12 +12,15 @@ add_filter('pre_get_posts', 'query_post_type');
 function query_post_type($query) {
 
   if(is_category() || is_tag()) {
+
     $post_type = get_query_var('post_type');
+
     if($post_type)
         $post_type = $post_type;
     else
-        $post_type = array('post','simple-post', 'slider', 'card', 'opinions'); // replace cpt to your custom post type
+        $post_type = array('main', 'slider', 'card', 'opinions', 'nav_menu_item','partners'); // replace cpt to your custom post type
     $query->set('post_type', $post_type);
+    
     return $query;
     }
 }
@@ -70,6 +73,12 @@ function investmag_scripts() {
     wp_register_script('card-aside', get_template_directory_uri() . '/js/card-aside.js', [], 1, true);
     wp_enqueue_script('card-aside');
 
+    wp_register_script('flex-box', get_template_directory_uri() . '/js/flex-box.js', [], 1, true);
+    wp_enqueue_script('flex-box');
+
+    wp_register_script('new-tab-for-link', get_template_directory_uri() . '/js/new-tab-for-link.js', [], 1, true);
+    wp_enqueue_script('new-tab-for-link');
+
     wp_register_script('themes-page', get_template_directory_uri() . '/js/themes-page.js', [], 1, true);
     wp_enqueue_script('themes-page');
 
@@ -87,15 +96,25 @@ function investmag_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'investmag_scripts' );
 
+add_action( 'wp_enqueue_scripts', 'load_old_jquery_fix', 100 );
+
+function load_old_jquery_fix() {
+    if ( ! is_admin() ) {
+        wp_deregister_script( 'jquery' );
+        wp_register_script( 'jquery', ( "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ), false, '1.11.3' );
+        wp_enqueue_script( 'jquery' );
+    }
+}
+
 /**
 * Чистка хедера
 */
-require get_template_directory() . '/inc/clean-header.php';
+//require get_template_directory() . '/inc/clean-header.php';
 
 /**
 * Код для отключения и удаления wp-json и oembed в WordPress
 */
-require get_template_directory() . '/inc/remove-json.php';
+//require get_template_directory() . '/inc/remove-json.php';
 /**
  * Custom template tags for this theme.
  */
@@ -126,7 +145,7 @@ $main_post = get_posts(array(
     'numberposts' => 1,
     'orderby'     => 'date',
     'order'       => 'DESC',
-    'post_type'   => 'main',
+    'post_type'   => 'top',
     ));
 
 $top_posts = get_field('to-top', $main_post[0]->ID);
@@ -146,7 +165,7 @@ add_action('wp_ajax_nopriv_loadmore_stocks', 'load_more_stocks');
 
 function load_more_stocks(){
 
-    $args['post_type'] = array('simple-post', 'slider', 'cards');
+    $args['post_type'] = array('main', 'slider', 'cards');
     $args['post__not_in']  = $exclude_string;
     $args['paged'] = $_POST['page'];
     $args['post_status'] = 'publish';

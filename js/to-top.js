@@ -10,7 +10,6 @@ jQuery(function($) {
 		$('p').filter(function(){
 		   return this.innerHTML == '&nbsp;';
 		}).remove();
-	
 
 	// $(window).scroll(function() {
 	 

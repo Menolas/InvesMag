@@ -6,8 +6,17 @@ $current_date1 = date('Y-m-d', time());
 $article_date = get_article_date($date1, $current_date1);
 
 $terms = get_the_terms($post->ID, 'rubrics');
+
 if($terms) {
+  
+    foreach ($terms as $i => $term) {
+      if ($term->name === 'Новости') {
+        unset($terms[$i]);
+      }
+    }
+
     $term = array_shift($terms);
+
 } else { 
   $term = '';
 }

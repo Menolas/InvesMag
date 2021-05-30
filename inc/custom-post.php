@@ -4,7 +4,7 @@ add_action('init', 'register_post_types');
 
 function register_post_types(){
 
-    register_taxonomy('rubrics', ['simple-post', 'slider', 'cards', 'opinions', 'main'],[
+    register_taxonomy('rubrics', ['main', 'slider', 'cards', 'opinions'],[
         'labels' => array(
             'name' => 'Темы',
             'singular_name' => 'Тема поста',
@@ -44,7 +44,7 @@ function register_post_types(){
         'menu_icon'          => 'dashicons-format-quote',
     ] );
 
-    register_post_type('main', [
+    register_post_type('top', [
         'label'  => null,
         'labels' => [
             'name'               => 'Главное', // основное название для типа записи
@@ -72,7 +72,7 @@ function register_post_types(){
         'menu_icon'          => 'dashicons-format-image',
     ] );
 
-    register_post_type('simple-post', [
+    register_post_type('main', [
         'label'  => null,
         'labels' => [
             'name'               => 'Обычные посты', // основное название для типа записи

@@ -1,12 +1,10 @@
 .widget-area {
-	overflow: hidden;
-	max-width: 600px;
-	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 }
 
-.single-cards .widget-area {
+.widget-area.card-aside {
     display: none;
 }
 
@@ -62,7 +60,11 @@
 	color: $green;
 }
 
-@media (min-width: 783px) {
+@media (min-width: 1024px) {
+
+	.widget-area.card-aside {
+	    display: block;
+	}
 
 	.platform-page .widget-area {
 		margin-top: 5px;
@@ -75,11 +77,6 @@
 	.platform-page .platform-sidebar li {
         margin-bottom: 17px;
 	}
-
-	
-}
-
-@media (min-width: 1024px) {
 
 	.widget-area {
 		margin-right: 0;
