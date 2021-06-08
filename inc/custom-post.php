@@ -65,7 +65,6 @@ function register_post_types(){
         'menu_icon'           => null,
         'hierarchical'        => false,
         'supports'            => [ 'title', 'editor', 'thumbnail','excerpt','trackbacks','custom-fields','revisions','page-attributes','post-formats'],
-        'taxonomies'          => ['rubrics', 'post_tag'],
         'has_archive'         => true,
         'rewrite'             => true,
         'query_var'           => true,
@@ -212,4 +211,9 @@ function register_post_types(){
         'query_var'           => true,
         'menu_icon'          => 'dashicons-buddicons-buddypress-logo',
     ] );
+}
+
+add_action( 'init', 'simple_post', 999 );
+function simple_post(){
+    unregister_post_type('simple-post');
 }

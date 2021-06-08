@@ -4,7 +4,8 @@
 		
 	// всплывающее окно
     const modal = document.querySelector('.share-social');
-		  
+    const body = document.querySelector('body');
+    
 	// флаг всплывающего окна: false - окно закрыто, true - открыто
 	let	mStatus = false;
 	
@@ -12,6 +13,19 @@
 		
 		mOpen.addEventListener('click', function(e) {
 			modalShow(modal);
+
+			// copy to clipboard
+
+			modal.querySelector('#clip-copy').addEventListener('click', function() {
+		        var ta = modal.querySelector('.share-social__form-input');
+		        ta.innerHTML = "Test2";
+		        ta.focus();
+		        ta.select();
+		    });
+
+		    const mClose = modal.querySelector('.share-social__close');
+            
+		    mClose.addEventListener('click', modalClose);
 
 			document.addEventListener('click', function (e) {
 				var target = e.target;
@@ -24,7 +38,11 @@
 				}
 		    });
 
-		    document.addEventListener('keydown', modalClose);
+		    document.addEventListener('keydown', function (event) {
+		    	if (mStatus && ( event.type != 'keydown' || event.keyCode === 27)) {
+		    		modalClose();
+		    	}
+		    });
 
 		});
 	}
@@ -36,23 +54,22 @@
 		
 		modal.classList.remove('fadeOut');
 		modal.classList.add('fadeIn');
+		body.classList.add('lock-share');
 		
 		// выставляем флаг, обозначающий, что всплывающее окно открыто
 		mStatus = true;
 	}
 
-	function modalClose(event) {
-		if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {
-			
-			// удаляем класс анимации открытия окна и добавляем класс анимации закрытия
-			
-			modal.classList.remove('fadeIn');
-			modal.classList.add('fadeOut');
-			
-			// сбрасываем флаг, устанавливая его значение в 'false'
-			
-			mStatus = false;
-		}
+	function modalClose() {
+		// удаляем класс анимации открытия окна и добавляем класс анимации закрытия
+		
+		modal.classList.remove('fadeIn');
+		modal.classList.add('fadeOut');
+		body.classList.remove('lock-share');
+		
+		// сбрасываем флаг, устанавливая его значение в 'false'
+		
+		mStatus = false;
 	}
 
 })();

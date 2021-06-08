@@ -3,14 +3,8 @@
  * The template for displaying all single posts
  *
  */
-if (get_field('post_kind')) {
-    $post_kind = get_field('post_kind');
-} else {
-    $post_kind = get_post_type();
-}
 
 get_header();
-
 if ($background_banner) : ?>
     <div class="background-banner">
         <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
@@ -24,7 +18,7 @@ if ($background_banner) : ?>
         
             <?php while (have_posts()) : the_post();
 
-                get_template_part('template-parts/content', $post_kind);
+                get_template_part('template-parts/content', 'main');
 
             endwhile; ?>
         </div>
