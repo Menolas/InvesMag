@@ -293,3 +293,24 @@ function add_next_and_number($args){
     }
     return $args;
 }
+
+$background_banner = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'background',
+            'compare' => 'LIKE'
+        ]
+    ]
+   
+));
+
+
+

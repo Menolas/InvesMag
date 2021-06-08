@@ -24,16 +24,19 @@ $top_posts = get_field('to-top', $main_post[0]->ID);
 
 $exclude_string = '';
 
-foreach ($top_posts as $top_post) {
-    $exclude_string .= $top_post->ID . ',';
-}
+if ($top_posts) {
+    foreach ($top_posts as $top_post) {
+        $exclude_string .= $top_post->ID . ',';
+    }
 
-$exclude_string = explode(',', $exclude_string);
+    $exclude_string = explode(',', $exclude_string);
+}
 
 $stocks_args = array(
     'posts_per_page' => 4,
     'post__not_in' => $exclude_string,
     'post_type' => array('main', 'slider', 'card'),
+    'post_status' => 'publish',
     'orderby'     => 'date',
     'order'       => 'DESC',
     'tax_query' => array(
@@ -93,8 +96,8 @@ $stock_posts = new WP_Query($stocks_args);
             'post_type' => array('main', 'slider', 'cards'),
             'posts_per_page' => $post_number,
             'post__not_in' => $exclude_string,
-            'orderby' => 'menu_order',
-            'order' => 'ASC',
+            'orderby' => 'date',
+            'order' => 'DESC',
             'tax_query' => array(
                 array(
                     'taxonomy' => 'rubrics',
@@ -104,7 +107,7 @@ $stock_posts = new WP_Query($stocks_args);
             ),
         ));
 
-        if ($query->have_posts() && $query->post_count > 0) : ?>
+        if ($query->post_count > 0) { ?>
             <section class="news-section  <?=$term->slug;?>">
                 <div class="container">
                     <a class="news-section__link" href="<?=$link;?>">
@@ -116,12 +119,12 @@ $stock_posts = new WP_Query($stocks_args);
                         <li class="news-section__item  <?=$term->slug;?>__item  news-section__item--<?=$post_number;?>">
                             <?=get_template_part('template-parts/content', 'mini-article'); ?>
                         </li>
-                        <?php endwhile;
+                        <?php endwhile;  
 
-                        wp_reset_postdata();
-                       
-        endif; ?>
+                        wp_reset_postdata();?>
                     </ul>
                 </div>
             </section>
+        <?php } ?>
+        
 <?php endforeach; endif; ?>

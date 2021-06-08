@@ -1,9 +1,16 @@
 <?php
 
 get_header();
-?>
 
-    <main id="primary" class="site-main  platform-page">
+if ($background_banner) : ?>
+    <div class="background-banner">
+        <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
+            <img src="<?=get_field('banner-img', $background_banner[0]->ID)?>">
+        </a>
+    </div>
+<?php endif; ?>
+
+    <main id="primary" class="site-main  <?=$background_banner ? 'background-banner__page' : ''?>  platform-page">
         <div class="container">
             <div class="site-main__inner-wrap">
                 <?php

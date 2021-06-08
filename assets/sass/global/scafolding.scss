@@ -20,7 +20,8 @@ body {
 	}
 }
 
-body.lock{
+body.lock,
+body.lock-share {
 	overflow: hidden;
 
 	&::before {
@@ -104,4 +105,11 @@ li {
 			z-index: 2;
 		}
     }
+}
+
+@media (min-width: 900px) {
+
+	body.lock-share::before {
+        display: none;
+	}
 }

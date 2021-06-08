@@ -46,7 +46,8 @@
 
 	.channel-link {
 		margin: 34px 0;
-		padding: 31px 0;
+		padding-top: 31px;
+		padding-bottom: 31px;
 		font-size: 17px;
 		line-height: 1.65;
 		background-size: 37px;
@@ -54,6 +55,11 @@
 
 	.channel-link--facebook {
 		padding-left: 63px;
+	}
+
+	.channel-link--telegram {
+		padding-left: 63px;
+		background-position: left 0 top 33px;
 	}
 
 	.channel-link--info {
