@@ -1,21 +1,28 @@
 .to-top-button {
-	position: relative;
-	margin-left: auto;
+	position: fixed;
+	bottom: 25px;
+	right: 15px;
 	width: 34px;
 	height: 34px;
 	font-size: 0;
-	background-color: rgba(196, 196, 196, 0.2);
+	background-color: #c4c4c4;
+	z-index: 50;
+	display: none;
 	
 	&::before {
 		@include element-style(13px, 13px, transparent);
 		top: 13px;
 		left: 11px;
-		border: 3px solid rgba(255, 255, 255, 0.3);
+		border: 3px solid $white;
 		border-radius: 2px;
 		border-bottom: none;
 		border-right: none;
 		transform: rotate(45deg);
 	}
+}
+
+.to-top-button--sh {
+	display: block;
 }
 
 .to-top-button:hover,
@@ -27,13 +34,17 @@
 	}
 }
 
+@media (min-width: 768px) {
+
+	.to-top-button {
+		right: 22px;
+	}
+}
+
 @media (min-width: 1024px) {
 
 	.to-top-button {
-		grid-column-start: 5;
-        grid-column-end: -1;
-        grid-row-start: 1;
-        grid-row-end: 1;
+		right: 30px;
 		width: 50px;
 		height: 50px;
 
@@ -46,14 +57,5 @@
 			border-width: 5px;
 			border-radius: 4px;
 		}
-	}
-}
-
-@media (min-width: 1310px) {
-
-	.to-top-button {
-		position: absolute;
-		right: -110px;
-		top: 3px;
 	}
 }

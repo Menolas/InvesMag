@@ -10,46 +10,124 @@ $nav_args_desktop = array (
     'next_text'  => __('Следующая'),
 );
 
+$banner_archive_pagination_mobile = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'mobile-archive-pagination',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
+$banner_archive_pagination_desktop = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-archive-pagination',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
 get_header();
 
-if ($background_banner) : ?>
-    <div class="background-banner">
-        <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
-            <img src="<?=get_field('banner-img', $background_banner[0]->ID)?>">
-        </a>
+?>
+
+<main id="primary" class="site-main 
+<?=$banner_archive_pagination_mobile ? 'site-main--mobile-banner' : ''?> 
+<?=$banner_archive_pagination_desktop ? 'site-main--desktop-banner' : ''?> 
+<?=$background_banner ? 'background-banner__page' : ''?>">
+
+<?php if ($banner_popup_inner_mobile && !isset($_COOKIE['ad_zedoinner'])) : ?>
+    <div class="banner__popup  banner__popup--mobile  banner__popup--inner-mobile">
+        <button id="popupCloseMobileInner" class="banner__popup-close"><span></span></button>
+        <?php if (get_field('script', $banner_popup_inner_mobile[0]->ID)) :
+            echo get_field('script', $banner_popup_inner_mobile[0]->ID);
+            else : ?>
+                <a href="<?=get_field('banner-url', $banner_popup_inner_mobile[0]->ID)?>">
+                    <img src="<?=get_field('banner-img', $banner_popup_inner_mobile[0]->ID)?>">
+                </a>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
 
-    <main id="primary" class="site-main  <?=$background_banner ? 'background-banner__page' : ''?>">
-        <div class="container">
+    <div class="container">
 
-            <?php if (have_posts()) : ?>
+        <?php if (have_posts()) : ?>
 
-                <section class="category">
-                    <h1 class="title  category__title">Мнения</h1>
+            <section class="category">
+                <h1 class="title  category__title">Мнения</h1>
 
-                    <ul class="news-section__list">
-                    <?php while (have_posts()) : the_post(); ?>
-                        <li class="news-section__item  news-section__item--3">
-                        <?php get_template_part('template-parts/content', 'mini-article'); ?>
-                        </li>
-                    <?php endwhile; ?>
-                    </ul>
-                    <div class="pagination--mobile">
-                        <?php the_posts_pagination($nav_args); ?>
-                    </div>
+                <ul class="news-section__list">
+                <?php while (have_posts()) : the_post(); ?>
+                    <li class="news-section__item  news-section__item--3">
+                    <?php get_template_part('template-parts/content', 'mini-article'); ?>
+                    </li>
+                <?php endwhile; ?>
+                </ul>
+                <div class="pagination--mobile">
+                    <?php the_posts_pagination($nav_args); ?>
+                </div>
 
-                    <div class="pagination--desktop">
-                        <?php the_posts_pagination($nav_args_desktop); ?>
-                    </div>
-                </section>
+                <div class="pagination--desktop">
+                    <?php the_posts_pagination($nav_args_desktop); ?>
+                </div>
+            </section>
 
-            <?php else :
-                get_template_part( 'template-parts/content', 'none' );
-            endif;
-            ?>
+        <?php else :
+            get_template_part( 'template-parts/content', 'none' );
+        endif;
+        ?>
+    </div>
+
+    <?php if ($banner_archive_pagination_mobile) : ?>
+
+        <div class="banner  banner--mobile banner--archive">
+            <div class="container">
+                <?php if (get_field('script', $banner_archive_pagination_mobile[0]->ID)) :
+                    echo get_field('script', $banner_archive_pagination_mobile[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_archive_pagination_mobile[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_archive_pagination_mobile[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+            </div>
         </div>
-    </main>
+
+    <?php endif; ?>
+
+    <?php if ($banner_archive_pagination_desktop) : ?>
+
+        <div class="banner  banner--desktop  banner--archive">
+            <div class="container">
+                <?php if (get_field('script', $banner_archive_pagination_desktop[0]->ID)) :
+                    echo get_field('script', $banner_archive_pagination_desktop[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_archive_pagination_desktop[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_archive_pagination_desktop[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    <?php endif; ?>
+
+</main>
 
 <?php
 

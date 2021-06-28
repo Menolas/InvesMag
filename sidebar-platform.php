@@ -7,6 +7,5 @@
 ?>
 
 <aside id="sidebar-platform" class="widget-area  sidebar-platform">
-    
     <?php dynamic_sidebar('sidebar-platform'); ?>
 </aside>

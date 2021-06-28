@@ -25,7 +25,7 @@ if ($main_post) {
 ?>
 
 <div class="main-news__side-wrap">
-    <a class="main-news__link" href="rubrics/news">
+    <a class="main-news__link" href="/rubrics/news">
         <h2 class="title__secondary  title__secondary--mobile">Новости</h2>
         <h2 class="title__secondary  title__secondary--desktop">Еще новости</h2>
     </a>    

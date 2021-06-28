@@ -2,7 +2,25 @@
 /**
  * The header for our theme
  *
- */
+ */ 
+
+$background_banner = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'background',
+            'compare' => 'LIKE'
+        ]
+    ]
+   
+));
 
 if( is_admin_bar_showing() ) {
     $admin_bar = 'admin';
@@ -140,3 +158,11 @@ if( is_admin_bar_showing() ) {
             </div>
         </div>
     </header>
+
+    <?php if ($background_banner) : ?>
+        <div class="background-banner">
+            <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
+                <img src="<?=get_field('banner-img', $background_banner[0]->ID)?>">
+            </a>
+        </div>
+    <?php endif; ?>

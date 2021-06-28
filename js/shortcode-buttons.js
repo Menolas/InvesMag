@@ -135,20 +135,6 @@
             }
          });
 
-         ed.addButton('highlight-text', {
-            title : 'Выделить текст',
-            image : url+'/img/marker.svg',
-            onclick : function() {
-               var selected = tinyMCE.activeEditor.selection.getContent();
-
-               if (selected) {
-                   var content = '[highlight-text]'+selected+'[/highlight-text]';
-               }   
-
-               ed.execCommand('mceInsertContent', false, content);
-            }
-         });
-
          ed.addButton('card-article-link', {
             title : 'Подзаголовок для "Карточка"',
             image : url+'/img/card-header.svg',
@@ -171,6 +157,54 @@
                }
 
                ed.execCommand('mceInsertContent', false, content);
+            }
+         });
+
+         ed.addButton('banner_desktop_inpage1', {
+            title : 'Баннер десктоп 1',
+            text: 'б1',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_desktop_inpage1]');
+            }
+         });
+
+         ed.addButton('banner_desktop_inpage2', {
+            title : 'Баннер десктоп 2',
+            text: 'б2',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_desktop_inpage2]');
+            }
+         });
+
+         ed.addButton('banner_desktop_inpage3', {
+            title : 'Баннер десктоп 3',
+            text: 'б3',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_desktop_inpage3]');
+            }
+         });
+
+         ed.addButton('banner_mobile_inpage1', {
+            title : 'Баннер мобильная 1',
+            text: 'м1',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_mobile_inpage1]');
+            }
+         });
+
+         ed.addButton('banner_mobile_inpage2', {
+            title : 'Баннер мобильная 2',
+            text: 'м2',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_mobile_inpage2]');
+            }
+         });
+
+         ed.addButton('banner_mobile_inpage3', {
+            title : 'Баннер мобильная 3',
+            text: 'м3',
+            onclick : function() {
+               ed.execCommand('mceInsertContent', false, '[banner_mobile_inpage3]');
             }
          });
 

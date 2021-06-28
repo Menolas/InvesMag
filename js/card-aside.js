@@ -1,22 +1,22 @@
 'use strict';
 (function () {
 
-	var cardLinks = document.querySelectorAll('.card-article-link');
-	var linksContainer = document.querySelector('.card-aside');
+	let cardLinks = document.querySelectorAll('.card-article-link');
+	const linksContainer = document.querySelector('.card-aside');
 
-	 if (linksContainer) {
+	if (linksContainer) {
    
-		var linkTemplate = document.querySelector('template').content.querySelector('.aside-link');
+		const linkTemplate = document.querySelector('template').content.querySelector('.aside-link');
 	   
-		var renderLink = function (link) {
-		var linkElement = linkTemplate.cloneNode(true);
+		const renderLink = function (link) {
+		let linkElement = linkTemplate.cloneNode(true);
 			linkElement.querySelector('span').textContent = link.querySelector('span').textContent;
 			linkElement.querySelector('a').textContent = link.querySelector('h3').textContent;
 			linkElement.querySelector('a').href = '#' + link.querySelector('h3').id;
 			return linkElement;
 		}
 
-		var renderSidebarLinks = function (cardLinks) {
+		let renderSidebarLinks = function (cardLinks) {
 		    var fragment = document.createDocumentFragment();
 		    Array.from(cardLinks).forEach(function (el) {
 		    	fragment.appendChild(renderLink(el));
@@ -25,7 +25,6 @@
 		    return fragment;
 		};
 	    
-	   
 		linksContainer.appendChild(renderSidebarLinks(cardLinks));
 	}
 

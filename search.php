@@ -25,15 +25,9 @@ query_posts($query_string . "&orderby=date&order=DESC");
 
 get_header();
 
-if ($background_banner) : ?>
-    <div class="background-banner">
-        <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
-            <img src="<?=get_field('banner-img', $background_banner[0]->ID)?>">
-        </a>
-    </div>
-<?php endif; ?>
-    <main id="primary" class="site-main  <?=$background_banner ? 'background-banner__page' : ''?>  search  show-cat">
+?>
 
+    <main id="primary" class="site-main  <?=$background_banner ? 'background-banner__page' : ''?>  search  show-cat">
         <div class="container">
             <section class="search-results category">
                 <h1 class="title  search-results__title">Результаты поиска</h1>

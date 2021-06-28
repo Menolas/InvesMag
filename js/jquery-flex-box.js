@@ -10,4 +10,10 @@ jQuery(document).ready(function ($) {
 		$dancing.css("margin-left", "30px");
 		$dancing.css("margin-right", "auto");
 	}
+
+	// чистка от пустых тегов p
+
+	$('p').filter(function(){
+	   return this.innerHTML == '&nbsp;';
+	}).remove();
 });

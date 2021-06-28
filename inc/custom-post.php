@@ -156,7 +156,46 @@ function register_post_types(){
         'menu_icon'          => 'dashicons-format-gallery',
     ] );
 
+    register_taxonomy('banner-type', 'partners',[
+        'labels' => array(
+            'name' => 'Тип баннера',
+            'singular_name' => 'Тип баннера',
+            ),
+        'public' => true,
+        'hierarchical' => true,
+        'show_in_rest' => true,
+        'show_in_nav_menus' => true,
+    ]);
+
     register_post_type('partners', [
+        'label'  => null,
+        'labels' => [
+            'name'               => 'Реклама', // основное название для типа записи
+            'singular_name'      => 'Реклама', // название для одной записи этого типа
+            'add_new'            => 'Добавить рекламу', // для добавления новой записи
+            'add_new_item'       => 'Добавление рекламы', // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => 'Редактирование рекламы', // для редактирования типа записи
+            'new_item'           => 'Новая реклама', // текст новой записи
+            'view_item'          => 'Смотреть рекламу', // для просмотра записи этого типа.
+            'search_items'       => 'Искать рекламу', // для поиска по этим типам записи
+            'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
+            'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено вкорзине
+        ],
+        
+        'public'              => true,
+        'show_in_menu'        => true, // показывать ли в меню адмнки
+        'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+        'menu_icon'           => null,
+        'hierarchical'        => false,
+        'supports'            => [ 'title', 'editor', 'thumbnail','excerpt','trackbacks','custom-fields','revisions','page-attributes','post-formats'],
+        'taxonomies'          => ['partners', 'post_tag'],
+        'has_archive'         => true,
+        'rewrite'             => true,
+        'query_var'           => true,
+        'menu_icon'          => 'dashicons-buddicons-buddypress-logo',
+    ] );
+
+    register_post_type('partners2', [
         'label'  => null,
         'labels' => [
             'name'               => 'Партнеры', // основное название для типа записи

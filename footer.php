@@ -6,9 +6,16 @@
  *
  */
 
-$partners = new WP_Query(array(
-    'post_type' => 'partners',
-    'tag' => 'show-in-footer'
+$partners = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners2',
+    'meta_query' => [
+        [
+            'key' => 'switch',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ]
+    ]
 ));
 
 ?>
@@ -48,20 +55,16 @@ $partners = new WP_Query(array(
                 <span>2021 © Investmag.pro</span>&nbsp;&nbsp;&nbsp;18+&nbsp;&nbsp;&nbsp; Информация, размещенная на сайте, не является инвестиционной рекомендацией. Сайт не несет ответственности за возможные убытки в случае инвестирования в финансовые инструменты. Информация, размещенная на сайте, не является инвестиционной рекомендацией.  Сайт не несет ответственности за возможные убытки в случае инвестирования в финансовые инструменты.
             </p>
 
-            <?php if ($partners->have_posts()) :
-                while ($partners->have_posts()) : $partners->the_post(); ?>
-                    <div class="partners">
-                        <h4 class="partners__title">Партнеры:</h4>
-                        <?php if(has_post_thumbnail()):?>
-                            <img src="<?=the_post_thumbnail_url('blog-large');?>" alt="<?=the_title();?>">
-                        <?php endif;?>
-                    </div>
-                <?php endwhile;
-                wp_reset_postdata(); endif; ?>
+            <?php if ($partners) : ?>
+                
+                <div class="partners">
+                    <h4 class="partners__title">Партнеры:</h4>
+                    <img src="<?=get_field('logo', $partners[0]->ID);?>">
+                </div>
+            <?php endif; ?>
 
-                <button id="toTop" class="to-top-button">Наверх</button>
-            
         </div><!-- .site-info -->
+        <button id="to-top" class="to-top-button">Наверх</button>
     </footer><!-- #colophon -->
 </div><!-- #page -->
 

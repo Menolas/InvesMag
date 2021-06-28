@@ -8,9 +8,7 @@ $main_post = get_posts(array(
 ));
 
 $top_posts = get_field('to-top', $main_post[0]->ID);
-$top_posts = array_slice($top_posts, 0, 4);
-//var_dump($top_posts);
-
+$top_posts = array_slice($top_posts, 0, 5);
 
 ?>
 

@@ -35,7 +35,7 @@ if ($top_posts) {
 $stocks_args = array(
     'posts_per_page' => 4,
     'post__not_in' => $exclude_string,
-    'post_type' => array('main', 'slider', 'card'),
+    'post_type' => array('main', 'slider', 'cards'),
     'post_status' => 'publish',
     'orderby'     => 'date',
     'order'       => 'DESC',
@@ -49,6 +49,75 @@ $stocks_args = array(
 );
 
 $stock_posts = new WP_Query($stocks_args);
+
+$banner_inpage_mobile_under = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'mobile-inpage-under',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
+$banner_desktop_main_bottom = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-main-bottom ',
+            'compare' => 'LIKE'
+        ]
+    ]
+   
+));
+
+$banner_desktop_inpage_under = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-inpage-under',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
+$banner_main_footer_mobile = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'mobile-main-footer',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
 
 ?>
 
@@ -84,6 +153,7 @@ $stock_posts = new WP_Query($stocks_args);
 </section>
 
 <?php if($terms):
+    $i = 1;
     foreach($terms as $term):
         $link = get_term_link($term, $taxonomy = 'rubrics');
         $post_number = get_field('number', 'term_' . $term->term_id);
@@ -107,7 +177,7 @@ $stock_posts = new WP_Query($stocks_args);
             ),
         ));
 
-        if ($query->post_count > 0) { ?>
+        if ($query->post_count > 0) : ?>
             <section class="news-section  <?=$term->slug;?>">
                 <div class="container">
                     <a class="news-section__link" href="<?=$link;?>">
@@ -125,6 +195,68 @@ $stock_posts = new WP_Query($stocks_args);
                     </ul>
                 </div>
             </section>
-        <?php } ?>
+            <?php ++$i; ?>
+
+            <?php if(is_front_page() && $i == 3 && $banner_main_footer_mobile) : ?>
+
+                <div class="banner  banner--mobile  banner--main-bottom-mobile banner--main-mobile">
+                    <div class="container">
+                        <?php if (get_field('script', $banner_main_footer_mobile[0]->ID)) :
+                            echo get_field('script', $banner_main_footer_mobile[0]->ID);
+                            else : ?>
+                                <a href="<?=get_field('banner-url', $banner_main_footer_mobile[0]->ID)?>">
+                                    <img src="<?=get_field('banner-img', $banner_main_footer_mobile[0]->ID)?>">
+                                </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if(is_front_page() && $i == 3 && $banner_desktop_main_bottom) : ?>
+
+                <div class="banner  banner--desktop  banner--main-bottom-desktop">
+                    <div class="container">
+                        <?php if (get_field('script', $banner_desktop_main_bottom[0]->ID)) :
+                            echo get_field('script', $banner_desktop_main_bottom[0]->ID);
+                            else : ?>
+                                <a href="<?=get_field('banner-url', $banner_desktop_main_bottom[0]->ID)?>">
+                                    <img src="<?=get_field('banner-img', $banner_desktop_main_bottom[0]->ID)?>">
+                                </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+            <?php endif; ?>
+            
+            <?php if (is_singular(['main', 'opinions', 'slider', 'cards']) && $i == 3 && $banner_inpage_mobile_under) : ?>
+                <div class="banner  banner--mobile  banner--inpage-bottom-mobile">
+                    <div class="container">
+                        <?php if (get_field('script', $banner_inpage_mobile_under[0]->ID)) :
+                            echo get_field('script', $banner_inpage_mobile_under[0]->ID);
+                            else : ?>
+                                <a href="<?=get_field('banner-url', $banner_inpage_mobile_under[0]->ID)?>">
+                                    <img src="<?=get_field('banner-img', $banner_inpage_mobile_under[0]->ID)?>">
+                                </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if (is_singular(['main', 'opinions', 'slider', 'cards']) && $i == 3 && $banner_desktop_inpage_under) : ?>
+                <div class="banner  banner--desktop  banner--inpage-bottom-desktop">
+                    <div class="container">
+                        <?php if (get_field('script', $banner_desktop_inpage_under[0]->ID)) :
+                            echo get_field('script', $banner_desktop_inpage_under[0]->ID);
+                            else : ?>
+                                <a href="<?=get_field('banner-url', $banner_desktop_inpage_under[0]->ID)?>">
+                                    <img src="<?=get_field('banner-img', $banner_desktop_inpage_under[0]->ID)?>">
+                                </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+        <?php endif; ?>
         
 <?php endforeach; endif; ?>

@@ -1,7 +1,7 @@
 @import "normalize";
 @import "global/fonts";
-@import "js/slick-1.8.1/slick/slick.scss";
-@import "js/slick-1.8.1/slick/slick-theme.scss";
+@import "global/slick.scss";
+@import "global/slick-theme.scss";
 @import "variables";
 @import "mixins";
 @import "global/scafolding";
@@ -62,3 +62,4 @@
 @import "blocks/alignone";
 @import "blocks/background-banner";
 @import "blocks/site";
+@import "blocks/banner";
