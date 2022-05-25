@@ -9,3 +9,4 @@ nginx-wordpress.conf
 package-lock.json
 package.json
 .idea/
+.vscode/

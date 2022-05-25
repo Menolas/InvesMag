@@ -1,15 +1,17 @@
 .opinions-sidebar .opinions__link {
+	position: relative;
     margin-top: 0;
     padding: 0;
-    text-align: right;
 
     &::before {
-    	display: none;
+    	@include element-style(10px, 10px, transparent);
+    	right: 2px;
+    	top: 6px;
+    	border: 2px solid #989898;
+    	border-bottom: none;
+    	border-left: none;
+    	transform: rotate(45deg);
     }
-}
-
-.opinions-sidebar .opinions__link .title__secondary {
-	color: $light-gray;
 }
 
 .opinions-sidebar__list {
@@ -20,10 +22,17 @@
 
 	.opinions-sidebar .opinions__link {
 		margin-bottom: 27px;
+		text-align: right;
+		color: $light-gray;
+
+		&::before {
+			display: none;
+		}
 	}
 
 	.opinions-sidebar .opinions__link h2 {
 		margin: 0;
+		color: $light-gray;
 	}
 
 	.opinions-sidebar .opinion-mini__inner-wrap {

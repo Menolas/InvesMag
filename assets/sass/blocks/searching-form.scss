@@ -1,29 +1,29 @@
-   ::-webkit-input-placeholder {
+::-webkit-input-placeholder {
 	font-size: 16px;
 	color: #7b7b7b;
 	font-family: "Lato";
-	line-height: 1.2;
+	line-height: 1;
 }
 
 ::-moz-placeholder {
 	font-size: 16px;
 	color: #7b7b7b;
 	font-family: "Lato";
-	line-height: 1.2;
+	line-height: 1;
 }/* Firefox 19+ */
 
 :-moz-placeholder {
 	font-size: 16px;
 	color: #7b7b7b;
 	font-family: "Lato";
-	line-height: 1.2;
+	line-height: 1;
 }/* Firefox 18- */
 
 :-ms-input-placeholder {
 	font-size: 16px;
 	color: #7b7b7b;
 	font-family: "Lato";
-	line-height: 1.2;
+	line-height: 1;
 }
 
 /* анимация попапа */
@@ -118,8 +118,7 @@
 }
 
 .searching-form input[type="text"] {
-	padding: 0 17px;
-	padding-bottom: 6px;
+	padding: 9px 17px;
 	width: 88%;
 	height: 34px;
 	font-size: 16px;

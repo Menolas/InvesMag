@@ -11,11 +11,23 @@
 	padding-bottom: 40px;
 }
 
+.site-main--mobile-banner {
+    padding-bottom: 16px;
+}
+
+.site-main--single-mobile-banner {
+	padding-top: 16px;
+}
+
 @media (min-width: 1024px) {
 
 	.site-main {
 		padding-top: 58px;
 		padding-bottom: 63px;
+	}
+
+	.site-main.banner_desktop_main__page {
+		padding-top: 30px;
 	}
 
 	.site-main.search {

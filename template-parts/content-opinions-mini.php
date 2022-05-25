@@ -13,7 +13,7 @@ $name_array = explode(" ", $columnist_name);
          <div class="opinion-mini__inner-wrap">
              <div class="opinion-mini__img-wrap">
                  <?php if(has_post_thumbnail($columnist)):?>
-                     <?=get_the_post_thumbnail($columnist, 'portret');?>
+                     <?=get_the_post_thumbnail($columnist);?>
                  <?php endif;?>
              </div>
         

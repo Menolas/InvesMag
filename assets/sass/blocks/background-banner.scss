@@ -1,0 +1,51 @@
+.background-banner {
+	display: none;
+}
+
+@media (min-width: 1200px) {
+
+	.background-banner {
+		display: block;
+		position: absolute;
+		top: 142px;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		transform: translate(-50%);
+		background-image:
+		linear-gradient(43.51deg, #BAD3D7 56.52%, #E0E9D4 98.88%);
+		z-index: 0;
+	}
+
+	.background-banner a {
+		display: flex;
+		position: relative;
+		z-index: 1;
+	}
+
+	.background-banner a img {
+		width: 100%;
+		object-position: top 0 left 0;
+		object-fit: contain;
+	}
+
+	.background-banner__page {
+		position: relative;
+		margin: 0 auto;
+		margin-top: 268px;
+		width: 1110px;
+        background-color: $white;
+	}
+
+	.site-header--fixed ~ .site-main.background-banner__page {
+		margin-top: 410px;
+	}
+}
+
+@media (min-width: 1440px) {
+
+	.background-banner {
+		display: block;
+		width: 1440px;
+	}
+}

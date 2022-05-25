@@ -10,18 +10,22 @@ $main_post = get_posts(array(
 ));
 
 //получаем список ID постов ля блока главных новостей на главной
+if ($main_post) {
+    $top_posts = get_field('to-top', $main_post[0]->ID);
 
-$top_posts = get_field('to-top', $main_post[0]->ID);
+    if ($top_posts) {
 
-// удаляем из массива первый пост, который будет занимать "скрин" позицию на главной странице
-$screen_post = array_shift($top_posts);
+        // удаляем из массива первый пост, который будет занимать "скрин" позицию на главной странице
+        $screen_post = array_shift($top_posts);
 
-$top_posts = array_slice($top_posts, 0, 4);
+        $top_posts = array_slice($top_posts, 0, 4);
+    }
+}
 
 ?>
 
 <div class="main-news__side-wrap">
-    <a class="main-news__link" href="rubrics/news">
+    <a class="main-news__link" href="/rubrics/news">
         <h2 class="title__secondary  title__secondary--mobile">Новости</h2>
         <h2 class="title__secondary  title__secondary--desktop">Еще новости</h2>
     </a>    

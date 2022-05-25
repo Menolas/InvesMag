@@ -1,7 +1,5 @@
 @import "normalize";
 @import "global/fonts";
-@import "js/slick-1.8.1/slick/slick.scss";
-@import "js/slick-1.8.1/slick/slick-theme.scss";
 @import "variables";
 @import "mixins";
 @import "global/scafolding";
@@ -32,6 +30,7 @@
 @import "blocks/main-news--single-sidebar";
 @import "blocks/sidebar-article";
 @import "blocks/opininons";
+@import "blocks/opinions-pagination";
 @import "blocks/opinion-mini";
 @import "blocks/opinions-sidebar";
 @import "blocks/campaigns";
@@ -60,3 +59,6 @@
 @import "blocks/share-social";
 @import "blocks/lwpcng-notice";
 @import "blocks/alignone";
+@import "blocks/background-banner";
+@import "blocks/site";
+@import "blocks/banner";

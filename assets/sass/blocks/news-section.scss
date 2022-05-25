@@ -51,12 +51,17 @@
 .news-section__item .article-mini__image-wrap {
 	display: none;
 	margin-bottom: 12px;
+
+	picture {
+		width: 100%;
+	}
 }
 
 .news-section__item .article-mini__image-wrap img {
 	flex: 1 0 100%;
     object-fit: cover;
     max-width: 100%;
+	 height: 100%;
 }
 
 .news-section__item:first-child .article-mini__image-wrap {

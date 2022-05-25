@@ -7,9 +7,10 @@
 $date1 = get_the_date('Y-m-d');
 $current_date1 = date('Y-m-d', time());
 
-$article_date = get_article_date($date1, $current_date1);
+$article_date = get_article_dateY($date1, $current_date1);
 
 $info = get_field('info-off', $post->ID);
+$author = get_field('article-author', $post->ID);
 
 $nav_args = array(
     'before' => '<div class="page-links">',
@@ -28,6 +29,42 @@ $nav_args_desktop = array(
     'previouspagelink' => __('Предыдущая'),
     'echo' => 1,
 );
+
+update_field('author', 'investmag.pro');
+
+$banner_inpage_mobile_after_post = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'mobile-inpage-after-post',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
+$banner_desktop_inpage_after = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-inpage-after-post',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
 
 ?>
 
@@ -87,7 +124,13 @@ $nav_args_desktop = array(
     <?php if (!$info) : ?>
         <footer class="article-footer">
             <div class="article-footer__author">
-                Текст:&nbsp;&nbsp;&nbsp; <?=get_post_meta($post->ID, 'author', true);?>
+                Текст:&nbsp;&nbsp;&nbsp;
+                <?php if ($author) { ?>
+                        <?=the_author_meta('first_name');?>  <?=the_author_meta('last_name');?>
+                      <?php } else {
+                        echo 'investmag.pro';
+                      }
+                ?>
             </div>
             <?php if (get_the_tag_list()) : ?>
                 <div class="article-footer__topic-links">
@@ -96,4 +139,37 @@ $nav_args_desktop = array(
             <?php endif; ?>
         </footer>
     <?php endif; ?>
+
+    <?php if ($banner_inpage_mobile_after_post) : ?>
+
+        <div class="banner  banner--mobile  banner--inpage-after">
+            
+                <?php if (get_field('script', $banner_inpage_mobile_after_post[0]->ID)) :
+                    echo get_field('script', $banner_inpage_mobile_after_post[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_inpage_mobile_after_post[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_inpage_mobile_after_post[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+           
+        </div>
+
+    <?php endif; ?>
+
+    <?php if ($banner_desktop_inpage_after) : ?>
+
+        <div class="banner  banner--desktop  banner--inpage  banner--inpage-after">
+            
+                <?php if (get_field('script', $banner_desktop_inpage_after[0]->ID)) :
+                    echo get_field('script', $banner_desktop_inpage_after[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_desktop_inpage_after[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_desktop_inpage_after[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+           
+        </div>
+
+    <?php endif; ?>
+
 </article>

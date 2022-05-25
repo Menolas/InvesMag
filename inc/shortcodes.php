@@ -126,10 +126,246 @@ function columnist_function($atts)
   return ob_get_clean();
 }
 
-function highlight_text_function($atts, $content = null)
+function banner_desktop_inpage1_function($atts)
 {
-    $return_string = '<p class="highlight-text">' . do_shortcode($content) . '</p>';
+
+  $banner_desktop_inpage1 = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-inpage1-shotcode',
+            'compare' => 'LIKE'
+        ]
+    ]
+   
+  ));
+
+  if ($banner_desktop_inpage1) {
+
+    $url = get_field('banner-url', $banner_desktop_inpage1[0]->ID);
+    $img = get_field('banner-img', $banner_desktop_inpage1[0]->ID);
+    $script = get_field('script', $banner_desktop_inpage1[0]->ID);
+
+    $return_string = '<div class="banner banner--desktop  banner--inpage  banner--inpage1">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
     return $return_string;
+  }
+}
+
+function banner_desktop_inpage2_function($atts)
+{
+
+  $banner_desktop_inpage2 = get_posts(array(
+      'numberposts' => 1,
+      'post_type' => 'partners',
+      'meta_query' => [
+          [
+              'key' => 'switch-banner',
+              'value' => 1,
+              'compare' => 'LIKE'
+          ],
+          [
+              'key' => 'position',
+              'value' => 'desktop-inpage2-shotcode',
+              'compare' => 'LIKE'
+          ]
+      ]
+     
+  ));
+
+  if ($banner_desktop_inpage2) {
+
+    $url = get_field('banner-url', $banner_desktop_inpage2[0]->ID);
+    $img = get_field('banner-img', $banner_desktop_inpage2[0]->ID);
+    $script = get_field('script', $banner_desktop_inpage2[0]->ID);
+
+    $return_string = '<div class="banner banner--desktop  banner--inpage  banner--inpage2">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
+    return $return_string;
+  }
+}
+
+function banner_desktop_inpage3_function($atts)
+{
+
+  $banner_desktop_inpage3 = get_posts(array(
+      'numberposts' => 1,
+      'post_type' => 'partners',
+      'meta_query' => [
+          [
+              'key' => 'switch-banner',
+              'value' => 1,
+              'compare' => 'LIKE'
+          ],
+          [
+              'key' => 'position',
+              'value' => 'desktop-inpage3-shotcode',
+              'compare' => 'LIKE'
+          ]
+      ]
+  ));
+
+  if ($banner_desktop_inpage3) {
+
+    $url = get_field('banner-url', $banner_desktop_inpage3[0]->ID);
+    $img = get_field('banner-img', $banner_desktop_inpage3[0]->ID);
+    $script = get_field('script', $banner_desktop_inpage3[0]->ID);
+
+    $return_string = '<div class="banner banner--desktop  banner--inpage  banner--inpage3">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
+    return $return_string;
+  } 
+}
+
+function banner_mobile_inpage1_function($atts)
+{
+
+  $banner_mobile_inpage1 = get_posts(array(
+      'numberposts' => 1,
+      'post_type' => 'partners',
+      'meta_query' => [
+          [
+              'key' => 'switch-banner',
+              'value' => 1,
+              'compare' => 'LIKE'
+          ],
+          [
+              'key' => 'position',
+              'value' => 'mobile-inpage-shortcode1',
+              'compare' => 'LIKE'
+          ]
+      ]
+  ));
+
+  if ($banner_mobile_inpage1) {
+
+    $url = get_field('banner-url', $banner_mobile_inpage1[0]->ID);
+    $img = get_field('banner-img', $banner_mobile_inpage1[0]->ID);
+    $script = get_field('script', $banner_mobile_inpage1[0]->ID);
+
+    $return_string = '<div class="banner banner--mobile  banner--inpage  mobile--inpage1">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
+    return $return_string;
+  } 
+}
+
+function banner_mobile_inpage2_function($atts)
+{
+
+  $banner_mobile_inpage2 = get_posts(array(
+      'numberposts' => 1,
+      'post_type' => 'partners',
+      'meta_query' => [
+          [
+              'key' => 'switch-banner',
+              'value' => 1,
+              'compare' => 'LIKE'
+          ],
+          [
+              'key' => 'position',
+              'value' => 'mobile-inpage-shortcode2',
+              'compare' => 'LIKE'
+          ]
+      ]
+  ));
+
+  if ($banner_mobile_inpage2) {
+
+    $url = get_field('banner-url', $banner_mobile_inpage2[0]->ID);
+    $img = get_field('banner-img', $banner_mobile_inpage2[0]->ID);
+    $script = get_field('script', $banner_mobile_inpage2[0]->ID);
+
+    $return_string = '<div class="banner banner--mobile  banner--inpage  mobile--inpage2">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
+    return $return_string;
+  } 
+}
+
+function banner_mobile_inpage3_function($atts)
+{
+
+  $banner_mobile_inpage3 = get_posts(array(
+      'numberposts' => 1,
+      'post_type' => 'partners',
+      'meta_query' => [
+          [
+              'key' => 'switch-banner',
+              'value' => 1,
+              'compare' => 'LIKE'
+          ],
+          [
+              'key' => 'position',
+              'value' => 'mobile-inpage-shortcode3',
+              'compare' => 'LIKE'
+          ]
+      ]
+  ));
+
+  if ($banner_mobile_inpage3) {
+
+    $url = get_field('banner-url', $banner_mobile_inpage3[0]->ID);
+    $img = get_field('banner-img', $banner_mobile_inpage3[0]->ID);
+    $script = get_field('script', $banner_mobile_inpage3[0]->ID);
+
+    $return_string = '<div class="banner banner--mobile  banner--inpage  mobile--inpage3">';
+
+    if ($script) {
+        $return_string .= $script;
+    } else {
+        $return_string .= '<a href="' . $url .'" target="_blank"><img src="' . $img . '"></a>';
+    }
+
+    $return_string .= '</div>';
+    
+    return $return_string;
+  } 
 }
 
 function register_shortcodes(){
@@ -138,28 +374,39 @@ function register_shortcodes(){
     add_shortcode('inset', 'inset_function');
     add_shortcode('facebook-link', 'facebook_link_function');
     add_shortcode('columnist', 'columnist_function');
-    add_shortcode('highlight-text', 'highlight_text_function');
     add_shortcode('card-article-link', 'card_article_link_function');
     add_shortcode('info-inset', 'info_inset_function');
     add_shortcode('tag-link', 'tag_link_function');
     add_shortcode('rubrics-link', 'rubrics_link_function');
     add_shortcode('themes-block', 'themes_block_function');
+    add_shortcode('banner_desktop_inpage1', 'banner_desktop_inpage1_function');
+    add_shortcode('banner_desktop_inpage2', 'banner_desktop_inpage2_function');
+    add_shortcode('banner_desktop_inpage3', 'banner_desktop_inpage3_function');
+    add_shortcode('banner_mobile_inpage1', 'banner_mobile_inpage1_function');
+    add_shortcode('banner_mobile_inpage2', 'banner_mobile_inpage2_function');
+    add_shortcode('banner_mobile_inpage3', 'banner_mobile_inpage3_function');
 }
 
 add_action( 'init', 'register_shortcodes');
 
 function register_buttons( $buttons ) {
-   array_push( $buttons, "topic-article" );
-   array_push( $buttons, "tel-link");
-   array_push( $buttons, "facebook-link");
-   array_push( $buttons, "inset");
-   array_push( $buttons, "highlight-text");
-   array_push( $buttons, "columnist");
-   array_push( $buttons, "card-article-link");
-   array_push( $buttons, "info-inset");
-   array_push( $buttons, "tag-link");
-   array_push( $buttons, "rubrics-link");
-   array_push( $buttons, "themes-block");
+   array_push($buttons, "topic-article");
+   array_push($buttons, "tel-link");
+   array_push($buttons, "facebook-link");
+   array_push($buttons, "inset");
+   array_push($buttons, "highlight-text");
+   array_push($buttons, "columnist");
+   array_push($buttons, "card-article-link");
+   array_push($buttons, "info-inset");
+   array_push($buttons, "tag-link");
+   array_push($buttons, "rubrics-link");
+   array_push($buttons, "themes-block");
+   array_push($buttons, "banner_desktop_inpage1");
+   array_push($buttons, "banner_desktop_inpage2");
+   array_push($buttons, "banner_desktop_inpage3");
+   array_push($buttons, "banner_mobile_inpage1");
+   array_push($buttons, "banner_mobile_inpage2");
+   array_push($buttons, "banner_mobile_inpage3");
 
    return $buttons;
 }

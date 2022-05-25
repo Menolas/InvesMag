@@ -1,4 +1,5 @@
 <div class="share-social  dlg-modal dlg-modal-fade">
+    <button class="share-social__close"><span></span></button>
     <h2 class="share-social__title">Поделиться этой новостью:</h2>
     <ul class="share-social__list">
         <li class="share-social__item">
@@ -62,6 +63,6 @@
     <p>Поделиться ссылкой:</p>
     <div class="share-social__form-wrap">
         <input class="share-social__form-input" type="text" name="link" value="<?=get_permalink();?>">
-        <button class="btn">Копировать</button>
+        <button id="clip-copy" class="btn">Копировать</button>
     </div>
 </div>

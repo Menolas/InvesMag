@@ -1,9 +1,24 @@
 <?php
 
-$main_news_posts = new WP_Query(array(
-    'post_type' => ['main', 'opinions', 'main', 'top', 'slider'],
-    'posts_per_page' => 5
+$current_page_url = get_permalink();
+
+$current_post_id = url_to_postid($current_page_url);
+
+$main_post = get_posts(array(
+    'numberposts' => 1,
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'post_type'   => 'top',
 ));
+
+$top_posts = get_field('to-top', $main_post[0]->ID);
+$top_posts = array_slice($top_posts, 0, 5);
+
+foreach ($top_posts as $i => $top_post) {
+    if ($top_post->ID === $current_post_id) {
+        unset($top_posts[$i]);
+    }
+}
 
 ?>
 
@@ -13,32 +28,32 @@ $main_news_posts = new WP_Query(array(
     </a>    
     <ul class="main-news__list">
         
-        <?php while ($main_news_posts->have_posts()) : $main_news_posts->the_post(); ?>
-            <li class="main-news__item">
-
-                <?php $terms = get_the_terms($post->ID, 'rubrics');
-
-                if($terms) {
-                  
-                    foreach ($terms as $i => $term) {
-                      if ($term->name === 'Новости') {
-                        unset($terms[$i]);
-                      }
-                    }
-
-                    $term = array_shift($terms);
-                } ?>
-                
-                <a class="article-mini__link" href="<?=get_permalink();?>">
-                    <h3 class="article-mini__title"><?=the_title();?></h3>
-                </a>
-                <?php if ($term) : ?>
-                    <a class="main-news__item-category" href="/rubrics/<?=$term->slug;?>">
-                        <?=$term->name;?>
+        <?php if ($top_posts) :
+            foreach ($top_posts as $top_post) : ?>
+            
+                <li class="main-news__item">
+                    
+                    <a class="article-mini__link" href="<?=get_permalink($top_post->ID);?>">
+                        <h3 class="article-mini__title"><?=get_the_title($top_post->ID);?></h3>
                     </a>
-                <?php endif; ?>
-            </li>
-        <?php endwhile;
+
+                    <?php $terms = get_the_terms($top_post->ID, 'rubrics');
+
+                    if($terms) :
+                        foreach ($terms as $i => $term) :
+                          if ($term->name === 'Новости') :
+                            unset($terms[$i]);
+                          endif;
+                        endforeach;
+                        $term = array_shift($terms);
+                        if ($term) : ?>
+                            <a class="main-news__item-category" href="/rubrics/<?=$term->slug;?>">
+                                <?=$term->name;?>
+                            </a>
+                    <?php endif; endif; ?>
+                   
+                </li>
+        <?php endforeach; endif; 
         wp_reset_postdata();?>
     </ul>
 </div>

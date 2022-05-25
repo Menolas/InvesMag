@@ -27,8 +27,7 @@ get_header();
 
 ?>
 
-    <main id="primary" class="site-main  search  show-cat">
-
+    <main id="primary" class="site-main  <?=$background_banner ? 'background-banner__page' : ''?>  search  show-cat">
         <div class="container">
             <section class="search-results category">
                 <h1 class="title  search-results__title">Результаты поиска</h1>
@@ -38,7 +37,7 @@ get_header();
                     <p class="search-results__text">
                         По запросу "<?=get_search_query(); ?>" найдено <?=$wp_query->found_posts;?> новостей
                     </p>
-                    <ul class="news-section__list  search-results__list">
+                    <ul class="news-section__list news-section__list--3 search-results__list">
                         <?php while (have_posts()) : the_post(); ?>
                             <li class="news-section__item  news-section__item--3  search-results__item"> 
                             <?php get_template_part( 'template-parts/content', 'mini-article' ); ?>

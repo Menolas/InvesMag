@@ -7,7 +7,7 @@ $article_date = get_article_date($date1, $current_date1);
 
 $terms = get_the_terms($post->ID, 'rubrics');
 
-if($terms) {
+if ($terms) {
   
     foreach ($terms as $i => $term) {
       if ($term->name === 'Новости') {
@@ -23,10 +23,17 @@ if($terms) {
 
 ?>
 
+
 <article class="article-mini">
     <a class="article-mini__image-wrap" href="<?=get_permalink();?>">
         <?php if(has_post_thumbnail()):?>
-            <img src="<?=the_post_thumbnail_url('blog-large');?>" alt="<?=the_title();?>">
+            <picture>
+              <source media="(min-width: 768px)" 
+                  srcset="<?=the_post_thumbnail_url('large');?>"
+                  width="351">
+              <img src="<?=the_post_thumbnail_url('medium');?>" alt="<?=the_title();?>" width="345" height="216">
+            </picture>
+            
         <?php endif;?>
     </a>
     <div class="article-mini__caption">

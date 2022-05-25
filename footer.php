@@ -6,9 +6,16 @@
  *
  */
 
-$partners = new WP_Query(array(
-    'post_type' => 'partners',
-    'tag' => 'show-in-footer'
+$partners = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners2',
+    'meta_query' => [
+        [
+            'key' => 'switch',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ]
+    ]
 ));
 
 ?>
@@ -23,7 +30,7 @@ $partners = new WP_Query(array(
                         </svg>
                     </a>
                 </div><!-- .site-branding -->
-                <p>Cайт про инвестиции в акции</p>
+                <p>Журнал про инвестиции в акции</p>
             </div>
 
             <?php get_template_part('/template-parts/content', 'social');?>
@@ -48,24 +55,44 @@ $partners = new WP_Query(array(
                 <span>2021 © Investmag.pro</span>&nbsp;&nbsp;&nbsp;18+&nbsp;&nbsp;&nbsp; Информация, размещенная на сайте, не является инвестиционной рекомендацией. Сайт не несет ответственности за возможные убытки в случае инвестирования в финансовые инструменты. Информация, размещенная на сайте, не является инвестиционной рекомендацией.  Сайт не несет ответственности за возможные убытки в случае инвестирования в финансовые инструменты.
             </p>
 
-            <?php if ($partners->have_posts()) :
-                while ($partners->have_posts()) : $partners->the_post(); ?>
-                    <div class="partners">
-                        <h4 class="partners__title">Партнеры:</h4>
-                        <?php if(has_post_thumbnail()):?>
-                            <img src="<?=the_post_thumbnail_url('blog-large');?>" alt="<?=the_title();?>">
-                        <?php endif;?>
-                    </div>
-                <?php endwhile;
-                wp_reset_postdata(); endif; ?>
+            <?php if ($partners) : ?>
+                
+                <div class="partners">
+                    <h4 class="partners__title">Партнеры:</h4>
+                    <img src="<?=get_field('logo', $partners[0]->ID);?>" width="118" height="19">
+                </div>
+            <?php endif; ?>
 
-                <button id="toTop" class="to-top-button">Наверх</button>
-            
         </div><!-- .site-info -->
+        <button id="to-top" class="to-top-button">Наверх</button>
     </footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 <script src="https://yastatic.net/share2/share.js"></script>
 </body>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(50621746, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/50621746" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google Analytics - Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127035104-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-127035104-1');
+    </script>
 </html>

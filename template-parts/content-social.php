@@ -16,7 +16,7 @@
             </a>
         </li>
         <li class="social__item  social__item--rss">
-            <a class="social__link  social__link--rss" href="#">
+            <a class="social__link  social__link--rss" href="/feed.rss">
                 <svg>
                     <use xlink:href="/wp-content/themes/InvestMag/img/svg/sprite.svg#rss"></use>
                 </svg>

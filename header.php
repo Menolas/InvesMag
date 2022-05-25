@@ -2,7 +2,25 @@
 /**
  * The header for our theme
  *
- */
+ */ 
+
+$background_banner = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'background',
+            'compare' => 'LIKE'
+        ]
+    ]
+   
+));
 
 if( is_admin_bar_showing() ) {
     $admin_bar = 'admin';
@@ -16,14 +34,38 @@ if( is_admin_bar_showing() ) {
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <?php wp_head(); ?>
+    
+    <!-- Яндекс.Вебмастер -->
+    <meta name="yandex-verification" content="17c2c754948a8846" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '553033485829826');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=553033485829826&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 
 <body class="<?=$admin_bar;?>" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<div id="wptime-plugin-preloader"></div>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'investmag' ); ?></a>
 
@@ -115,3 +157,11 @@ if( is_admin_bar_showing() ) {
             </div>
         </div>
     </header>
+
+    <?php if ($background_banner) : ?>
+        <div class="background-banner">
+            <a href="<?=get_field('banner-url', $background_banner[0]->ID)?>">
+                <img src="<?=get_field('banner-img', $background_banner[0]->ID)?>">
+            </a>
+        </div>
+    <?php endif; ?>

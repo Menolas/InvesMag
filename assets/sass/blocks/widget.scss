@@ -85,9 +85,29 @@
 	}
 
 	.widget-area.card-aside {
+		position: static;
+		margin-top: 37px;
+		margin-left: auto;
 	    display: flex;
-	    margin-top: 37px;
 	    width: 32.2%;
+	}
+
+	.card-aside.sticky {
+		position: fixed;
+		top: 50%;
+		right: unset;
+		margin: 0;
+		background-color: $white;
+		transform: translate(0, -50%);
+		z-index: 20;
+	}
+
+	.card-aside.positioned {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		top: unset;
+		left: unset;
 	}
 }
 

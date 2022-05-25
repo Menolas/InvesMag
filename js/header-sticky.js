@@ -1,7 +1,8 @@
 'use strict';
 
 (function () {
-	var header = document.querySelector('.site-header');
+	const header = document.querySelector('.site-header');
+
 	var sticky = header.offsetTop;
 
 	var stickyHeader = function () {
@@ -23,8 +24,4 @@
 	    window.addEventListener('scroll', stickyHeader);
 	}
 
-	
-
-	
-	
 })();

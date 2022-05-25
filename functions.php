@@ -5,7 +5,19 @@
  * 
  */
 
+require get_template_directory() . '/inc/theme-scripts.php';
+
 // вывод архива тега кастомной записи
+
+// function register_my_session()
+// {
+//   if( !session_id() )
+//   {
+//     session_start();
+//   }
+// }
+
+// add_action('init', 'register_my_session');
 
 add_filter('pre_get_posts', 'query_post_type');
 
@@ -43,70 +55,6 @@ add_filter('manage_posts_columns', 'true_id', 5);
 add_action('manage_posts_custom_column', 'true_custom', 5, 2);
 
 /**
- * Enqueue scripts and styles.
- */
-
-function investmag_scripts() {
-
-    wp_register_style('style', get_template_directory_uri() . '/css/style.css', [], 1, 'all');
-    wp_enqueue_style('style');
-
-    wp_enqueue_script( 'slick-slider-lib', get_stylesheet_directory_uri() . '/js/vendor/slick.min.js', array('jquery'));
-
-    wp_enqueue_script( 'header-desktop', get_stylesheet_directory_uri() . '/js/header-desktop.js', array('jquery'));
-    
-    wp_enqueue_script( 'pictures-wrap-height', get_stylesheet_directory_uri() . '/js/pictures-wrap-height.js', array('jquery'));
-
-    wp_enqueue_script( 'mobile-menu', get_stylesheet_directory_uri() . '/js/mobile-menu.js', [], 1, true);
-
-    wp_enqueue_script( 'scroll-to-top', get_stylesheet_directory_uri() . '/js/to-top.js', array('jquery'));
-
-    wp_register_script('header-sticky', get_template_directory_uri() . '/js/header-sticky.js', [], 1, true);
-    wp_enqueue_script('header-sticky');
-
-    wp_register_script('search-popup', get_template_directory_uri() . '/js/search-form-popup.js', [], 1, true);
-    wp_enqueue_script('search-popup');
-
-    wp_register_script('main-menu-tags', get_template_directory_uri() . '/js/main-menu-tags.js', [], 1, true);
-    wp_enqueue_script('main-menu-tags');
-
-    wp_register_script('card-aside', get_template_directory_uri() . '/js/card-aside.js', [], 1, true);
-    wp_enqueue_script('card-aside');
-
-    wp_register_script('flex-box', get_template_directory_uri() . '/js/flex-box.js', [], 1, true);
-    wp_enqueue_script('flex-box');
-
-    wp_register_script('new-tab-for-link', get_template_directory_uri() . '/js/new-tab-for-link.js', [], 1, true);
-    wp_enqueue_script('new-tab-for-link');
-
-    wp_register_script('themes-page', get_template_directory_uri() . '/js/themes-page.js', [], 1, true);
-    wp_enqueue_script('themes-page');
-
-    wp_register_script('share-social', get_template_directory_uri() . '/js/share-social.js', [], 1, true);
-    wp_enqueue_script('share-social');
-
-    $ajax_param = array('ajaxurl' => admin_url('admin-ajax.php'));
-
-    wp_enqueue_script( 'load-more-stocks', get_stylesheet_directory_uri() . '/js/stocks-load.js', array('jquery'));
-    wp_localize_script('load-more-stocks', 'myPlugin', $ajax_param);
-
-    wp_enqueue_script( 'load-opinions', get_stylesheet_directory_uri() . '/js/load-opinions.js', array('jquery'));
-    wp_localize_script('load-opinions', 'myPlugin', $ajax_param);
-
-}
-add_action( 'wp_enqueue_scripts', 'investmag_scripts' );
-
-add_action( 'wp_enqueue_scripts', 'load_old_jquery_fix', 100 );
-
-function load_old_jquery_fix() {
-    if ( ! is_admin() ) {
-        wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', ( "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ), false, '1.11.3' );
-        wp_enqueue_script( 'jquery' );
-    }
-}
-
-/**
 * Чистка хедера
 */
 //require get_template_directory() . '/inc/clean-header.php';
@@ -129,6 +77,7 @@ require get_template_directory() . '/inc/theme-support.php';
 
 require get_template_directory() . '/inc/custom-post.php';
 require get_template_directory() . '/inc/shortcodes.php';
+require get_template_directory() . '/inc/banners.php';
 
 // снятие фильтров WP
 
@@ -211,10 +160,6 @@ function load_opinions()
 
     $args['post_type'] = 'opinions';
     $args['posts_per_page'] = $post_number;
- 
-    // if( !wp_verify_nonce($_POST['nonce'], 'myajax-nonce')){ 
-    //     wp_die();
-    // }
 
     query_posts($args);
 
@@ -264,6 +209,31 @@ function get_article_date ($date_1 , $date_2) {
     return $article_date;
 }
 
+function get_article_dateY ($date_1 , $date_2) {
+
+    $days = dateDifference($date_1 , $date_2);
+
+    if ($days > 3) {
+      $article_date = get_the_date('j F Y');
+    }
+
+    if ($days == 1) {
+      $article_date = 'Вчера';
+    }
+
+    if ($days > 1  && $days <= 3) {
+      $article_date = $days . ' дня назад';
+    }
+
+    if ($days == 0) {
+      $article_date = 'Сегодня';
+    }
+
+    return $article_date;
+}
+
+
+
 //pagination of slider post
 
 add_filter('wp_link_pages_args','add_next_and_number');
@@ -292,4 +262,26 @@ function add_next_and_number($args){
         $args['after'] = $next.$args['after'];   
     }
     return $args;
+}
+
+remove_filter('the_content', 'wptexturize');
+remove_filter('wp_title', 'wptexturize');  /*Заголовок страницы*/
+remove_filter('the_title', 'wptexturize');  /*Заголовок записи*/
+remove_filter('single_post_title', 'wptexturize');  /*Заголовок поста*/
+remove_filter('bloginfo', 'wptexturize');  /*Информация о сайте, блоге*/
+remove_filter('the_excerpt', 'wptexturize');  /*Отрывок, цитата поста - первые 55 слов*/
+remove_filter('widget_title', 'wptexturize');  /*Заголовок виджета*/
+remove_filter('wp_list_categories', 'wptexturize');  /*Категории, рубрики*/
+remove_filter('term_name', 'wptexturize');  /*Название таксономии*/
+remove_filter('link_name', 'wptexturize');  /*Название ссылки*/
+remove_filter('link_description', 'wptexturize');  /*Описание ссылки*/
+remove_filter('link_notes', 'wptexturize');  /*Записи ссылки*/
+
+add_action('init', 'customRSS');
+function customRSS(){
+        add_feed('google', 'customRSSFunc');
+}
+
+function customRSSFunc(){
+        get_template_part('rss', 'google');
 }

@@ -9,6 +9,42 @@ $article_date = get_the_date('j F Y');
 
 $info = get_field('info-off', $post->ID);
 
+update_field('author', 'investmag.pro');
+
+$banner_inpage_mobile_after_post = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'mobile-inpage-after-post',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
+$banner_desktop_inpage_after = get_posts(array(
+    'numberposts' => 1,
+    'post_type' => 'partners',
+    'meta_query' => [
+        [
+            'key' => 'switch-banner',
+            'value' => 1,
+            'compare' => 'LIKE'
+        ],
+        [
+            'key' => 'position',
+            'value' => 'desktop-inpage-after-post',
+            'compare' => 'LIKE'
+        ]
+    ]
+));
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="single-opinion">
@@ -58,4 +94,37 @@ $info = get_field('info-off', $post->ID);
             <?php endif; ?>
         </footer>
     <?php endif; ?>
+
+    <?php if ($banner_inpage_mobile_after_post) : ?>
+
+        <div class="banner  banner--mobile  banner--inpage-after">
+            
+                <?php if (get_field('script', $banner_inpage_mobile_after_post[0]->ID)) :
+                    echo get_field('script', $banner_inpage_mobile_after_post[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_inpage_mobile_after_post[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_inpage_mobile_after_post[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+           
+        </div>
+
+    <?php endif; ?>
+
+    <?php if ($banner_desktop_inpage_after) : ?>
+
+        <div class="banner  banner--desktop  banner--inpage  banner--inpage-after">
+            
+                <?php if (get_field('script', $banner_desktop_inpage_after[0]->ID)) :
+                    echo get_field('script', $banner_desktop_inpage_after[0]->ID);
+                    else : ?>
+                        <a href="<?=get_field('banner-url', $banner_desktop_inpage_after[0]->ID)?>">
+                            <img src="<?=get_field('banner-img', $banner_desktop_inpage_after[0]->ID)?>">
+                        </a>
+                <?php endif; ?>
+            
+        </div>
+
+    <?php endif; ?>
+    
 </article>
